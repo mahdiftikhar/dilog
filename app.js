@@ -13,6 +13,7 @@ app.set("views", "views");
 const signupRoutes = require("./routes/signup");
 const homeRoutes = require("./routes/home");
 const loginRoutes = require("./routes/login");
+const adminHome = require("./routes/admin-home");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -20,5 +21,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(signupRoutes);
 app.use(homeRoutes);
 app.use(loginRoutes);
+app.use(adminHome);
 
-app.listen(3000);
+const port = 3500;
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+});
