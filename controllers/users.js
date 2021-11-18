@@ -8,6 +8,8 @@ exports.validateUser = (req, res, next) => {
         .then(([data, metadata]) => {
             const temp = JSON.parse(JSON.stringify(data));
 
+            console.log(temp);
+
             if (!temp.length) {
                 console.log("incorrect password/userid");
                 return res.redirect("/");

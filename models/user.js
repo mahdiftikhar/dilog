@@ -15,11 +15,9 @@ module.exports = class User {
     static fetchAll() {}
 
     static fetchByIdPass(name, pass) {
-        return db
-            .execute("SELECT * FROM user WHERE userName=? and password=?", [
-                name,
-                pass,
-            ])
-            .then(([data, metadata]) => {});
+        return db.execute(
+            "SELECT * FROM user WHERE userName=? and password=?",
+            [name, pass]
+        );
     }
 };

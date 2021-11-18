@@ -23,7 +23,7 @@ app.use(homeRoutes);
 app.use(loginRoutes);
 app.use(adminHome);
 
-const port = 3500;
+const port = 3000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

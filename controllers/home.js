@@ -18,4 +18,3 @@ exports.getLogout = (req, res, next) => {
 exports.updateReacts = (req, res, next) => {
     console.log(req.body);
 };
-// exports.getHome = getPosts;
