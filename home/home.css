@@ -44,14 +44,6 @@ input.search-input {
   background-color: rgb(252, 251, 250);
 }
 
-a {
-  text-decoration: none;
-  color: #fff;
-}
-a:hover {
-  color: #67656b;
-}
-
 li.items:hover {
   color: #67656b;
 }
