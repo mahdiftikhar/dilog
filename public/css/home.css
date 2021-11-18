@@ -70,6 +70,8 @@ li.items:hover {
   width: 50vw;
   justify-content: center;
   background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 10px #67656b;
   margin: 20px;
 }
 
@@ -83,6 +85,15 @@ p.main-content {
 }
 
 div.metadata {
+  margin: 10px;
+}
+
+i.fa-heart {
+  color: blue;
+  margin: 10px;
+}
+
+i.fa-heart span {
   margin: 10px;
 }
 

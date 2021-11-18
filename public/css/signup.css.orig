@@ -1,5 +1,12 @@
 body {
+<<<<<<< HEAD
+    background-image: url(assets/mark-autumns-Ssr26I0QWVY-unsplash.jpg);
 
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-size: 1366px 768px; */
+    overflow: hidden;
+=======
   background-image: linear-gradient(
       135deg,
       rgba(249, 249, 249, 0.1) 0%,
