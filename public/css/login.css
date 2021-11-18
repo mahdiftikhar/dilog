@@ -223,8 +223,18 @@ a.bttun:hover {
 }
 
 div.admin {
-  background-color: blue;
-  width: 100px;
-  height: 50px;
+  background-color: #2f2f2f;
+  width: 300px;
+  height: 40px;
   text-align: center;
+  border-radius: 5px;
+}
+
+div.admin:hover {
+  background-color: #727171;
+}
+div.admin a {
+  font-size: 22px;
+  text-decoration: none;
+  color: #fff;
 }
