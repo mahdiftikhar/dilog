@@ -13,4 +13,8 @@ router.get("/signup", (req, res, next) => {
     });
 });
 
+router.post("/signup", (req, res, next) => {
+    console.log(req.body, req.params);
+});
+
 module.exports = router;
