@@ -1,0 +1,113 @@
+body {
+  background-image: url(../assets/mark-autumns-Ssr26I0QWVY-unsplash.jpg);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-size: 1366px 768px; */
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.container .title {
+  grid-column: 5 / 8;
+  grid-row: 2 / 5;
+  font-size: 25px;
+  font-family: "Sofia", sans-serif;
+}
+
+.container .forum {
+  grid-column: 5 / 6;
+  grid-row: 4 / 7;
+}
+
+.container .login {
+  grid-column: -1;
+}
+
+.container .sign {
+  grid-column: 5 / 6;
+  grid-row: 7;
+  font-size: 15px;
+  margin-top: 20px;
+  width: 300px;
+  border: none;
+  outline: none;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.container .sign:hover {
+  background: #727171;
+  color: #fff;
+}
+
+.container .sign a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.container .pass {
+  grid-row: 8;
+}
+
+.container .Input {
+  margin: 5px 5px;
+  width: 20vw;
+  height: 5vh;
+  background-color: wheat;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 6px 20px -5px white;
+}
+
+h1.TITLE {
+  color: wheat;
+}
+
+a.bttun {
+  width: 300px;
+  height: 80px;
+  border: none;
+  outline: none;
+  background: #727171;
+  font-size: 30px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 10px;
+}
+a.bttun:hover {
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.bttn {
+  width: 300px;
+  height: 80px;
+  border: none;
+  outline: none;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bttn:hover {
+  background: #727171;
+  color: #fff;
+}
