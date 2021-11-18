@@ -221,3 +221,10 @@ a.bttun:hover {
   background: #727171;
   color: #fff;
 }
+
+div.admin {
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+}
