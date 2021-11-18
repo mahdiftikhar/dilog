@@ -39,6 +39,11 @@ body {
   justify-content: flex-end;
 }
 
+.bot-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 li.items {
   list-style: none;
   margin: 10px 25px;
@@ -79,17 +84,28 @@ li.items:hover {
 
 .container-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(auto, 1fr);
 }
 .card {
-  grid-column: 2;
-  width: 50vw;
+  width: 45vw;
   justify-content: center;
   background-color: white;
   border-radius: 10px;
   box-shadow: 5px 10px #67656b;
   margin: 20px;
+}
+
+.normal_post {
+  grid-column: 1 / 2;
+}
+
+.reported_post {
+  grid-column: 3/4;
+}
+
+.reported {
+  color: red;
 }
 
 p.main-content {
