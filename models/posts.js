@@ -14,10 +14,6 @@ module.exports = class Post {
     save() {}
 
     static fetchAll() {
-        return db.execute("SELECT * FROM post ORDER BY(creationTime) desc");
-    }
-
-    static fetchById(id) {
-        return db.execute("SELECT * FROM post WHERE id = (?)", id);
+        return db.execute("SELECT * FROM post");
     }
 };

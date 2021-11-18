@@ -1,4 +1,4 @@
-const db = require("./util/database");
+const db = require("../util/database");
 
 module.exports = class User {
     constructor(userName, email, displayPicture, dataOfBirth, bio, password) {
@@ -10,11 +10,14 @@ module.exports = class User {
         this.password = password;
     }
 
-    save() {
-        // return db.execute(
-        //     "INSERT INTO "
-        // )
-    }
+    save() {}
 
     static fetchAll() {}
+
+    static fetchByIdPass(name, pass) {
+        return db.execute(
+            "SELECT * FROM user WHERE userName=? and password=?",
+            [name, pass]
+        );
+    }
 };
