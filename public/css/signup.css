@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   background-image: linear-gradient(
       135deg,
       rgba(249, 249, 249, 0.1) 0%,
@@ -115,101 +116,109 @@ body {
       rgba(211, 211, 211, 0.08) 100%
     ),
     linear-gradient(90deg, rgb(45, 83, 160), rgb(21, 228, 112));
+=======
+    background-image: url(assets/mark-autumns-Ssr26I0QWVY-unsplash.jpg);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-size: 1366px 768px; */
+    overflow: hidden;
+>>>>>>> 52d9f42a65d71ecf2c0e1e25540c259d40bb3034
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(8, 1fr);
 }
 
 .container .title {
-  grid-column: 5 / 8;
-  grid-row: 2 / 5;
-  font-size: 25px;
-  font-family: "Gotham Narrow";
+    grid-column: 5 / 8;
+    grid-row: 2 / 5;
+    font-size: 25px;
+    font-family: "Gotham Narrow";
 }
 
 .container .forum {
-  grid-column: 5 / 6;
-  grid-row: 4 / 7;
+    grid-column: 5 / 6;
+    grid-row: 4 / 7;
 }
 
 .container .login {
-  grid-column: -1;
+    grid-column: -1;
 }
 
 .container .sign {
-  grid-column: 5 / 6;
-  grid-row: 7 / 8;
-  font-size: 15px;
-  margin-top: 20px;
-  width: 300px;
-  border: none;
-  outline: none;
-  background: #2f2f2f;
-  color: #fff;
-  font-size: 22px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+    grid-column: 5 / 6;
+    grid-row: 7 / 8;
+    font-size: 15px;
+    margin-top: 20px;
+    width: 300px;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .container .sign:hover {
-  background: #727171;
-  color: #fff;
+    background: #727171;
+    color: #fff;
 }
 
 .container .sign a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
 
 .container .Input {
-  margin: 5px 5px;
-  width: 20vw;
-  height: 5vh;
-  background-color: wheat;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 0 6px 20px -5px white;
+    margin: 5px 5px;
+    width: 20vw;
+    height: 5vh;
+    background-color: wheat;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 6px 20px -5px white;
 }
 
 h1.TITLE {
-  color: wheat;
+    color: wheat;
 }
 
 a.bttun {
-  width: 300px;
-  height: 80px;
-  border: none;
-  outline: none;
-  background: violet;
-  font-size: 30px;
-  text-decoration: none;
-  color: wheat;
-  border-radius: 10px;
+    width: 300px;
+    height: 80px;
+    border: none;
+    outline: none;
+    background: violet;
+    font-size: 30px;
+    text-decoration: none;
+    color: wheat;
+    border-radius: 10px;
 }
 
 .bttn {
-  width: 300px;
-  height: 80px;
-  border: none;
-  outline: none;
-  background: #2f2f2f;
-  color: #fff;
-  font-size: 22px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+    width: 300px;
+    height: 80px;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .bttn:hover {
-  background: #727171;
-  color: #fff;
+    background: #727171;
+    color: #fff;
 }
