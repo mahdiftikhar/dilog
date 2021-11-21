@@ -24,5 +24,8 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.getLogout = (req, res, next) => {
-    res.redirect("/");
+    res.render("login", {
+        pageTitle: "Login",
+        path: "/",
+    });
 };

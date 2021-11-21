@@ -5,7 +5,9 @@ exports.getPosts = (req, res, next) => {
         .then(([rows, metadata]) => {
             res.render("home", { rows: rows, pageTitle: "Home" });
         })
-        .catch();
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.getLogout = (req, res, next) => {

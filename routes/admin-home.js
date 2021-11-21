@@ -12,7 +12,5 @@ const router = express.Router();
 
 router.get("/admin-home", homeController.getPosts);
 router.get("/", homeController.getLogout);
-// router.get("/", homeController.getLogout);
-// router.post("/home", homeController.updateReacts);
 
 module.exports = router;
