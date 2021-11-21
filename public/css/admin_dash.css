@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    background-image: linear-gradient(
+            283deg,
+            rgba(228, 228, 228, 0.04) 0%,
+            rgba(228, 228, 228, 0.04) 30%,
+            rgba(130, 130, 130, 0.04) 30%,
+            rgba(130, 130, 130, 0.04) 49%,
+            rgba(31, 31, 31, 0.04) 49%,
+            rgba(31, 31, 31, 0.04) 100%
+        ),
+        linear-gradient(
+            297deg,
+            rgba(228, 228, 228, 0.04) 0%,
+            rgba(228, 228, 228, 0.04) 20%,
+            rgba(130, 130, 130, 0.04) 20%,
+            rgba(130, 130, 130, 0.04) 60%,
+            rgba(31, 31, 31, 0.04) 60%,
+            rgba(31, 31, 31, 0.04) 100%
+        ),
+        linear-gradient(
+            242deg,
+            rgba(228, 228, 228, 0.04) 0%,
+            rgba(228, 228, 228, 0.04) 29%,
+            rgba(130, 130, 130, 0.04) 29%,
+            rgba(130, 130, 130, 0.04) 48%,
+            rgba(31, 31, 31, 0.04) 48%,
+            rgba(31, 31, 31, 0.04) 100%
+        ),
+        linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0));
+}
+
+.list {
+    display: flex;
+    background-color: #3c3b3f;
+    /* width: 100vw; */
+    height: 8vh;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.bot-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+li.items {
+    list-style: none;
+    margin: 10px 25px;
+    font-size: 25px;
+    /* background: #727171;
+    border-radius: 10px; */
+    color: #fff;
+    font-family: "Open Sans";
+}
+
+li.search {
+    list-style: none;
+    margin: 15px 5px;
+    flex: 1;
+}
+
+input.search-input {
+    height: 3vh;
+    font-size: larger;
+    background-color: rgb(252, 251, 250);
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+a:hover {
+    color: #67656b;
+}
+
+li.items:hover {
+    color: #67656b;
+}
+
+.nav-bar > li {
+    flex: 1;
+}
+
+.container-card {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+}
+.card {
+    width: 45vw;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 10px #67656b;
+    margin: 20px;
+}
+
+.normal_post {
+    grid-column: 1 / 2;
+}
+
+.reported_post {
+    grid-column: 3/4;
+}
+
+.reported {
+    color: red;
+}
+
+p.main-content {
+    margin: 10px;
+}
+
+.metadata {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.metadata {
+    margin: 10px;
+}
+
+i.fa-heart {
+    color: blue;
+    margin: 10px;
+}
+
+i.fa-heart span {
+    margin: 10px;
+}
+
+i.fa-heart:hover {
+    color: red;
+}
+
+.metaitem {
+    font-weight: bold;
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}

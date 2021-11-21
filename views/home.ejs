@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= pageTitle %></title>
+        <link rel="stylesheet" href="/css/home.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+    </head>
+    <nav>
+        <div class="nav-bar">
+            <ul class="list">
+                <li class="search">
+                    <input
+                        type="text"
+                        class="search-input"
+                        placeholder="Search"
+                    />
+                </li>
+                <li class="items home">
+                    <form method="POST"><a href="/home">Home</a></form>
+                </li>
+                <li class="items post">Post</li>
+                <li class="items profile">Profile</li>
+                <li class="items logout">
+                    <form method="POST"><a href="/">Logout</a></form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <body>
+        <% if (rows.length > 0) {%> <% for (let row of rows) {%>
+        <div class="container-card">
+            <div class="card">
+                <div class="metadata">
+                    <div class="metaitem"><%= row.userName %></div>
+                    <div class="metaitem"><%= row.creationTime %></div>
+                </div>
+                <div class="content">
+                    <p class="main-content"><%= row.text %></p>
+                </div>
+                <div class="bot-nav">
+                    <div class="react">
+                        <form method="POST">
+                            <button class="btn">
+                                <i class="fa fa-heart" aria-hidden="true"
+                                    ><span><%= row.reacts %></span></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%> <%} else {%>
+        <div class="container-card">
+            <div class="card">
+                <div class="content">
+                    <p class="main-content">No Posts Yet!</p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </body>
+</html>
