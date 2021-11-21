@@ -22,3 +22,7 @@ exports.getPosts = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
+
+exports.getLogout = (req, res, next) => {
+    res.redirect("/");
+};
