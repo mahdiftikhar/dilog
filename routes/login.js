@@ -10,11 +10,11 @@ const router = express.Router();
 router.get("/admin_login", (req, res, next) => {
     res.render("admin_login", {
         pageTitle: "Admin Log in",
-        path: "/admin-login",
+        path: "/admin_login",
     });
 });
 
-router.post("/admin-login", adminController.validateAdmin);
+router.post("/admin_login", adminController.validateAdmin);
 
 router.get("/", (req, res, next) => {
     res.render("login", {
