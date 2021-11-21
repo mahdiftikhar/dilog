@@ -12,7 +12,7 @@ exports.validateAdmin = (req, res, next) => {
 
             if (!temp.length) {
                 console.log("incorrect password/adminid");
-                return res.redirect("/");
+                return res.redirect("/admin_login");
             }
             return res.redirect("/admin-home");
         })
