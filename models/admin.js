@@ -13,7 +13,7 @@ module.exports = class Admin {
 
     static fetchByIdPass(name, pass) {
         return db.execute(
-            "SELECT * FROM admin WHERE adminId=? and password=?",
+            "SELECT * FROM admin WHERE userName=? and password=?",
             [name, pass]
         );
     }

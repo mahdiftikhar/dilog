@@ -11,7 +11,10 @@ exports.validateUser = (req, res, next) => {
             console.log(temp);
 
             if (!temp.length) {
-                console.log("incorrect password/userid");
+                console.log(
+                    "controllers/users ",
+                    "incorrect password / userid"
+                );
                 return res.redirect("/");
             }
             return res.redirect("/home");
