@@ -22,3 +22,13 @@ exports.getPosts = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
+<<<<<<< HEAD
+=======
+
+exports.getLogout = (req, res, next) => {
+    res.render("login", {
+        pageTitle: "Login",
+        path: "/",
+    });
+};
+>>>>>>> 672d6204864cd52ff6f9f89e9708f43e51172fcc
