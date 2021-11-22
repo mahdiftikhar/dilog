@@ -20,4 +20,11 @@ module.exports = class User {
             [name, pass]
         );
     }
+
+    static addByIdEmailPass(name, email, password) {
+        return db.execute(
+            "INSERT INTO user (userName, email, password, dateOfBirth) VALUES (?, ?, ?, ?)",
+            [name, email, password, "2010-02-02"]
+        );
+    }
 };
