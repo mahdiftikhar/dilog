@@ -10,17 +10,12 @@ exports.validateSignup = (req, res, next) => {
             const temp = JSON.parse(JSON.stringify(data));
 
             console.log(temp);
-
-            temp.then((temp) => {
-                console.log("User Created Successfully");
-                return res.redirect("/home");
-            }).catch((err) => {
-                console.log("Unsuccessful signup");
-                console.log(err);
-                return res.redirect("/signup");
-            });
+            console.log("User created successfully");
+            return res.redirect("/home");
         })
         .catch((err) => {
             console.log(err);
+            console.log("Could not signup");
+            return res.redirect("/");
         });
 };
