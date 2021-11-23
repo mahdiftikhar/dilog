@@ -10,7 +10,7 @@ const router = express.Router();
 //     res.render()
 // });
 
-router.get("/admin-home", homeController.getPosts);
+router.get("/home", homeController.getPosts);
 router.get("/", homeController.getLogout);
 
 module.exports = router;

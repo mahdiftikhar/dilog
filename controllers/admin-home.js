@@ -14,7 +14,7 @@ exports.getPosts = (req, res, next) => {
         .then(([rows, metadata]) => {
             const r2 = rows;
 
-            res.render("admin_dash", {
+            res.render("admin/home", {
                 rows1: r1,
                 rows2: r2,
                 pageTitle: "admin-home",

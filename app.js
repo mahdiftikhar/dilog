@@ -18,9 +18,9 @@ const loginRoutes = require("./routes/login");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(signupRoutes);
-app.use(adminHomeRoutes);
 app.use(homeRoutes);
+app.use(signupRoutes);
+app.use("/admin", adminHomeRoutes);
 app.use(loginRoutes);
 
 const port = 3000;

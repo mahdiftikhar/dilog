@@ -7,21 +7,21 @@ const adminController = require("../controllers/admins");
 
 const router = express.Router();
 
-router.get("/admin_login", (req, res, next) => {
-    res.render("admin_login", {
+router.get("/admin/login", (req, res, next) => {
+    res.render("admin/login", {
         pageTitle: "Admin Log in",
-        path: "/admin_login",
+        path: "/admin/login",
     });
 });
 
-router.post("/admin_login", adminController.validateAdmin);
+router.post("/admin/login", adminController.validateAdmin);
 
-router.get("/", (req, res, next) => {
-    res.render("login", {
-        pageTitle: "Log in",
-        path: "/",
-    });
-});
+// router.get("/", (req, res, next) => {
+//     res.render("login", {
+//         pageTitle: "Log in",
+//         path: "/",
+//     });
+// });
 
 router.post("/", userController.validateUser);
 
