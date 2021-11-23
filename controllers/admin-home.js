@@ -24,7 +24,7 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.getLogout = (req, res, next) => {
-    res.render("login", {
+    res.render("admin/login", {
         pageTitle: "Login",
         path: "/",
     });

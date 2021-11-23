@@ -2,15 +2,14 @@ const path = require("path");
 
 const express = require("express");
 
-const homeController = require("../controllers/admin-home");
+const adminHomeController = require("../controllers/admin-home");
 
 const router = express.Router();
 
-// router.get("/forgot_password", (req, res, next) => {
-//     res.render()
-// });
-
-router.get("/home", homeController.getPosts);
-router.get("/", homeController.getLogout);
+router.get("/home", adminHomeController.getPosts);
+router.get("/login", adminHomeController.getLogout);
+router.get("/", (req, res, next) => {
+    return res.redirect("/admin/login");
+});
 
 module.exports = router;
