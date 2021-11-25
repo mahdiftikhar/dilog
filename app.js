@@ -10,18 +10,18 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const signupRoutes = require("./routes/signup");
-const adminHomeRoutes = require("./routes/admin-home");
-const homeRoutes = require("./routes/home");
-const loginRoutes = require("./routes/login");
+const userRoutes = require("./routes/user");
+const adminRoutes = require("./routes/admin");
+
+const errorController = require("./controllers/error");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(homeRoutes);
-app.use(signupRoutes);
-app.use("/admin", adminHomeRoutes);
-app.use(loginRoutes);
+app.use("/admin", adminRoutes);
+app.use(userRoutes);
+
+app.use(errorController.get404);
 
 const port = 3000;
 app.listen(port, () => {

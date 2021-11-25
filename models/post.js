@@ -20,4 +20,6 @@ module.exports = class Post {
     static fetchById(id) {
         return db.execute("SELECT * FROM post WHERE id = (?)", id);
     }
+
+    static deleteById(id) {}
 };
