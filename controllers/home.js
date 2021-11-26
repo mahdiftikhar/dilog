@@ -3,7 +3,11 @@ const Post = require("../models/post");
 exports.getPosts = (req, res, next) => {
     Post.fetchAll()
         .then(([rows, metadata]) => {
-            res.render("home", { rows: rows, pageTitle: "Home" });
+            res.render("user/home", {
+                posts: rows,
+                pageTitle: "Home",
+                path: "/home",
+            });
         })
         .catch((err) => {
             console.log(err);
