@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const Post = require("../models/post");
+const { use } = require("../routes/user");
 
 exports.validateUser = (req, res, next) => {
     const name = req.body.name;
@@ -44,4 +46,52 @@ exports.validateSignup = (req, res, next) => {
             console.log("Could not signup");
             return res.redirect("/");
         });
+};
+
+exports.getMyPosts = (req, res, next) => {
+    console.log("controllers - getMyPosts");
+
+    const username = "umair14040";
+
+    Post.fetchByUsername(username)
+        .then(([rows, metadata]) => {
+            res.render("user/my-posts", {
+                posts: rows,
+                pageTitle: "My Posts",
+                path: "/my-posts",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getMyProfile = (req, res, next) => {
+    console.log("controllers - getMyProfile");
+
+    username = "sjc";
+
+    User.fetchInfo(username).then(([rows, metadata]) => {
+        const userData = JSON.parse(JSON.stringify(rows))[0];
+
+        // temp.dateOfBirth = temp.dateOfBirth.
+
+        temp = userData.dateOfBirth.split("-");
+
+        date = temp[0] + "-" + temp[1];
+
+        if (temp[2][1] == "T") {
+            date += "-" + temp[2][0];
+        } else {
+            date += "-" + temp[2][0] + temp[2][1];
+        }
+
+        res.render("user/my-profile", {
+            pageTitle: "My Posts",
+            userName: userData.userName,
+            email: userData.email,
+            bio: userData.bio,
+            dob: date,
+        });
+    });
 };

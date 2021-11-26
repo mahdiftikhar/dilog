@@ -1,11 +1,11 @@
 const db = require("../util/database");
 
 module.exports = class User {
-    constructor(userName, email, displayPicture, dataOfBirth, bio, password) {
+    constructor(userName, email, displayPicture, dateOfBirth, bio, password) {
         this.userName = userName;
         this.email = email;
         this.displayPicture = displayPicture;
-        this.dataOfBirth = dataOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.bio = bio;
         this.password = password;
     }
@@ -19,6 +19,12 @@ module.exports = class User {
             "SELECT * FROM user WHERE userName=? and password=?",
             [name, pass]
         );
+    }
+
+    static fetchInfo(username) {
+        return db.execute("SELECT * FROM user WHERE userName = (?)", [
+            username,
+        ]);
     }
 
     static addByIdEmailPass(name, email, password) {
