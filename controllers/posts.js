@@ -16,8 +16,6 @@ exports.postMakePost = (req, res, next) => {
     Post.save(body, tags, username)
         .then(([data, metadata]) => {
             const temp = JSON.parse(JSON.stringify(data));
-
-            // console.log(temp);
             console.log("Post created successfully");
             return res.redirect("/home");
         })

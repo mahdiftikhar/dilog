@@ -83,6 +83,7 @@ exports.getMyProfile = (req, res, next) => {
         } else {
             date += "-" + temp[2][0] + temp[2][1];
         }
+
         console.log(date);
         userData.dateOfBirth = date;
 
