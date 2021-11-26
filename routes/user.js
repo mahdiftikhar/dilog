@@ -5,10 +5,6 @@ const userController = require("../controllers/users");
 
 const router = express.Router();
 
-router.post("/signup", userController.validateSignup);
-
-router.post("/", userController.validateUser);
-
 router.get("/home", homeController.getPosts);
 
 router.get("/logout", homeController.getLogout);

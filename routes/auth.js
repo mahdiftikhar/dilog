@@ -1,19 +1,11 @@
 const express = require("express");
 
-const router = express.router();
+const authController = require("../controllers/auth");
 
-router.get("/");
+const router = express.Router();
 
-router.get("/", (req, res, next) => {
-    res.render("user/login", {
-        pageTitle: "Log in",
-        path: "/",
-    });
-});
+router.get("/", authController.getLogin);
 
-router.get("/signup", (req, res, next) => {
-    res.render("user/signup", {
-        pageTitle: "Signup",
-        path: "/signup",
-    });
-});
+router.get("/signup", authController.getSignup);
+
+module.exports = router;
