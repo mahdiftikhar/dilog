@@ -1,4 +1,4 @@
-
+const Post = require("../models/post");
 
 exports.getMakePost = (req, res, next) => {
     console.log("controllers - getMakePost");
@@ -27,4 +27,3 @@ exports.postMakePost = (req, res, next) => {
             return res.redirect("/home");
         });
 };
-

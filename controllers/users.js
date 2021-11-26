@@ -69,12 +69,10 @@ exports.getMyPosts = (req, res, next) => {
 exports.getMyProfile = (req, res, next) => {
     console.log("controllers - getMyProfile");
 
-    username = "sjc";
+    username = "umair14040";
 
     User.fetchInfo(username).then(([rows, metadata]) => {
         const userData = JSON.parse(JSON.stringify(rows))[0];
-
-        // temp.dateOfBirth = temp.dateOfBirth.
 
         temp = userData.dateOfBirth.split("-");
 
@@ -85,13 +83,12 @@ exports.getMyProfile = (req, res, next) => {
         } else {
             date += "-" + temp[2][0] + temp[2][1];
         }
+        console.log(date);
+        userData.dateOfBirth = date;
 
         res.render("user/my-profile", {
             pageTitle: "My Posts",
-            userName: userData.userName,
-            email: userData.email,
-            bio: userData.bio,
-            dob: date,
+            user: userData,
         });
     });
 };

@@ -1,18 +1,31 @@
 <%- include("../includes/head.ejs") %> 
 
-</head>
+    </head>
 
-<h1>My Profile</h1>
+    <h1>My Profile</h1>
 
-<body>
-    <main>
-        <h2>USERNAME:</h2>
-        <h3> <%= userName %></h3>
-        <h2>BIO: </h2>
-        <h3> <%= bio %></h3>
-        <h2>EMAIL: </h2>
-        <h3> <%= email %></h3>
-        <h2>DOB: </h2>
-        <h3> <%= dob %></h3>
-    </main>
-</body>
+    <body>
+        <main>
+            <div>
+                <h2>Username:</h2>
+                <h3> <%= user.userName %></h3>
+            </div>
+
+            <div>
+                <h2>Bio: </h2>
+                <h3> <%= user.bio %></h3>
+            </div>
+
+            <div>
+                <h2>Email: </h2>
+                <h3> <%= user.email %></h3>
+            </div>
+
+            <div>
+                <h2>DOB: </h2>
+                <h3> <%= user.dateOfBirth %></h3>
+            </div>
+        </main>
+
+        <%- include("../includes/end.ejs") %>
+    </body>

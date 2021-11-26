@@ -5,23 +5,30 @@
 
 <body>
     <form action="/make-post" method="POST">
-        <input
-            class="Input"
-            type="text"
-            placeholder="post body"
-            name="postbody"
-            required
-        />
-        <input
-            class="Input"
-            type="text"
-            placeholder="tags"
-            name="tags"
-            required
-        />
-        <input type="file" 
-            name="image"
-        />
-        <button type="submit" >Finalize Post</button>
+        <div>
+            <label for="postbody"> Post Body</label>
+            <input
+                type="text"
+                name="postbody"
+                required
+            />
+        </div>
+
+        <div>
+            <label for="tags"> Tags</label>
+            <input
+                type="text"
+                name="tags"
+                required
+            />
+        </div>
+
+        <div>
+            <label for="image"> Image</label>
+            <input type="file" 
+                name="image"
+            />
+        </div>
+        <button type="submit" >Make Post</button>
     </form>
 </body>
