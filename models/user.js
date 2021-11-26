@@ -21,6 +21,10 @@ module.exports = class User {
         );
     }
 
+    static findByName(name) {
+        return db.execute("SELECT * FROM user WHERE userName=?", [name]);
+    }
+
     static addByIdEmailPass(name, email, password) {
         return db.execute(
             "INSERT INTO user (userName, email, password, dateOfBirth) VALUES (?, ?, ?, ?)",
