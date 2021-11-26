@@ -76,6 +76,8 @@ exports.getMyProfile = (req, res, next) => {
 
         temp = userData.dateOfBirth.split("-");
 
+        console.log(userData.dateOfBirth);
+
         date = temp[0] + "-" + temp[1];
 
         if (temp[2][1] == "T") {
