@@ -1,4 +1,4 @@
-const flaggedPost = require("../models/flagged-posts");
+const flaggedPost = require("../models/reportpost");
 
 exports.getPosts = (req, res, next) => {
     let r1;
