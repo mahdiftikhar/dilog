@@ -1,36 +1,47 @@
 <div class="backdrop"></div>
 <header class="main-header">
     
-    <nav class="main-header__nav">
-        <ul class="main-header__item-list">
-            <li class="main-header__item">
-                <a class="<%= path === '/home' ? 'active' : '' %>" href="/home">Home</a>
-            </li>
-            <li class="main-header__item">
-                <a
-                    class="<%= path === '/products' ? 'active' : '' %>"
-                    href="/products"
-                    >My Posts</a
-                >
-            </li>
-            <li class="main-header__item">
-                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart"
-                    >Profile</a
-                >
-            </li>
-            <li class="main-header__item">
-                <a
-                    class="<%= path === '/orders' ? 'active' : '' %>"
-                    href="/orders"
-                    >Search</a
-                >
-            </li class="main-header__item">
-            <li class="main-header__item">
-                <form action="/logout" method="POST">
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
-        </ul>
-    </nav>
+    <div class = "container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExample09">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="<%= path === '/home' ? 'active' : '' %> nav-link active" href="/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="<%= path === '/products' ? 'active' : '' %> nav-link"
+                                href="/products"
+                                >My Posts</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="<%= path === '/cart' ? 'active' : '' %> nav-link" href="/cart"
+                                >Profile</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="<%= path === '/orders' ? 'active' : '' %> nav-link"
+                                href="/orders nav-lin"
+                                >Search</a
+                            >
+                        </li class="nav-item">
+                        <li class="nav-item">
+                            <form action="/logout" method="POST">
+                                <button type="submit" class="btn">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
 </header>
 

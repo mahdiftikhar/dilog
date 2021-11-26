@@ -3,36 +3,42 @@
 </head>
 
     <body>
-        
-        <div>
-            <div>
-                <h1>D.I.Log Login</h1>
+        <div class="cont">
+            <div class="left-div">
+                <div>
+                    <h1 class="heading">D.I.Log</h1>
+                </div>
+                <div class="logo">
+                    <img src="/assets/logo.png" alt="logo">
+                </div>
             </div>
-            <div>
-                <form action="/login" class="signup" method="POST">
-                    <div class="form-control">
-                        <label for="userName">User Name</label>
-                        <input
-                            type="text"
-                            name="userName"
-                        >
+
+            <div class="right-div">
+                <div>
+                    <form action="/login" class="signup" method="POST">
+                        <div class="form-control">
+                            <label for="userName">User Name</label>
+                            <input
+                                type="text"
+                                name="userName"
+                            >
+                        </div>
+
+                        <div class="form-control">
+                            <lable for="password">Password</lable>
+                            <input type="password" name="password">
+                        </div>
+
+                        <button type="submit">Login</button>
+                    </form>
+                    <div>
+                        <a href="./forgot_password">Forgot Password</a>
                     </div>
-
-                    <div class="form-control">
-                        <lable for="password">Password</lable>
-                        <input type="password" name="password">
+    
+                    <div>
+                        <a href="/signup">No Account? Sign up here</a>
                     </div>
-
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-            
-            <div>
-                <a href="./forgot_password">Forgot Password</a>
-            </div>
-
-            <div>
-                <a href="/signup">No Account? Sign up here</a>
+                </div>
             </div>
         </div>
 

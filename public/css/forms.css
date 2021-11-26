@@ -1,4 +1,17 @@
-.form-control {
+.cont {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    color: white;
+}
+
+/* .form-control {
     margin: 1rem 0;
 }
 
@@ -20,4 +33,37 @@
 .form-control input:focus,
 .form-control textarea:focus {
     outline-color: #00695c;
+} */
+
+.left-div {
+    width: 50vw;
+    background-color: rgb(f, f, f);
+    height: 100vh;
+    margin: 0;
+}
+
+.heading {
+    color: #6c63ff;
+    font: inherit;
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.right-div {
+    width: 50vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #6545a4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30%;
+    height: 50%;
 }
