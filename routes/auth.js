@@ -1,6 +1,6 @@
 const express = require("express");
 
-const router = express.router();
+const router = express.Router();
 
 router.get("/");
 
@@ -17,3 +17,5 @@ router.get("/signup", (req, res, next) => {
         path: "/signup",
     });
 });
+
+module.exports = router;

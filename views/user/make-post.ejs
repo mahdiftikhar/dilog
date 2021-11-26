@@ -1,0 +1,27 @@
+<%- include("../includes/head.ejs") %> 
+</head>
+
+<h1>MAKE POST</h1>
+
+<body>
+    <form action="/make-post" method="POST">
+        <input
+            class="Input"
+            type="text"
+            placeholder="post body"
+            name="postbody"
+            required
+        />
+        <input
+            class="Input"
+            type="text"
+            placeholder="tags"
+            name="tags"
+            required
+        />
+        <input type="file" 
+            name="image"
+        />
+        <button type="submit" >Finalize Post</button>
+    </form>
+</body>

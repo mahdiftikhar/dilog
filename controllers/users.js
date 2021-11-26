@@ -29,6 +29,8 @@ exports.validateSignup = (req, res, next) => {
     const pass = req.body.password;
     const email = req.body.email;
 
+    console.log(name, pass, email);
+
     User.addByIdEmailPass(name, email, pass)
         .then(([data, metadata]) => {
             const temp = JSON.parse(JSON.stringify(data));

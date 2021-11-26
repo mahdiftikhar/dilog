@@ -8,15 +8,15 @@
             </li>
             <li class="main-header__item">
                 <a
-                    class="<%= path === '/products' ? 'active' : '' %>"
-                    href="/products"
+                    class="<%= path === '/my-posts' ? 'active' : '' %>"
+                    href="/my-posts"
                     >My Posts</a
                 >
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart"
-                    >Profile</a
-                >
+                <a class="<%= path === '/my-profile' ? 'active' : '' %>" href="/my-profile"
+                    >Profile
+                    </a>
             </li>
             <li class="main-header__item">
                 <a
@@ -30,6 +30,13 @@
                     class="<%= path === '/admin/add-product' ? 'active' : '' %>"
                     href="/admin/add-product"
                     >Logout
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a
+                    class="<%= path === '/make-post' ? 'active' : '' %>"
+                    href="/make-post"
+                > Make Post
                 </a>
             </li>
         </ul>
