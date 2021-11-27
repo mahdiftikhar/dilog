@@ -1,46 +1,49 @@
 <%- include("../includes/head.ejs") %> 
-    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/login-signup.css">
 </head>
 
-    <body>
-        <div class="cont">
-            <div class="left-div">
-                <div>
-                    <h1 class="heading">D.I.Log</h1>
-                </div>
-                <div class="logo">
-                    <img src="/assets/logo.png" alt="logo">
-                </div>
+<body>
+    <div class="cont">
+        <div class="left-div">
+            <div>
+                <h1 class="heading">D.I.Log</h1>
             </div>
-
-            <div class="right-div">
-                <div>
-                    <form action="/login" class="signup" method="POST">
-                        <div class="form-control">
-                            <label for="userName">User Name</label>
-                            <input
-                                type="text"
-                                name="userName"
-                            >
-                        </div>
-
-                        <div class="form-control">
-                            <lable for="password">Password</lable>
-                            <input type="password" name="password">
-                        </div>
-
-                        <button type="submit">Login</button>
-                    </form>
-                    <div>
-                        <a href="./forgot_password">Forgot Password</a>
-                    </div>
-    
-                    <div>
-                        <a href="/signup">No Account? Sign up here</a>
-                    </div>
-                </div>
+            <div class="logo">
+                <img src="/assets/logo.svg" alt="logo" />
             </div>
         </div>
 
-    </body>
-</html>
+        <div class="right-div">
+            <div class="form-options">
+                <% if (errorMessage) { %>
+                    <div><%= errorMessage %></div>
+                <% } %>
+                <form action="/login" class="signup" method="POST">
+                    <div class="form-control login-control">
+                        <label for="userName">User Name</label>
+                        <input type="text" name="userName" />
+                    </div>
+
+                    <div class="form-control login-control">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" />
+                    </div>
+
+                    <button class="std-button" type="submit">Login</button>
+                </form>
+            </div>
+
+            <div class="more-options">
+                <div>
+                    <a href="./forgot_password">Forgot Password</a>
+                </div>
+
+                <div>
+                    <a href="/signup">No Account? Sign up here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <<%- include("../includes/end.ejs") %>
+</body>
