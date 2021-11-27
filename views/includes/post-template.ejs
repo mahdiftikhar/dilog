@@ -1,0 +1,23 @@
+<article class="card">
+    <a href="/post/<%= post.id %>">
+        <div class="card__content">
+            <h4><%= post.userName %></h4>
+            <h6><%= post.creationTime %></h6>
+            <p><%= post.tags %></p>
+            <p><%= post.text %></p>
+            <% if (post.image) { %>
+                <div class="card__image"><img src="<% post.image %>" alt="" /></div>
+            <% } %> <% if (post.isUser) { %>
+                <a href="post/edit-post">Edit</a>
+            <% } %>
+        </div>
+    </a>
+
+    <div class="card__actions">
+        <button class="btn">Like (<%= post.reacts %>)</button>
+        <button class="btn">Comment</button>
+        <% if (!post.isUser) { %>
+        <button class="btn">Report</button>
+        <% } %>
+    </div>
+</article>

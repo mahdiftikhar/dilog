@@ -1,8 +1,8 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
-    // console.log(user);
 
     Post.fetchAll()
         .then(([rows, metadata]) => {
@@ -17,7 +17,38 @@ exports.getPosts = (req, res, next) => {
         });
 };
 
-exports.getPostById = (req, res, next) => {};
+exports.getPostById = (req, res, next) => {
+    const postid = req.params.postid;
+
+    Post.fetchById(postid)
+        .then(([posts, metadata]) => {
+            const postData = posts[0];
+            const user = req.session.user;
+            let isUser = null;
+
+            if (postData.userName === user.userName) {
+                postData.isUser = true;
+            }
+
+            Comment.fetchByPostId(postData.id).then(([comments, metaData]) => {
+                for (let comment of comments) {
+                    if (comment.userName === user.userName) {
+                        comment.isUser = true;
+                    }
+                }
+                return res.render("user/post", {
+                    pageTitle: postData.text.slice(0, 20) + "...",
+                    path: "/post",
+                    post: postData,
+                    comments: comments,
+                });
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
 
 exports.getLogout = (req, res, next) => {
     res.render("login", {

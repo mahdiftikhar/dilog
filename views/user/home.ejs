@@ -1,5 +1,4 @@
 <%- include("../includes/head.ejs") %> 
-    <!-- <link rel="stylesheet" href="/css/post.css"> -->
     </head>
 
     <body>
@@ -10,12 +9,12 @@
             <% if (posts.length > 0) { %>    
                 <div class="grid">
                     <% for (let post of posts) { %> 
-                        <article class="card">
-                            <a href="/home/<%= post.id %> ">
+                        <!-- <article class="card">
+                            <a href="/post/<%= post.id %>">
                                 <div class="card__content">
                                     <h4><%= post.userName %> </h4>
                                     <h6><%= post.creationTime %> </h6> 
-                                    <p> <% post.tags %> </p>
+                                    <p> <%= post.tags %> </p>
                                     <p><%= post.text %> </p>
                                     <% if (post.image) { %> 
                                         <div class="card__image"><img src="<% post.image %>" alt=""></div>
@@ -27,8 +26,10 @@
                                     <button class="btn">Comment</button>
                                     <button class="btn">Report</button>
                                 </div>
-                            </article>
-                    <% } %> 
+                            </article> -->
+
+                            <%- include("../includes/post-template.ejs", {post: post}) %> 
+                        <% } %> 
                 </div>
             <% } else { %> 
                 <h1>No Posts Found</h1>
