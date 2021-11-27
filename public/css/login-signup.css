@@ -127,3 +127,7 @@ a {
   margin-top: 50px;
   text-align: center;
 }
+
+a:hover {
+  color: #e7daff;
+}
