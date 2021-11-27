@@ -35,9 +35,6 @@ exports.validateSignup = (req, res, next) => {
 
     User.addByIdEmailPass(name, email, pass)
         .then(([data, metadata]) => {
-            const temp = JSON.parse(JSON.stringify(data));
-
-            console.log(temp);
             console.log("User created successfully");
             return res.redirect("/home");
         })
@@ -54,7 +51,7 @@ exports.getMyPosts = (req, res, next) => {
 
     Post.fetchByUsername(username)
         .then(([rows, metadata]) => {
-            res.render("user/my-posts", {
+            res.render("user/home", {
                 posts: rows,
                 pageTitle: "My Posts",
                 path: "/my-posts",
@@ -74,7 +71,7 @@ exports.getMyProfile = (req, res, next) => {
 
         temp = userData.dateOfBirth.split("-");
 
-        console.log(userData.dateOfBirth);
+        // console.log(userData.dateOfBirth);
 
         date = temp[0] + "-" + temp[1];
 
@@ -84,7 +81,7 @@ exports.getMyProfile = (req, res, next) => {
             date += "-" + temp[2][0] + temp[2][1];
         }
 
-        console.log(date);
+        // console.log(date);
         userData.dateOfBirth = date;
 
         res.render("user/my-profile", {
@@ -93,4 +90,20 @@ exports.getMyProfile = (req, res, next) => {
             path: "/my-profile",
         });
     });
+};
+
+exports.getEditProfile = (req, res, next) => {
+    res.render("user/edit-profile", {
+        pageTitle: "Edit Profile",
+        path: "/my-profile",
+    });
+};
+
+exports.postEditProfile = (req, res, next) => {
+    console.log("controllers - postEditProfile");
+
+    const username = req.session.user.userName;
+    const pass = req.body.password;
+    const bio = req.body.bio;
+    const dp = req.body.dp;
 };
