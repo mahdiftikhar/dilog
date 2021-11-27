@@ -10,6 +10,7 @@ const pool = mysql.createPool({
     user: USER,
     database: DATABASE,
     password: PASSWORD,
+    dateStrings: true,
 });
 
 module.exports = pool.promise();

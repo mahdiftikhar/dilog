@@ -1,41 +1,40 @@
 <%- include("../includes/head.ejs") %> 
+
 </head>
     <body>
         <%- include("../includes/navigation.ejs") %>
-
-        <h1>MAKE POST</h1>
-
+        
+        <h1>Edit Profile</h1>
+        
         <main>
-            <form action="/make-post" method="POST">
+            <form action="/edit-profile" method="POST">
                 <div>
-                    <label for="postbody"> Post Body</label>
+                    <label for="postbody"> Bio</label>
                     <input
                         type="text"
-                        name="postbody"
-                        required
+                        name="bio"
                     />
                 </div>
 
                 <div>
-                    <label for="tags"> Tags</label>
+                    <label for="tags"> Password</label>
                     <input
                         type="text"
-                        name="tags"
-                        required
+                        name="password"
                     />
                 </div>
 
                 <div>
-                    <label for="image"> Image</label>
+                    <label for="image"> Dp</label>
                     <input type="file" 
-                        name="image"
+                        name="dp"
                     />
                 </div>
                 <div>
-                    <button type="submit" class="btn">Make Post</button>
+                    <button type="submit" class="btn">Confirm</button>
                 </div>
             </form>
         </main>
-        
+
         <%- include("../includes/end.ejs") %>
     </body>
