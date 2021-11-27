@@ -90,7 +90,7 @@ exports.getMyProfile = (req, res, next) => {
         userData.dateOfBirth = date;
 
         res.render("user/my-profile", {
-            pageTitle: "My Posts",
+            pageTitle: "My Profile",
             user: userData,
         });
     });
