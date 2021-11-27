@@ -1,0 +1,133 @@
+.cont {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  color: white;
+}
+
+/* .form-control {
+    margin: 1rem 0;
+}
+*/
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid #a1a1a1;
+  font: inherit;
+  border-radius: 2px;
+}
+/*
+.form-control input:focus,
+.form-control textarea:focus {
+    outline-color: #00695c;
+} */
+
+.left-div {
+  width: 50vw;
+  background-color: rgb(f, f, f);
+  height: 100vh;
+  margin: 0;
+}
+
+.heading {
+  color: #6c63ff;
+  font: inherit;
+  font-size: 6rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.right-div {
+  width: 50vw;
+  height: 100vh;
+  margin: 0;
+  background-color: #6545a4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  height: 50%;
+}
+
+.login-control {
+  border: none;
+  background-color: #6545a4;
+}
+
+.login-control input {
+  border-radius: 20px;
+}
+
+.form-options label {
+  font-size: larger;
+  font-weight: bolder;
+  color: white;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.std-button {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #2091f9;
+  border-radius: 12px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: bold;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.std-button:hover {
+  background-color: #e7daff;
+  cursor: pointer;
+  color: #6c63ff;
+}
+
+.more-options {
+  margin-top: 50px;
+  text-align: center;
+}
+
+a:hover {
+  color: #e7daff;
+}
