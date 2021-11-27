@@ -50,8 +50,7 @@ exports.validateSignup = (req, res, next) => {
 
 exports.getMyPosts = (req, res, next) => {
     console.log("controllers - getMyPosts");
-
-    const username = "umair14040";
+    const username = req.session.user.userName;
 
     Post.fetchByUsername(username)
         .then(([rows, metadata]) => {
@@ -68,8 +67,7 @@ exports.getMyPosts = (req, res, next) => {
 
 exports.getMyProfile = (req, res, next) => {
     console.log("controllers - getMyProfile");
-
-    username = "umair14040";
+    const username = req.session.user.userName;
 
     User.fetchInfo(username).then(([rows, metadata]) => {
         const userData = JSON.parse(JSON.stringify(rows))[0];
@@ -92,6 +90,7 @@ exports.getMyProfile = (req, res, next) => {
         res.render("user/my-profile", {
             pageTitle: "My Profile",
             user: userData,
+            path: "/my-profile",
         });
     });
 };

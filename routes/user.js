@@ -3,18 +3,15 @@ const express = require("express");
 const homeController = require("../controllers/home");
 const userController = require("../controllers/users");
 const postController = require("../controllers/posts");
+const isAuth = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.post("/signup", userController.validateSignup);
+router.get("/home", isAuth, homeController.getPosts);
 
-router.post("/", userController.validateUser);
+router.get("/logout", isAuth, homeController.getLogout);
 
-router.get("/home", homeController.getPosts);
-
-router.get("/logout", homeController.getLogout);
-
-router.get("/forgotpassword");
+// router.get("/forgotpassword");
 
 router.get("/make-post", postController.getMakePost);
 

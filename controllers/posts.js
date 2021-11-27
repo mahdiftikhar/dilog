@@ -11,7 +11,8 @@ exports.postMakePost = (req, res, next) => {
     const body = req.body.postbody;
     const tags = req.body.tags;
     const image = req.body.image;
-    const username = "umair14040";
+
+    const username = req.session.user.userName;
 
     Post.save(body, tags, username)
         .then(([data, metadata]) => {

@@ -24,13 +24,11 @@
                     href="/orders"
                     >Search</a
                 >
-            </li>
+            </li class="main-header__item">
             <li class="main-header__item">
-                <a
-                    class="<%= path === '/admin/add-product' ? 'active' : '' %>"
-                    href="/admin/add-product"
-                    >Logout
-                </a>
+                <form action="/logout" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
             </li>
             <li class="main-header__item">
                 <a

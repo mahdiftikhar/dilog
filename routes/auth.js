@@ -1,15 +1,9 @@
 const express = require("express");
+const authController = require("../controllers/auth");
 
 const router = express.Router();
 
-router.get("/");
-
-router.get("/", (req, res, next) => {
-    res.render("user/login", {
-        pageTitle: "Log in",
-        path: "/",
-    });
-});
+router.get("/", authController.getLogin);
 
 router.get("/signup", (req, res, next) => {
     res.render("user/signup", {
@@ -17,5 +11,12 @@ router.get("/signup", (req, res, next) => {
         path: "/signup",
     });
 });
+router.post("/login", authController.postLogin);
+
+router.get("/signup", authController.getSignup);
+
+router.post("/signup", authController.postSignup);
+
+router.post("/logout", authController.postLogout);
 
 module.exports = router;

@@ -10,7 +10,12 @@ module.exports = class User {
         this.password = password;
     }
 
-    save() {}
+    save() {
+        return db.execute(
+            "INSERT INTO user (userName, email, dateOfBirth, password) VALUES (?, ?, ?, ?)",
+            [this.userName, this.email, this.dateOfBirth, this.password]
+        );
+    }
 
     static fetchAll() {}
 
@@ -25,6 +30,10 @@ module.exports = class User {
         return db.execute("SELECT * FROM user WHERE userName = (?)", [
             username,
         ]);
+    }
+
+    static findByName(name) {
+        return db.execute("SELECT * FROM user WHERE userName=?", [name]);
     }
 
     static addByIdEmailPass(name, email, password) {

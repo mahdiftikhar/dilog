@@ -1,34 +1,40 @@
 <%- include("../includes/head.ejs") %> 
-    </head>
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
 
     <body>
         
         <div>
             <div>
-                <h1>D.I.Log</h1>
+                <h1>D.I.Log Login</h1>
             </div>
             <div>
-                <form action="" class="signup" method="POST">
-                    <input
-                        class="Input"
-                        type="text"
-                        placeholder="User Name"
-                        name="name"
-                    /><br />
-                    <input
-                        class="Input"
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                    /><br />
+                <% if (errorMessage) { %> 
+                    <div><%= errorMessage %> </div>
+                <% } %> 
+                <form action="/login" class="signup" method="POST">
+                    <div class="form-control">
+                        <label for="userName">User Name</label>
+                        <input
+                            type="text"
+                            name="userName"
+                        >
+                    </div>
+
+                    <div class="form-control">
+                        <lable for="password">Password</lable>
+                        <input type="password" name="password">
+                    </div>
+
                     <button type="submit">Login</button>
                 </form>
             </div>
+            
             <div>
                 <a href="./forgot_password">Forgot Password</a>
             </div>
 
-            <div class="sign">
+            <div>
                 <a href="/signup">No Account? Sign up here</a>
             </div>
         </div>
