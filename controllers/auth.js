@@ -76,6 +76,12 @@ exports.getSignup = (req, res, next) => {
         message = null;
     }
 
+    const isLoggedIn = req.session.isLoggedIn;
+
+    if (isLoggedIn) {
+        return res.redirect("/home");
+    }
+
     res.render("user/signup", {
         pageTitle: "Signup",
         path: "/signup",
@@ -91,7 +97,7 @@ exports.postSignup = (req, res, next) => {
     const dateOfBirth = req.body.dateOfBirth;
 
     if (password !== confirmPassword) {
-        req.flash("error", "Paswords do not Match");
+        req.flash("error", "Passwords do not match");
         return res.redirect("/signup");
     }
 

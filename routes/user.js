@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get("/home", isAuth, homeController.getPosts);
 
+router.get("/home/:postid", homeController.getPostById);
+
 router.get("/logout", isAuth, homeController.getLogout);
 
 // router.get("/forgotpassword");
