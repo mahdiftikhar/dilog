@@ -11,6 +11,12 @@ exports.getLogin = (req, res, next) => {
         message = null;
     }
 
+    const isLoggedIn = req.session.isLoggedIn;
+
+    if (isLoggedIn) {
+        return res.redirect("/home");
+    }
+
     res.render("user/login", {
         pageTitle: "Log in",
         path: "/",
