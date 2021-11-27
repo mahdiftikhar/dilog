@@ -1,40 +1,52 @@
-<%- include("../includes/head.ejs") %> 
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/edit-profile.css"> 
 
 </head>
-    <body>
-        <%- include("../includes/navigation.ejs") %>
-        
-        <h1>Edit Profile</h1>
-        
-        <main>
-            <form action="/edit-profile" method="POST">
+<body>
+    <%- include("../includes/navigation.ejs") %>
+    
+    <main>
+        <div class="cont">
+            <div class="left-div">
                 <div>
-                    <label for="postbody"> Bio</label>
-                    <input
-                        type="text"
-                        name="bio"
-                    />
+                    <h1 class="heading">Edit Profile</h1>
                 </div>
+                <div class="logo">
+                    <img src="/assets/logo3.svg" alt="logo" />
+                </div>
+            </div>
+            <div class="right-div">
+                <div class="form-options">
+                    <form action="/edit-profile" method="POST">
+                        <div class="form-control login-control">
+                            <label for="postbody"> Bio</label>
+                            <input
+                                type="text"
+                                name="bio"
+                            />
+                        </div>
+                        <div class="form-control login-control">
+                            <label for="tags"> Password</label>
+                            <input
+                                type="text"
+                                name="password"
+                            />
+                        </div>
+                        <div class="form-control login-control" style = "color: white">
+                            <label for="image"> Profile Picture</label>
+                            <input type="file"
+                                name="dp"
+                            />
+                        </div>
+                        <div>
+                            <button type="submit" class="std-button">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 
-                <div>
-                    <label for="tags"> Password</label>
-                    <input
-                        type="text"
-                        name="password"
-                    />
-                </div>
-
-                <div>
-                    <label for="image"> Dp</label>
-                    <input type="file" 
-                        name="dp"
-                    />
-                </div>
-                <div>
-                    <button type="submit" class="btn">Confirm</button>
-                </div>
-            </form>
-        </main>
-
-        <%- include("../includes/end.ejs") %>
-    </body>
+    <%- include("../includes/end.ejs") %>
+</body>

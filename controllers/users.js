@@ -22,7 +22,7 @@ exports.getMyProfile = (req, res, next) => {
 
     User.fetchByName(userName).then(([rows, metadata]) => {
         const userData = rows[0];
-
+        console.log(userData)
         res.render("user/my-profile", {
             pageTitle: "My Profile",
             user: userData,
