@@ -3,27 +3,52 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 exports.getLogin = (req, res, next) => {
-    const isLoggedin = req.session.isLoggedIn;
+    let message = req.flash("error");
+
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
 
     res.render("user/login", {
         pageTitle: "Log in",
         path: "/",
-        isAuthenticated: isLoggedin,
+        errorMessage: message,
     });
 };
 
 exports.postLogin = (req, res, next) => {
-    req.session.isLoggedIn = true;
-    User.findByName("nullptr")
+    const userName = req.body.userName;
+    const password = req.body.password;
+
+    User.findByName(userName)
         .then(([data, metadata]) => {
             const user = data[0];
-            req.session.isLoggedIn = true;
-            req.session.user = user;
-            req.session.save((err) => {
-                if (err) console.log(err);
 
-                res.redirect("/home");
-            });
+            if (!user) {
+                req.flash("error", "Invalid email or password");
+                return res.redirect("/");
+            }
+
+            bcrypt
+                .compare(password, user.password)
+                .then((doMatch) => {
+                    if (!doMatch) {
+                        return res.redirect("/");
+                    }
+
+                    req.session.isLoggedIn = true;
+                    req.session.user = user;
+                    req.session.save((err) => {
+                        if (err) console.log(err);
+                        res.redirect("/home");
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.redirect("/");
+                });
         })
         .catch((err) => console.log(err));
 };
@@ -48,6 +73,10 @@ exports.postSignup = (req, res, next) => {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
     const dateOfBirth = req.body.dateOfBirth;
+
+    if (password !== confirmPassword) {
+        return res.redirect("/signup");
+    }
 
     User.findByName(userName)
         .then(([data, metaData]) => {

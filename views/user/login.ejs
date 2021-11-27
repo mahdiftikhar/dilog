@@ -9,6 +9,9 @@
                 <h1>D.I.Log Login</h1>
             </div>
             <div>
+                <% if (errorMessage) { %> 
+                    <div><%= errorMessage %> </div>
+                <% } %> 
                 <form action="/login" class="signup" method="POST">
                     <div class="form-control">
                         <label for="userName">User Name</label>
