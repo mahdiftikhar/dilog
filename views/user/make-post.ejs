@@ -1,41 +1,52 @@
-<%- include("../includes/head.ejs") %> 
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/edit-profile.css">  
 </head>
-    <body>
-        <%- include("../includes/navigation.ejs") %>
+<body>
+    <%- include("../includes/navigation.ejs") %>
 
-        <h1>MAKE POST</h1>
-
-        <main>
-            <form action="/make-post" method="POST">
+    <main>
+        <div class="cont">
+            <div class="left-div">
                 <div>
-                    <label for="postbody"> Post Body</label>
-                    <input
-                        type="text"
-                        name="postbody"
-                        required
-                    />
+                    <h1 class="heading">Make Post</h1>
                 </div>
-
-                <div>
-                    <label for="tags"> Tags</label>
-                    <input
-                        type="text"
-                        name="tags"
-                        required
-                    />
+                <div class="logo">
+                    <img src="/assets/logo4.svg" alt="logo" />
                 </div>
-
-                <div>
-                    <label for="image"> Image</label>
-                    <input type="file" 
-                        name="image"
-                    />
+            </div>
+            <div class="right-div">
+                <div class="form-options">
+                    <form action="/make-post" method="POST">
+                        <div class="form-control login-control">
+                            <label for="postbody"> Content</label>
+                            <textarea style= "height: 200px; text-align: left;"
+                                name="postbody"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="form-control login-control">
+                            <label for="tags"> Tags</label>
+                            <input
+                                type="text"
+                                name="tags"
+                                required
+                            />
+                        </div>
+                        <div class="form-control login-control" style = "color: white">
+                            <label for="image"> Image</label>
+                            <input type="file"
+                                name="image"
+                            />
+                        </div>
+                        <div>
+                            <button type="submit" class="std-button">Make Post</button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <button type="submit" class="btn">Make Post</button>
-                </div>
-            </form>
-        </main>
-        
-        <%- include("../includes/end.ejs") %>
-    </body>
+            </div>
+        </div>
+    </main>
+    
+    <%- include("../includes/end.ejs") %>
+</body>
