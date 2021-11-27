@@ -11,8 +11,6 @@ module.exports = class Post {
         this.creationTime = creationTime;
     }
 
-    save() {}
-
     static fetchAll() {
         return db.execute("SELECT * FROM post ORDER BY(creationTime) desc");
     }
@@ -30,33 +28,16 @@ module.exports = class Post {
         );
     }
 
-    static save(body, tag, username) {
-        let date_ob = new Date();
-        let date = ("0" + date_ob.getDate()).slice(-2);
-        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-        let year = date_ob.getFullYear();
-        let hours = date_ob.getHours();
-        let minutes = date_ob.getMinutes();
-        let seconds = date_ob.getSeconds();
-
-        let creationTime =
-            year +
-            "-" +
-            month +
-            "-" +
-            date +
-            " " +
-            hours +
-            ":" +
-            minutes +
-            ":" +
-            seconds;
-
-        let reacts = 0;
-
+    save() {
         return db.execute(
             "INSERT INTO post (userName, tags, text, reacts, creationTime) VALUES (?, ?, ?, ?, ?)",
-            [username, tag, body, reacts, creationTime]
+            [
+                this.userName,
+                this.tags,
+                this.text,
+                this.reacts,
+                this.creationTime,
+            ]
         );
     }
 };

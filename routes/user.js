@@ -23,4 +23,8 @@ router.get("/my-posts", userController.getMyPosts);
 
 router.get("/my-profile", userController.getMyProfile);
 
+router.get("/edit-profile", userController.getEditProfile);
+
+router.post("/edit-profile", userController.postEditProfile);
+
 module.exports = router;
