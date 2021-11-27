@@ -5,12 +5,6 @@ const router = express.Router();
 
 router.get("/", authController.getLogin);
 
-router.get("/signup", (req, res, next) => {
-    res.render("user/signup", {
-        pageTitle: "Signup",
-        path: "/signup",
-    });
-});
 router.post("/login", authController.postLogin);
 
 router.get("/signup", authController.getSignup);

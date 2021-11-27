@@ -13,7 +13,11 @@ exports.getLogin = (req, res, next) => {
         message = null;
     }
 
-    console.log("BBBBBB");
+    const isLoggedIn = req.session.isLoggedIn;
+
+    if (isLoggedIn) {
+        return res.redirect("/home");
+    }
 
     res.render("user/login", {
         pageTitle: "Log in",
@@ -75,9 +79,20 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.getSignup = (req, res, next) => {
+    let message = req.flash("error");
+
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
+
+    console.log("-------->", message);
+
     res.render("user/signup", {
         pageTitle: "Signup",
         path: "/signup",
+        errorMessage: message,
     });
 };
 
@@ -89,12 +104,14 @@ exports.postSignup = (req, res, next) => {
     const dateOfBirth = req.body.dateOfBirth;
 
     if (password !== confirmPassword) {
+        req.flash("error", "Paswords do not Match");
         return res.redirect("/signup");
     }
 
     User.findByName(userName)
         .then(([data, metaData]) => {
             if (data[0]) {
+                req.flash("error", "Username needs to be unique");
                 return res.redirect("/signup");
             }
             return bcrypt
