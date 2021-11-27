@@ -103,7 +103,21 @@ exports.postEditProfile = (req, res, next) => {
     console.log("controllers - postEditProfile");
 
     const username = req.session.user.userName;
-    const pass = req.body.password;
+    const password = req.body.password;
     const bio = req.body.bio;
     const dp = req.body.dp;
+
+    console.log(username);
+    if (bio) {
+        console.log(bio);
+    }
+
+    if (dp) {
+        console.log(dp);
+    }
+    if (password) {
+        console.log(password);
+    }
+
+    res.redirect("/my-profile");
 };
