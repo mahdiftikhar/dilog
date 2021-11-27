@@ -35,6 +35,7 @@ exports.postLogin = (req, res, next) => {
                 .compare(password, user.password)
                 .then((doMatch) => {
                     if (!doMatch) {
+                        req.flash("error", "Invalid email or password");
                         return res.redirect("/");
                     }
 
@@ -61,9 +62,18 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.getSignup = (req, res, next) => {
+    let message = req.flash("error");
+
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
+
     res.render("user/signup", {
         pageTitle: "Signup",
         path: "/signup",
+        errorMessage: message,
     });
 };
 
@@ -75,12 +85,14 @@ exports.postSignup = (req, res, next) => {
     const dateOfBirth = req.body.dateOfBirth;
 
     if (password !== confirmPassword) {
+        req.flash("error", "Paswords do not Match");
         return res.redirect("/signup");
     }
 
     User.findByName(userName)
         .then(([data, metaData]) => {
             if (data[0]) {
+                req.flash("error", "Username needs to be unique");
                 return res.redirect("/signup");
             }
             return bcrypt
