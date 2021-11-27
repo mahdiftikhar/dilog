@@ -38,7 +38,7 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
-const port = 3000;
+const port = 3029;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
