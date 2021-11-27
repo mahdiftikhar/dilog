@@ -5,6 +5,12 @@
             <div>
                 <h1>D.I.Log</h1>
             </div>
+
+            <% if (errorMessage) { %>
+                <div>
+                    <p><%= errorMessage %> </p>
+                </div> 
+            <% } %> 
             <div>
                 <form action="/signup" method="POST">
                     <div>
