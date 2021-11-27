@@ -15,7 +15,7 @@ body {
 .std-button {
   appearance: button;
   backface-visibility: hidden;
-  background-color: #2091f9;
+  background-color: #bfab25;
   border-radius: 12px;
   border-width: 0;
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
@@ -44,9 +44,9 @@ body {
 }
 
 .std-button:hover {
-  background-color: #e7daff;
+  background-color: #b81365;
   cursor: pointer;
-  color: #6c63ff;
+  color: #1c3144;
 }
 
 .left-div {
@@ -59,7 +59,6 @@ body {
 .right-div {
   width: 50vw;
   height: 100vh;
-  margin-left: 2.5em;
   margin-bottom: 0;
   background-color: #1c3144;
   display: flex;
@@ -67,14 +66,6 @@ body {
   align-items: center;
   flex-direction: column;
   border-radius: 20px 20px 0px 0px;
-}
-
-.logo img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 30%;
-  height: 50%;
 }
 
 a {

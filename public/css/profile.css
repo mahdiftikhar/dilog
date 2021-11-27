@@ -47,6 +47,17 @@ a {
   color: #1c3144;
 }
 
+.logo img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  height: 50%;
+}
+
+.right-div {
+  margin-left: 2.5em;
+}
 /* #1c3144 prussian blue
     #6A0136 tyler purple
     #BFAB25 Old Gold
