@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .profile-container {
   background-color: #d8c969;
   width: 30vw;
@@ -13,7 +17,12 @@ img {
 
 .bio-container {
   width: 26vw;
-  height: 2em;
+  margin-left: 2vw;
+  height: auto;
+  word-wrap: break-word;
+  /* overflow: scroll; */
+  border-left: 3px solid #1c3144;
+  text-align: left;
 }
 
 h1,
@@ -22,7 +31,22 @@ h3 {
   color: #1c3144;
   font-family: inherit;
   font-weight: normal;
+  font-size: 25px;
 }
+
+.edit-profile {
+  margin-top: 10px;
+  bottom: 0;
+}
+
+p {
+  margin-left: 15px;
+}
+
+a {
+  color: #1c3144;
+}
+
 /* #1c3144 prussian blue
     #6A0136 tyler purple
     #BFAB25 Old Gold
