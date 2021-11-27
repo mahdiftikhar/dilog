@@ -1,3 +1,8 @@
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
 .cont {
   width: 100vw;
   margin: 0;
@@ -21,6 +26,7 @@ a {
   display: block;
   width: 100%;
   margin-bottom: 0.25rem;
+  text-align: center;
 }
 
 .form-control input,
@@ -130,4 +136,18 @@ a {
 
 a:hover {
   color: #e7daff;
+}
+
+.error-message {
+  background-color: #e7daff;
+  color: red;
+  width: auto;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: large;
+  font-weight: normal;
 }

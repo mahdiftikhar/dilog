@@ -5,8 +5,6 @@ const User = require("../models/user");
 exports.getLogin = (req, res, next) => {
     let message = req.flash("error");
 
-    console.log("AAAAAAAAA");
-
     if (message.length > 0) {
         message = message[0];
     } else {
@@ -27,16 +25,12 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-    console.log("CCCCCCCCCCC");
-
     const userName = req.body.userName;
     const password = req.body.password;
 
     User.findByName(userName)
         .then(([data, metadata]) => {
             const user = data[0];
-
-            // console.log("user ---->", user);
 
             if (!user) {
                 req.flash("error", "Invalid email or password");
@@ -46,11 +40,6 @@ exports.postLogin = (req, res, next) => {
             bcrypt
                 .compare(password, user.password)
                 .then((doMatch) => {
-                    console.log("password---->", password);
-                    console.log("user.password----->", user.password);
-                    console.log("doMatch------->", doMatch);
-                    console.log("===", password === user.password);
-
                     if (!doMatch) {
                         req.flash("error", "Invalid email or password");
                         return res.redirect("/");
@@ -86,8 +75,6 @@ exports.getSignup = (req, res, next) => {
     } else {
         message = null;
     }
-
-    console.log("-------->", message);
 
     res.render("user/signup", {
         pageTitle: "Signup",
