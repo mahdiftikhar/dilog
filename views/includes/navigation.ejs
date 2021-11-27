@@ -16,28 +16,35 @@
                         </li>
                         <li class="nav-item">
                             <a
-                                class="<%= path === '/products' ? 'active' : '' %> nav-link"
-                                href="/products"
+                                class="<%= path === '/my-posts' ? 'active' : '' %> nav-link"
+                                href="/my-posts"
                                 >My Posts</a
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="<%= path === '/cart' ? 'active' : '' %> nav-link" href="/cart"
+                            <a class="<%= path === '/my-profile' ? 'active' : '' %> nav-link" href="/my-profile"
                                 >Profile</a
                             >
                         </li>
                         <li class="nav-item">
                             <a
-                                class="<%= path === '/orders' ? 'active' : '' %> nav-link"
-                                href="/orders nav-lin"
+                                class="<%= path === '/search' ? 'active' : '' %> nav-link"
+                                href="/search"
                                 >Search</a
                             >
-                        </li class="nav-item">
+                        <li class="nav-item">
+                            <a
+                                class="<%= path === '/make-post' ? 'active' : '' %> nav-link"
+                                href="/make-post"
+                            > Make Post
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <form action="/logout" method="POST">
                                 <button type="submit" class="btn">Logout</button>
                             </form>
                         </li>
+
                     </ul>
                 </div>
             </div>

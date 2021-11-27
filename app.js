@@ -24,13 +24,6 @@ app.use(
     session({ secret: "my secret", resave: false, saveUninitialized: false })
 );
 app.use(flash());
-// app.use((req, res, next) => {
-//     User.findById()
-//         .then((user) => {
-//             console.log(user);
-//         })
-//         .catch((err) => console.log(err));
-// });
 
 app.use("/admin", adminRoutes);
 app.use(userRoutes);

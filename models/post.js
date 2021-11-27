@@ -11,8 +11,6 @@ module.exports = class Post {
         this.creationTime = creationTime;
     }
 
-    save() {}
-
     static fetchAll() {
         return db.execute("SELECT * FROM post ORDER BY(creationTime) desc");
     }
@@ -22,4 +20,24 @@ module.exports = class Post {
     }
 
     static deleteById(id) {}
+
+    static fetchByUserName(username) {
+        return db.execute(
+            "SELECT * FROM post WHERE userName = (?) ORDER BY(creationTime) desc",
+            [username]
+        );
+    }
+
+    save() {
+        return db.execute(
+            "INSERT INTO post (userName, tags, text, reacts, creationTime) VALUES (?, ?, ?, ?, ?)",
+            [
+                this.userName,
+                this.tags,
+                this.text,
+                this.reacts,
+                this.creationTime,
+            ]
+        );
+    }
 };

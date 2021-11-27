@@ -11,30 +11,24 @@
                 <div class="grid">
                     <% for (let post of posts) { %> 
                         <article class="card">
-                            <header class="card__header">
-                                <h1> <%= post.title %>  </h1>
-                            </header>
-                            
-                            <% if (post.image) { %> 
-                                <div class="card__image"><img src="<% post.image %> " alt=""></div>
-                            <% } %> 
-
-                            <div class="card__content">
-                                <h4><%= post.userName %> </h4>
-                                <h6><%= post.creationTime %> </h6> 
-                            </div>
-
-                            <div class="card__content">
-                                <p><%= post.text %> </p>
-                            </div>
-
-                            <div class="card__actions">
-                                <button class="btn">Like</button>
-                                <button class="btn">Comment</button>
-                                <button class="btn">Report</button>
-                            </div>
+                            <a href="/home/<%= post.id %> ">
+                                <div class="card__content">
+                                    <h4><%= post.userName %> </h4>
+                                    <h6><%= post.creationTime %> </h6> 
+                                    <p> <% post.tags %> </p>
+                                    <p><%= post.text %> </p>
+                                    <% if (post.image) { %> 
+                                        <div class="card__image"><img src="<% post.image %>" alt=""></div>
+                                    <% } %> 
+                                </div>
+                            </a>
+                                <div class="card__actions">
+                                    <button class="btn">Like</button>
+                                    <button class="btn">Comment</button>
+                                    <button class="btn">Report</button>
+                                </div>
+                            </article>
                     <% } %> 
-                    </article>
                 </div>
             <% } else { %> 
                 <h1>No Posts Found</h1>

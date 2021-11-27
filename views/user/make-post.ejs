@@ -1,0 +1,41 @@
+<%- include("../includes/head.ejs") %> 
+</head>
+    <body>
+        <%- include("../includes/navigation.ejs") %>
+
+        <h1>MAKE POST</h1>
+
+        <main>
+            <form action="/make-post" method="POST">
+                <div>
+                    <label for="postbody"> Post Body</label>
+                    <input
+                        type="text"
+                        name="postbody"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="tags"> Tags</label>
+                    <input
+                        type="text"
+                        name="tags"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="image"> Image</label>
+                    <input type="file" 
+                        name="image"
+                    />
+                </div>
+                <div>
+                    <button type="submit" class="btn">Make Post</button>
+                </div>
+            </form>
+        </main>
+        
+        <%- include("../includes/end.ejs") %>
+    </body>
