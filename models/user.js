@@ -26,13 +26,7 @@ module.exports = class User {
         );
     }
 
-    static fetchInfo(username) {
-        return db.execute("SELECT * FROM user WHERE userName = (?)", [
-            username,
-        ]);
-    }
-
-    static findByName(name) {
+    static fetchByName(name) {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
     }
 

@@ -21,7 +21,7 @@ module.exports = class Post {
 
     static deleteById(id) {}
 
-    static fetchByUsername(username) {
+    static fetchByUserName(username) {
         return db.execute(
             "SELECT * FROM post WHERE userName = (?) ORDER BY(creationTime) desc",
             [username]

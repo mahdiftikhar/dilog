@@ -9,22 +9,22 @@ const router = express.Router();
 
 router.get("/home", isAuth, homeController.getPosts);
 
-router.get("/home/:postid", homeController.getPostById);
+router.get("/home/:postid", isAuth, homeController.getPostById);
 
 router.get("/logout", isAuth, homeController.getLogout);
 
 // router.get("/forgotpassword");
 
-router.get("/make-post", postController.getMakePost);
+router.get("/make-post", isAuth, postController.getMakePost);
 
-router.post("/make-post", postController.postMakePost);
+router.post("/make-post", isAuth, postController.postMakePost);
 
-router.get("/my-posts", userController.getMyPosts);
+router.get("/my-posts", isAuth, userController.getMyPosts);
 
-router.get("/my-profile", userController.getMyProfile);
+router.get("/my-profile", isAuth, userController.getMyProfile);
 
-router.get("/edit-profile", userController.getEditProfile);
+router.get("/edit-profile", isAuth, userController.getEditProfile);
 
-router.post("/edit-profile", userController.postEditProfile);
+router.post("/edit-profile", isAuth, userController.postEditProfile);
 
 module.exports = router;

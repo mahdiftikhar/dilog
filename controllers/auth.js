@@ -28,7 +28,7 @@ exports.postLogin = (req, res, next) => {
     const userName = req.body.userName;
     const password = req.body.password;
 
-    User.findByName(userName)
+    User.fetchByName(userName)
         .then(([data, metadata]) => {
             const user = data[0];
 
@@ -101,9 +101,9 @@ exports.postSignup = (req, res, next) => {
         return res.redirect("/signup");
     }
 
-    User.findByName(userName)
-        .then(([data, metaData]) => {
-            if (data[0]) {
+    User.fetchByName(userName)
+        .then(([rows, metaData]) => {
+            if (rows[0]) {
                 req.flash("error", "Username needs to be unique");
                 return res.redirect("/signup");
             }
