@@ -1,7 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
-const { post } = require("../routes/user");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
@@ -106,5 +105,21 @@ exports.postSearch = (req, res, next) => {
 };
 
 exports.getUserProfile = (req, res, next) => {
-    res.redirect("/home");
+    const userName = req.params.userId;
+
+    User.fetchByName(userName)
+        .then(([data, metadata]) => {
+            const userData = data[0];
+
+            return res.render("user/user-profile", {
+                pageTitle: userData.userName,
+                path: "/home",
+                user: userData,
+                isCurrentUser: false,
+            });
+        })
+        .catch((err) => {
+            res.redirect("/home");
+            console.log(err);
+        });
 };
