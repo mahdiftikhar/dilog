@@ -16,6 +16,9 @@
         <h3> <%= user.userName %></h3>
     </div>
 
+    <a href="/followers/<%= user.userName %>">Followers(0)</a>
+    <a href="/following/<%= user.userName %>">Following(0)</a>
+
     <div class = "small-container">
         <h2>Email </h2>
         <h3> <%= user.email %></h3>
