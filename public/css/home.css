@@ -1,0 +1,29 @@
+body {
+  overflow-x: hidden;
+}
+
+.right-div {
+  margin-left: 3em;
+  height: auto;
+  width: 70vw;
+}
+
+.left-div {
+  margin-right: 5em;
+  width: 30vw;
+  height: auto;
+}
+.logo img {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 40%;
+  width: 30%;
+}
+/* .post {
+  margin-top: 10em;
+} */
+
+a {
+  color: black;
+}

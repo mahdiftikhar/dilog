@@ -1,27 +1,31 @@
-<article class="card">
-    <a href="/post/<%= post.id %>">
-        <div class="card__content">
-            <h4><%= post.userName %></h4>
-            <h6><%= post.creationTime %></h6>
-            <p><%= post.tags %></p>
-            <p><%= post.text %></p>
-            <% if (post.image) { %>
-                <div class="card__image"><img src="<% post.image %>" alt="" /></div>
-            <% } %> 
-            <% if (post.isUser) { %>
-                <a href="post/edit-post">Edit</a>
-                <% } %>
-            </div>
-        </a>
-        
-        <div class="card__actions">
-            <button class="btn">Like (<%= post.reacts %>)</button>
-            <button class="btn">Comment</button>
-            <% if (post.isUser) { %> 
-                <button>Delete</button>
-            <% } %> 
-        <% if (!post.isUser) { %>
-        <button class="btn">Report</button>
-        <% } %>
+<article class="card-holder">
+  <a href="/post/<%= post.id %>">
+    <div class="card-content">
+      <div class="top-info">
+        <h4><%= post.userName %></h4>
+        <h6><%= post.creationTime %></h6>
+      </div>
+      <div class="post-content">
+        <div class="card__image"><img src="<% post.image %>" alt="" /></div>
+        <div class="card-text">
+          <p><%= post.text %></p>
+        </div>
+      </div>
+      <div class="tag-content">
+        <h6>Tags:</h6>
+        <p><%= post.tags %></p>
+      </div>
+      <% if (post.image) { %> <% } %> <% if (post.isUser) { %>
+      <a href="post/edit-post">Edit</a>
+      <% } %>
     </div>
+  </a>
+
+  <div class="card__actions bot-info">
+    <button class="btn">Like (<%= post.reacts %>)</button>
+    <button class="btn">Comment</button>
+    <% if (!post.isUser) { %>
+    <button class="btn">Report</button>
+    <% } %>
+  </div>
 </article>
