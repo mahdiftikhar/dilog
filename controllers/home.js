@@ -103,6 +103,8 @@ exports.postSearch = (req, res, next) => {
                 console.log(err);
             });
     }
+};
 
-    // res.redirect("search");
+exports.getUserProfile = (req, res, next) => {
+    res.redirect("/home");
 };

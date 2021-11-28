@@ -25,10 +25,12 @@
         <% } else if (matchType === "user") { %> 
             <div>
                 <% for (let user of matches) { %>
-                    <div>
-                        <p><%= user.userName %> </p>
-                        <p><%= user.email %> </p>
-                    </div>
+                    <a href="profile/<%= user.userName %> ">
+                        <div>
+                            <p><%= user.userName %> </p>
+                            <p><%= user.email %> </p>
+                        </div>
+                    </a>
                 <% } %> 
             </div>
         <% } else if (matchType === "post") { %>

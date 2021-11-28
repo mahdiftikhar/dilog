@@ -7,7 +7,8 @@
             <p><%= post.text %></p>
             <% if (post.image) { %>
                 <div class="card__image"><img src="<% post.image %>" alt="" /></div>
-            <% } %> <% if (post.isUser) { %>
+            <% } %> 
+            <% if (post.isUser) { %>
                 <a href="post/edit-post">Edit</a>
                 <% } %>
             </div>

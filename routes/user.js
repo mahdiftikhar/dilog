@@ -23,6 +23,8 @@ router.get("/my-posts", isAuth, userController.getMyPosts);
 
 router.get("/my-profile", isAuth, userController.getMyProfile);
 
+router.get("/profile/:userId", isAuth, homeController.getUserProfile);
+
 router.get("/edit-profile", isAuth, userController.getEditProfile);
 
 router.post("/edit-profile", isAuth, userController.postEditProfile);
