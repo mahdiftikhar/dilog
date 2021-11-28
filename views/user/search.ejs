@@ -27,8 +27,12 @@
                 <% for (let user of matches) { %>
                     <a href="profile/<%= user.userName %> ">
                         <div>
+                            <img src="<% user.displayPicture ? user.displayPicture :  %> " alt="pp">
                             <p><%= user.userName %> </p>
-                            <p><%= user.email %> </p>
+                            <form action="/follow" action="POST">
+                                <input type="hidden" name="followname" value="<% user.userName %> ">
+                                <button type="submit">Follow</button>                                
+                            </form>
                         </div>
                     </a>
                 <% } %> 
