@@ -1,0 +1,53 @@
+body {
+  overflow-x: hidden;
+}
+
+.right-div {
+  margin-right: 5.5em;
+}
+
+.logo img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  height: 50%;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid #a1a1a1;
+  font: inherit;
+  border-radius: 2px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline-color: #1c3144;
+}
+
+.form-options label {
+  font-size: larger;
+  font-weight: bolder;
+  color: white;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.login-control {
+  border: none;
+  background-color: #1c3144;
+}
+
+.login-control input {
+  border-radius: 20px;
+}

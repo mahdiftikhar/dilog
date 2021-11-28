@@ -9,8 +9,6 @@ exports.getMakePost = (req, res, next) => {
 };
 
 exports.postMakePost = (req, res, next) => {
-    console.log("controllers - postMakePost");
-
     const text = req.body.postbody;
     const tags = req.body.tags;
     const image = req.body.image;
