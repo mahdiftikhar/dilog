@@ -1,7 +1,7 @@
 .card-holder {
   background-color: #b3bac4;
   margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   width: 50vw;
   border-radius: 10px;
 }
@@ -22,12 +22,13 @@
   border-radius: 10px;
 } */
 
-.card-holder > a {
+.a-tag {
+  color: black;
   text-decoration: none;
 }
-
-.card-holder > a:hover {
+.a-tag:hover {
   color: black;
+  text-decoration: none;
 }
 
 .top-info {
@@ -51,6 +52,6 @@
 
 .tag-content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   width: 48vw;
 }
