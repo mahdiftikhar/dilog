@@ -11,9 +11,9 @@ router.get("/home", isAuth, homeController.getPosts);
 
 router.get("/post/:postid", isAuth, homeController.getPostById);
 
-router.get("/logout", isAuth, homeController.getLogout);
+router.get("/search", isAuth, homeController.getSearch);
 
-// router.get("/forgotpassword");
+router.post("/search", isAuth, homeController.postSearch);
 
 router.get("/make-post", isAuth, postController.getMakePost);
 
@@ -22,6 +22,8 @@ router.post("/make-post", isAuth, postController.postMakePost);
 router.get("/my-posts", isAuth, userController.getMyPosts);
 
 router.get("/my-profile", isAuth, userController.getMyProfile);
+
+router.get("/profile/:userId", isAuth, homeController.getUserProfile);
 
 router.get("/edit-profile", isAuth, userController.getEditProfile);
 

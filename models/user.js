@@ -19,15 +19,14 @@ module.exports = class User {
 
     static fetchAll() {}
 
-    static fetchByIdPass(name, pass) {
-        return db.execute(
-            "SELECT * FROM user WHERE userName=? and password=?",
-            [name, pass]
-        );
-    }
-
     static fetchByName(name) {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
+    }
+
+    static fetchLikeName(name) {
+        return db.execute("SELECT * FROM user WHERE userName LIKE ?", [
+            "%" + name + "%",
+        ]);
     }
 
     static addByIdEmailPass(name, email, password) {
@@ -39,15 +38,15 @@ module.exports = class User {
 
     static updateBio(username, new_bio) {
         return db.execute("UPDATE user SET bio = (?) WHERE userName = (?)", [
+            new_bio,
             username,
-            bio,
         ]);
     }
 
     static updatePassword(username, new_password) {
         return db.execute(
             "UPDATE user SET password = (?) WHERE userName = (?)",
-            [username, new_password]
+            [new_password, username]
         );
     }
 };
