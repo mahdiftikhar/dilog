@@ -1,19 +1,19 @@
 <div>
-    <article>
-        <div>
-            <p><%= comment.userName %> </p>
-            <p><%= comment.reacts %> </p>
-            <p><%= comment.creationTime %> </p>
-            <p><%= comment.text %> </p>
-        </div>
+  <article>
+    <div>
+      <h4 style="color: white"><%= comment.userName %></h4>
+      <p style="color: white"><%= comment.reacts %></p>
+      <h6 style="color: white"><%= comment.creationTime %></h6>
+      <p style="color: white"><%= comment.text %></p>
+    </div>
 
-        <div>
-            <% if (comment.isUser) { %>
-                <a href="/edit-comment">Edit</a>
-                <button>Delete</button>
-            <% } %> 
-            <button>Like</button>
-            <button>Report</button>
-        </div>
-    </article>
-</div> 
+    <div>
+      <% if (comment.isUser) { %>
+      <a href="/edit-comment">Edit</a>
+      <button>Delete</button>
+      <% } %>
+      <button>Like</button>
+      <button>Report</button>
+    </div>
+  </article>
+</div>
