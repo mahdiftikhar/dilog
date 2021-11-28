@@ -1,0 +1,44 @@
+<%- include("../includes/head.ejs") %>
+</head>
+
+<body>
+    <%- include("../includes/navigation.ejs") %> 
+    <main>
+        <div>
+            <form action="/search" method="POST"> 
+                <label for="type">
+                    <input type="radio" name="type" value="user" required> User
+                </label>
+
+                <label for="type">
+                    <input type="radio" name="type" value="post" required> Post
+                </label>
+
+                <input type="text" name="search" required>
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <% if (errorMessage) { %> 
+            <div><p> <%= errorMessage %> </p></div>
+        <% } else if (matchType === "user") { %> 
+            <div>
+                <% for (let user of matches) { %>
+                    <div>
+                        <p><%= user.userName %> </p>
+                        <p><%= user.email %> </p>
+                    </div>
+                <% } %> 
+            </div>
+        <% } else if (matchType === "post") { %>
+            <div>
+                <% for (let post of matches) { %>
+                    <%- include("../includes/post-template.ejs", {post: post}) %> 
+                <% } %> 
+            </div>
+        <% } %> 
+
+    </main>
+
+<%- include("../includes/end.ejs") %> 

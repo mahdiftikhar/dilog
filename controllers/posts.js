@@ -1,7 +1,6 @@
 const Post = require("../models/post");
 
 exports.getMakePost = (req, res, next) => {
-    console.log("controllers - getMakePost");
     res.render("user/make-post", {
         pageTitle: "make post",
         path: "/make-post",

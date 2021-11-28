@@ -9,13 +9,16 @@
                 <div class="card__image"><img src="<% post.image %>" alt="" /></div>
             <% } %> <% if (post.isUser) { %>
                 <a href="post/edit-post">Edit</a>
-            <% } %>
-        </div>
-    </a>
-
-    <div class="card__actions">
-        <button class="btn">Like (<%= post.reacts %>)</button>
-        <button class="btn">Comment</button>
+                <% } %>
+            </div>
+        </a>
+        
+        <div class="card__actions">
+            <button class="btn">Like (<%= post.reacts %>)</button>
+            <button class="btn">Comment</button>
+            <% if (post.isUser) { %> 
+                <button>Delete</button>
+            <% } %> 
         <% if (!post.isUser) { %>
         <button class="btn">Report</button>
         <% } %>
