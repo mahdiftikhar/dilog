@@ -32,9 +32,18 @@ exports.getMyProfile = (req, res, next) => {
 };
 
 exports.getEditProfile = (req, res, next) => {
-    res.render("user/edit-profile", {
-        pageTitle: "Edit Profile",
-        path: "/my-profile",
+    const username = req.session.user.userName;
+
+    User.fetchByName(username).then(([rows, metadata]) => {
+        userData = rows[0];
+
+        const prefil = userData.bio;
+
+        res.render("user/edit-profile", {
+            pageTitle: "Edit Profile",
+            path: "/my-profile",
+            bio_prefil: prefil,
+        });
     });
 };
 
@@ -45,6 +54,7 @@ exports.postEditProfile = (req, res, next) => {
     const password = req.body.password;
     const bio = req.body.bio;
     const dp = req.body.dp;
+    let userData;
 
     console.log(username);
     if (bio) {
@@ -57,6 +67,15 @@ exports.postEditProfile = (req, res, next) => {
     if (password) {
         console.log(password);
     }
+
+    User.fetchByName(username).then(([rows, metadata]) => {
+        userData = rows[0];
+
+        // console.log(userData);
+    });
+
+    console.log("---------");
+    console.log(userData);
 
     res.redirect("/my-profile");
 };
