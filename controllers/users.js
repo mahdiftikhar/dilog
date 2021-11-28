@@ -57,7 +57,6 @@ exports.postEditProfile = (req, res, next) => {
             const confirm_password = req.body.confirm_password;
             const bio = req.body.bio;
             const dp = req.body.dp;
-            let redirect = true;
 
             if (bio) {
                 User.updateBio(username, bio)
