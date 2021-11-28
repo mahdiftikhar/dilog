@@ -22,7 +22,7 @@ exports.getMyProfile = (req, res, next) => {
 
     User.fetchByName(userName).then(([rows, metadata]) => {
         const userData = rows[0];
-
+        console.log(userData);
         res.render("user/my-profile", {
             pageTitle: "My Profile",
             user: userData,
@@ -37,7 +37,7 @@ exports.getEditProfile = (req, res, next) => {
     User.fetchByName(username).then(([rows, metadata]) => {
         userData = rows[0];
 
-        const prefil = userData.bio;
+        let prefil = userData.bio;
 
         res.render("user/edit-profile", {
             pageTitle: "Edit Profile",
@@ -54,28 +54,29 @@ exports.postEditProfile = (req, res, next) => {
     const password = req.body.password;
     const bio = req.body.bio;
     const dp = req.body.dp;
-    let userData;
 
-    console.log(username);
-    if (bio) {
-        console.log(bio);
-    }
+    User.fetchByName(username)
+        .then(([rows, metadata]) => {
+            const userData = rows[0];
 
-    if (dp) {
-        console.log(dp);
-    }
-    if (password) {
-        console.log(password);
-    }
+            console.log(username);
 
-    User.fetchByName(username).then(([rows, metadata]) => {
-        userData = rows[0];
+            if (bio) {
+                // console.log(bio);
+                User.updateBio(username, bio);
+            }
 
-        // console.log(userData);
-    });
+            if (dp) {
+                // console.log(dp);
+            }
 
-    console.log("---------");
-    console.log(userData);
+            if (password) {
+                // console.log(password);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
     res.redirect("/my-profile");
 };

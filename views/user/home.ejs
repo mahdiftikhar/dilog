@@ -1,39 +1,36 @@
-<%- include("../includes/head.ejs") %> 
-    <!-- <link rel="stylesheet" href="/css/post.css"> -->
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/post.css" /> 
     </head>
 
-    <body>
-        <%- include("../includes/navigation.ejs") %>
+<body>
+    <%- include("../includes/navigation.ejs") %>
 
-        <main>
+    <main>
 
-            <% if (posts.length > 0) { %>    
-                <div class="grid">
-                    <% for (let post of posts) { %> 
-                        <article class="card">
-                            <a href="/home/<%= post.id %> ">
-                                <div class="card__content">
-                                    <h4><%= post.userName %> </h4>
-                                    <h6><%= post.creationTime %> </h6> 
-                                    <p> <% post.tags %> </p>
-                                    <p><%= post.text %> </p>
-                                    <% if (post.image) { %> 
-                                        <div class="card__image"><img src="<% post.image %>" alt=""></div>
-                                    <% } %> 
-                                </div>
-                            </a>
-                                <div class="card__actions">
-                                    <button class="btn">Like</button>
-                                    <button class="btn">Comment</button>
-                                    <button class="btn">Report</button>
-                                </div>
-                            </article>
-                    <% } %> 
+        <% if (posts.length > 0) { %>    
+            <div class="cont">
+                <div class="right-div">
+                    <div class="post">
+                        <% for (let post of posts) { %>
+                                <%- include("../includes/post-template.ejs", {post: post}) %>
+                            <% } %>
+                    </div> 
                 </div>
-            <% } else { %> 
-                <h1>No Posts Found</h1>
-            <% } %> 
-        </main>
+                <div class="left-div">
+                    <div>
+                        <h1 class="heading">Home</h1>
+                    </div>
+                    <div class="logo">
+                        <img src="/assets/logo8.svg" alt="logo" />
+                    </div>
+                </div>
+            </div>
+        <% } else { %> 
+            <h1>No Posts Found</h1>
+        <% } %> 
+    </main>
 
 
-        <%- include("../includes/end.ejs") %>
+<%- include("../includes/end.ejs") %>

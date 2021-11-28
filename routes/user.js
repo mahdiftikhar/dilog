@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get("/home", isAuth, homeController.getPosts);
 
-router.get("/home/:postid", isAuth, homeController.getPostById);
+router.get("/post/:postid", isAuth, homeController.getPostById);
 
 router.get("/logout", isAuth, homeController.getLogout);
 

@@ -1,0 +1,18 @@
+<div>
+    <article>
+        <div>
+            <p><%= comment.userName %> </p>
+            <p><%= comment.reacts %> </p>
+            <p><%= comment.creationTime %> </p>
+            <p><%= comment.text %> </p>
+        </div>
+
+        <div>
+            <% if (comment.isUser) { %>
+                <a href="/edit-comment">Edit</a>
+            <% } %> 
+            <button>Like</button>
+            <button>Report</button>
+        </div>
+    </article>
+</div> 
