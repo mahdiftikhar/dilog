@@ -18,43 +18,32 @@
                 <p><%= post.tags %></p>
             </div>
 
-            <% if (post.image) { %> 
-                <img src="" alt="">    
-            <% } %>
+            <% if (post.image) { %> <% } %>
             
         </div>
     </a>
 
-    
-    
+
     <div class="card__actions bot-info">
+        <form action="/make-comment" method="POST" class = "search-field">
+            <textarea class= "tex-area comment-field" name="comment" placeholder="Write Comment Here" required></textarea>
+            <input type="hidden" name="postId" value="<%= post.id %>">
+            <button class="btn">Comment</button>
+        </form>
+    </div>
+    <div class="card__actions bot-info">        
         
         <form action="/post/:postid/like" method="GET">
             <button class="btn" type="submit">Like (<%= post.reacts %>)</button>
         </form>
-        
-        
+
         <% if (!post.isUser) { %>
             <button class="btn">Report</button>
         <% } %>
             
         <% if (post.isUser) { %>
-            <!-- <form action="/post/edit/<%= post.id %>" action="GET"> 
-                <button class="btn" type="submit">Edit</a>
-            </form> -->
-
             <a class="btn" href="/edit-post/<%= post.id %> ">Edit</a>
-
         <% } %>
-
-    </div>
-
-    <div class="card__actions bot-info">
-        <form action="/make-comment" method="POST">
-            <textarea name="comment" placeholder="Write Comment Here" required></textarea>
-            <input type="hidden" name="postId" value="<%= post.id %>">
-            <button class="btn">Comment</button>
-        </form>
     </div>
 
 </article>
