@@ -1,47 +1,48 @@
 <div>
-    <article class="card-holder comment-container">
-        <div>
+  <article class="card-holder comment-container">
+    <div>
+      <div class="top-info">
+        <h4><%= comment.userName %></h4>
+        <h6><%= comment.creationTime %></h6>
+      </div>
+    </div>
 
-            <div class="top-info">
-                <h4><%= comment.userName %></h4>
-                <h6><%= comment.creationTime %></h6>
-            </div>
+    <div class="bio-container">
+      <% if (comment.edit) { %>
+      <div class="edit-comment">
+        <form action="/edit-comment" method="POST" class="comment-form">
+          <textarea name="newText" class="edit-comment-text">
+<%= comment.text %> </textarea
+          >
+          <input type="hidden" name="commentId" value="<%= comment.id %>" />
+          <input type="hidden" name="postId" value="<%= comment.postId %>" />
+          <button class="btn btn-color-comment" type="submit">Submit</button>
+        </form>
+        <a href="/post/<%= comment.postId %>"
+          ><div class="btn btn-color-comment cancel-btn">Cancel</div></a
+        >
+      </div>
+      <% } else { %>
+      <p class="text-content"><%= comment.text %></p>
+      <% } %>
+    </div>
 
-        </div>
+    <div class="card__actions bot-info">
+      <button class="btn btn-color-comment">
+        Like (<%= comment.reacts %> )
+      </button>
+      <% if (comment.isUser && !comment.edit) { %>
 
-        <div class="bio-container">
+      <button class="btn btn-color-comment">Delete</button>
+      <a
+        href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
+      >
+        <div class="btn btn-color-comment">Edit</div>
+      </a>
 
-            <% if (comment.edit) { %>
-                <form action="/edit-comment" method="POST">
-                    <textarea name="newText"><%= comment.text %> </textarea>
-                    <input type="hidden" name="commentId" value="<%= comment.id %>">
-                    <input type="hidden" name="postId" value="<%= comment.postId %>">
-                    <button class="btn" type="submit">Submit</button>
-                </form>
-                <a href="/post/<%= comment.postId %>"><div class="btn">Cancel</div></a>
-            <% } else { %>
-                <p class="text-content"><%= comment.text %></p>
-            <% } %>
-
-        </div>
-
-        <div class="card__actions bot-info">
-            <button class="btn">Like (<%= comment.reacts %> )</button>
-            <% if (comment.isUser && !comment.edit) { %>
-
-            <button class="btn">Delete</button>
-            <a
-                href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
-            >
-                <div class="btn">Edit</div>
-            </a>
-
-            <% } %>
-
-
-            <% if (!comment.isUser) { %>
-            <button class="btn">Report</button>
-            <% } %>
-        </div>
-    </article>
+      <% } %> <% if (!comment.isUser) { %>
+      <button class="btn btn-color-comment">Report</button>
+      <% } %>
+    </div>
+  </article>
 </div>

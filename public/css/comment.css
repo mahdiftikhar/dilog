@@ -25,3 +25,26 @@
 h4 {
   margin-left: 1em;
 }
+
+.btn-color-comment:hover {
+  background-color: #94034b;
+}
+
+.edit-comment {
+  display: flex;
+  justify-content: space-between;
+  width: 46vw;
+}
+
+.comment-form {
+  display: flex;
+}
+
+.edit-comment-text {
+  width: 36vw;
+}
+
+.cancel-btn {
+  padding: 2em 12px 2em 12px;
+  border: 1em;
+}
