@@ -45,6 +45,13 @@ module.exports = class Post {
         ]);
     }
 
+    static updateReact(id, reacts) {
+        return db.execute("UPDATE comment SET reacts=? WHERE (id=?)", [
+            reacts,
+            id,
+        ]);
+    }
+
     static deleteById(id) {
         return db.execute("DELETE FROM comment WHERE id=?;", [id]);
     }

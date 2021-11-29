@@ -37,6 +37,8 @@ router.post("/edit-comment", isAuth, homeController.postEditComment);
 
 router.post("/delete-comment", isAuth, homeController.postDeleteComment);
 
+router.post("/like-comment", isAuth, homeController.postLikeComment);
+
 router.get("/my-posts", isAuth, userController.getMyPosts);
 
 router.get("/my-profile", isAuth, userController.getMyProfile);

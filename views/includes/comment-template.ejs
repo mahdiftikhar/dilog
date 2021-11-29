@@ -40,9 +40,13 @@
         </div>
 
         <div class="card__actions bot-info">
-            <button class="btn btn-color-comment">
-                Like (<%= comment.reacts %> )
-            </button>
+
+            <form action="/like-comment" method="POST">
+                <input type="hidden" name="commentId" value="<%= comment.id %>">
+                <input type="hidden" name="reacts" value="<%= comment.reacts %>">
+                <input type="hidden" name="postId" value="<%= comment.postId %>">
+                <button class="btn btn-color-comment">Like (<%= comment.reacts %>)</button>
+            </form>
             <% if (comment.isUser && !comment.edit) { %>
 
             <form action="/delete-comment" method="POST">
