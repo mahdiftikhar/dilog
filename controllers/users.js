@@ -89,7 +89,7 @@ exports.postEditProfile = (req, res, next) => {
                 }
             }
 
-            res.redirect("/my-profile");
+            return res.redirect("/my-profile");
         })
         .catch((err) => {
             console.log(err);
