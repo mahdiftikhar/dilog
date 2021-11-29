@@ -197,7 +197,14 @@ exports.postDeleteComment = (req, res, next) => {
 };
 
 exports.getEditPost = (req, res, next) => {
-    const postId = req.params.postId;
+    const postId = req.query.postId;
+    const postUserName = req.query.userName;
+
+    const user = req.session.user;
+
+    if (postUserName !== user.userName) {
+        return res.redirect("/home");
+    }
 
     Post.fetchById(postId)
         .then(([data, metadata]) => {
@@ -215,16 +222,30 @@ exports.getEditPost = (req, res, next) => {
 };
 
 exports.postEditPost = (req, res, next) => {
-    console.log(req.body);
-
-    const postBody = req.body.postBody;
+    const postBody = req.body.postbody;
     const postTags = req.body.tags;
     const postImage = req.body.image;
     const postId = req.body.postId;
 
-    Post.updateById()
+    Post.updateById(postId, postBody, postTags)
         .then(([data, metadata]) => {
-            console.log(data);
+            res.redirect("/post/" + postId);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            res.redirect("/post/" + postId);
+            console.log(err);
+        });
+};
+
+exports.postDeletePost = (req, res, next) => {
+    const postId = req.body.postId;
+
+    Post.deleteById(postId)
+        .then(([data, metaData]) => {
+            res.redirect("/my-posts");
+        })
+        .catch((err) => {
+            res.redirect("/home");
+            console.log(err);
+        });
 };

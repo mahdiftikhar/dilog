@@ -48,5 +48,15 @@ module.exports = class Post {
         );
     }
 
-    static updateById(id, params) {}
+    static updateById(id, newText, newTags) {
+        return db.execute("UPDATE post SET text=?, tags=? WHERE (id=?);", [
+            newText,
+            newTags,
+            id,
+        ]);
+    }
+
+    static deleteById(id) {
+        return db.execute("DELETE FROM post WHERE id=?;", [id]);
+    }
 };

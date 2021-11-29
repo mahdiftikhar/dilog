@@ -7,6 +7,10 @@ exports.getMyPosts = (req, res, next) => {
 
     Post.fetchByUserName(userName)
         .then(([rows, metadata]) => {
+            for (let post of rows) {
+                post.isUser = true;
+            }
+
             res.render("user/home", {
                 posts: rows,
                 pageTitle: "My Posts",
