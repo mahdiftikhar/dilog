@@ -10,47 +10,40 @@
         <div class="cont">
             <div class="left-div">
                 <div>
-                    <h4 class="heading">Report Reason</h4>
+                    <h4 class="heading" >Report Reason</h4>
                 </div>
+                <div class="logo">
+                    <img src="/assets/logo13.svg" alt="logo" />
+                </div>
+            </div>
                 
-                <form action='/reported' method="='POST">
-                    <div class = "checker">
+            <div class="right-div">
+                <form action='/reported' method="='POST" style = "color: white;">
+                    <div class = "checker" style = "display: flex;flex-direction: column;justify-content: center;align-items: flex-start; font-size: 20pt;">
                         <label for="type">
                             <input type="radio" name="type" value="harrasment" required> Harrasment
                         </label>
-
                         <label for="type">
                             <input type="radio" name="type" value="spam" required> Spam
                         </label>
-
                         <label for="type">
                             <input type="radio" name="type" value="hate-speech" required> Hate Speech
                         </label>
-
                         <label for="type">
                             <input type="radio" name="type" value="terrorism" required> Terrorism
                         </label>
-
                         <label for="type">
                             <input type="radio" name="type" value="threats" required> Threats
                         </label>
-
                         <label for="type">
                             <input type="radio" name="type" value="other" required> Other
                         </label>
                     </div>
-
-
                     <label for='postID'><input type='hidden' name='postID' value ='<%= postID %>'></label>
-
-
                     <div>
                         <button type="submit" class="std-button">Submit Report</button>
                     </div>
-
                 </form>
-
-
             </div>
         </div>
     </main>
