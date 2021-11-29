@@ -46,7 +46,7 @@
                             <% if (post) { %>
                                 <input type="hidden" name="postId" value="<%= post.id %>">
                             <% } %>
-                            <button type="submit" class="std-button">Make Post</button>
+                            <button type="submit" class="std-button"><%= post ? "Edit Post" : "Make Post" %></button>
                         </div>
                     </form>
                 </div>
