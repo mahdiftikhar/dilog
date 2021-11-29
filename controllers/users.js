@@ -100,3 +100,41 @@ exports.postEditProfile = (req, res, next) => {
             console.log(err);
         });
 };
+
+exports.getFollowers = (req, res, next) => {
+    const userName = req.params.userID;
+
+    User.fetchFollowers(userName)
+        .then(([rows, metadata]) => {
+            const followers = rows;
+
+            return res.render("user/followers-following", {
+                pageTitle: "Followers",
+                path: "/my-profile",
+                followers: followers,
+                heading: "Followers",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getFollowing = (req, res, next) => {
+    const userName = req.params.userID;
+
+    User.fetchFollowing(userName)
+        .then(([rows, metadata]) => {
+            const following = rows;
+
+            return res.render("user/followers-following", {
+                pageTitle: "Following",
+                path: "/my-profile",
+                followers: following,
+                heading: "Following",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};

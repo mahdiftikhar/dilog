@@ -49,4 +49,18 @@ module.exports = class User {
             [new_password, username]
         );
     }
+
+    static fetchFollowers(username) {
+        return db.execute(
+            "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followerId and followingId = (?);",
+            [username]
+        );
+    }
+
+    static fetchFollowing(username) {
+        return db.execute(
+            "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followingId and followerId = (?);",
+            [username]
+        );
+    }
 };
