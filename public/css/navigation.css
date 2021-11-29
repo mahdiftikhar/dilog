@@ -44,8 +44,9 @@ button.std-button {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
-    sans-serif;
+  font-family: inherit;
+  /* font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif; */
   font-size: 13px;
   font-weight: 400;
   line-height: 1.15385;

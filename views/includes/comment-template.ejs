@@ -1,37 +1,42 @@
 <div>
-    <article>
-        <div>
-            <h4 style="color: white"><%= comment.userName %></h4>
-            <h6 style="color: white"><%= comment.creationTime %></h6>
-            
-            <div>
-                <% if (comment.edit) { %>
-                    <form action="/edit-comment" method="POST">
-                        <textarea name="newTest"><%= comment.text %> </textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                <% } else { %>
-                    <p style="color: white"><%= comment.text %></p>
-                <% } %>
-                
-            </div>
-        </div>
+  <article class="card-holder comment-container">
+    <div>
+      <div class="top-info">
+        <h4><%= comment.userName %></h4>
+        <h6><%= comment.creationTime %></h6>
+      </div>
 
-        <div>
-            <% if (comment.isUser && !comment.edit) { %>
+      <div class="bio-container">
+        <% if (comment.edit) { %>
+        <form action="/edit-comment" method="POST">
+          <textarea name="newTest"><%= comment.text %> </textarea>
+          <button class="btn" type="submit">Submit</button>
+        </form>
+        <% } else { %>
+        <p class="text-content"><%= comment.text %></p>
+        <% } %>
+      </div>
+    </div>
 
-                <a href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>">edit</a>
-                <button>Delete</button>
+    <div class="card__actions bot-info">
+      <button class="btn">Like (<%= comment.reacts %> )</button>
+      <% if (comment.isUser && !comment.edit) { %>
 
-            <% } %>
+      <button class="btn">Delete</button>
+      <!-- <div class="btn"> -->
+      <a
+        href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
+      >
+        <div class="btn">Edit</div>
+      </a>
 
-            <button>Like (<%= comment.reacts %> ) </button>
+      <% } %>
 
-            <% if (!comment.isUser) { %> 
-                <button>Report</button>
-            <% } %> 
+      <!-- <button class="btn">Like (<%= comment.reacts %> )</button> -->
 
-            
-        </div>
-    </article>
+      <% if (!comment.isUser) { %>
+      <button class="btn">Report</button>
+      <% } %>
+    </div>
+  </article>
 </div>
