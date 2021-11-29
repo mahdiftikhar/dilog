@@ -56,6 +56,10 @@ module.exports = class Post {
         ]);
     }
 
+    static updateReact(id, reacts) {
+        return db.execute("UDATE post SET reacts=? WHERE (id=?)", [reacts, id]);
+    }
+
     static deleteById(id) {
         return db.execute("DELETE FROM post WHERE id=?;", [id]);
     }

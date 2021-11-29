@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
+const PostReacts = require("../models/post-reacts");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
@@ -248,4 +249,32 @@ exports.postDeletePost = (req, res, next) => {
             res.redirect("/home");
             console.log(err);
         });
+};
+
+exports.postLikePost = (req, res, next) => {
+    // const postId = req.body.postId;
+    // let reacts = +req.body.reacts;
+    // const userName = req.session.user.userName;
+    // PostReacts.fetchById(postId)
+    //     .then(([data, metadat]) => {
+    //         const dataArray = JSON.parse(JSON.stringify(data));
+    //         let temp = dataArray.find(
+    //             (element) => element.userName === userName
+    //         );
+    //         if (temp) {
+    //             return res.redirect("/post/" + postId);
+    //         }
+    //         reacts += 1;
+    //         newReact = new PostReacts(postId, userName);
+    //         return newReact.save();
+    //     })
+    //     .then(([data, metaData]) => {
+    //         console.log(reacts);
+    //         return Post.updateReacts(postId, reacts);
+    //     })
+    //     .then(([data, metaData]) => {
+    //         return res.redirect("/post/" + postId);
+    //     })
+    //     .catch((err) => console.log(err));
+    res.redirect("/home");
 };
