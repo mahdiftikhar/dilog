@@ -147,7 +147,6 @@ exports.postMakeComment = (req, res, next) => {
     comment
         .save()
         .then(([data, metaData]) => {
-            // console.log(data);
             res.redirect("/post/" + postId);
         })
         .catch((err) => {
@@ -159,9 +158,7 @@ exports.postMakeComment = (req, res, next) => {
 exports.getEditComment = (req, res, next) => {
     const commentId = req.query.commentId;
     const postId = req.query.postId;
-
     req.flash("commentId", commentId);
-
     res.redirect("/post/" + postId);
 };
 
