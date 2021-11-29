@@ -21,6 +21,10 @@ exports.getPosts = (req, res, next) => {
 exports.getPostById = (req, res, next) => {
     const postid = req.params.postid;
 
+    let editComment = req.flash("edit");
+    let commentToEdit = req.flash("commentId")[0];
+    // console.log(req.flash("edit"));
+
     Post.fetchById(postid)
         .then(([posts, metadata]) => {
             const postData = posts[0];
@@ -32,16 +36,29 @@ exports.getPostById = (req, res, next) => {
             }
 
             Comment.fetchByPostId(postData.id).then(([comments, metaData]) => {
+                console.log(commentToEdit);
+
                 for (let comment of comments) {
                     if (comment.userName === user.userName) {
                         comment.isUser = true;
                     }
+                    if (comment.id === +commentToEdit) {
+                        comment.edit = true;
+                    }
                 }
+
+                console.log("start");
+                for (let comment of comments) {
+                    console.log(comment.edit);
+                }
+                console.log("Done");
+
                 return res.render("user/post", {
                     pageTitle: postData.text.slice(0, 20) + "...",
                     path: "/post",
                     post: postData,
                     comments: comments,
+                    // editComment: editComment,
                 });
             });
         })
@@ -149,4 +166,17 @@ exports.postMakeComment = (req, res, next) => {
             console.log(err);
             res.redirect("/home");
         });
+};
+
+exports.getEditComment = (req, res, next) => {
+    // console.log(req.query);
+    const commentId = req.query.commentId;
+    const postId = req.query.postId;
+
+    // console.log(commentId);
+
+    req.flash("commentId", commentId);
+    req.flash("edit", true);
+
+    res.redirect("/post/" + postId);
 };
