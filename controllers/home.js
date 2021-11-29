@@ -6,9 +6,15 @@ exports.getPosts = (req, res, next) => {
     const user = req.session.user;
 
     Post.fetchAll()
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
+            for (let post of data) {
+                if (post.userName === user.userName) {
+                    post.isUser = true;
+                }
+            }
+
             res.render("user/home", {
-                posts: rows,
+                posts: data,
                 pageTitle: "Home",
                 path: "/home",
             });
@@ -188,4 +194,26 @@ exports.postDeleteComment = (req, res, next) => {
             console.log(err);
             res.redirect("/home");
         });
+};
+
+exports.getEditPost = (req, res, next) => {
+    const postId = req.params.postId;
+
+    Post.fetchById(postId)
+        .then(([data, metadata]) => {
+            const postData = data[0];
+
+            res.render("user/make-post", {
+                pageTitle: "Edit Post" + postId,
+                path: "/edit-post",
+                post: postData,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.postEditPost = (req, res, next) => {
+    console.log(req.body);
 };

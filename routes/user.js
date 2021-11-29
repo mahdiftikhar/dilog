@@ -21,13 +21,15 @@ router.get("/make-post", isAuth, postController.getMakePost);
 
 router.post("/make-post", isAuth, postController.postMakePost);
 
+router.get("/edit-post/:postId", isAuth, homeController.getEditPost);
+
 router.post("/make-comment", isAuth, homeController.postMakeComment);
 
-router.get("/edit-comment", homeController.getEditComment);
+router.get("/edit-comment", isAuth, homeController.getEditComment);
 
-router.post("/edit-comment", homeController.postEditComment);
+router.post("/edit-comment", isAuth, homeController.postEditComment);
 
-router.post("/delete-comment", homeController.postDeleteComment);
+router.post("/delete-comment", isAuth, homeController.postDeleteComment);
 
 router.get("/my-posts", isAuth, userController.getMyPosts);
 

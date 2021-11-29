@@ -39,9 +39,12 @@
         <% } %>
             
         <% if (post.isUser) { %>
-            <form action="/post/edit/<%= post.id %>" action="GET"> 
+            <!-- <form action="/post/edit/<%= post.id %>" action="GET"> 
                 <button class="btn" type="submit">Edit</a>
-            </form>
+            </form> -->
+
+            <a class="btn" href="/edit-post/<%= post.id %> ">Edit</a>
+
         <% } %>
 
     </div>
