@@ -42,8 +42,9 @@ module.exports = class Post {
     }
 
     static fetchLikeTag(tag) {
-        return db.execute("SELECT * FROM post WHERE tags LIKE ?", [
-            "%" + tag + "%",
-        ]);
+        return db.execute(
+            "SELECT * FROM post WHERE tags LIKE ? ORDER BY(creationTime) desc",
+            ["%" + tag + "%"]
+        );
     }
 };

@@ -29,10 +29,13 @@
             <button class="btn">Like (<%= comment.reacts %> )</button>
             <% if (comment.isUser && !comment.edit) { %>
 
-            <button class="btn">Delete</button>
-            <a
-                href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
-            >
+            <form action="/delete-comment" method="POST">
+                <input type="hidden" name="commentId" value="<%= comment.id %>">
+                <input type="hidden" name="postId" value="<%= comment.postId %>">
+                <button class="btn">Delete</button>
+            </form>
+            
+            <a href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>">
                 <div class="btn">Edit</div>
             </a>
 
@@ -40,7 +43,7 @@
 
 
             <% if (!comment.isUser) { %>
-            <button class="btn">Report</button>
+                <a href="/report/comment/<%= comment.id %> " class="btn">Report</a>
             <% } %>
         </div>
     </article>

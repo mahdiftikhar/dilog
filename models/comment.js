@@ -45,5 +45,7 @@ module.exports = class Post {
         ]);
     }
 
-    static deleteById(id) {}
+    static deleteById(id) {
+        return db.execute("DELETE FROM comment WHERE id=?;", [id]);
+    }
 };

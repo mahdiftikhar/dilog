@@ -27,6 +27,8 @@ router.get("/edit-comment", homeController.getEditComment);
 
 router.post("/edit-comment", homeController.postEditComment);
 
+router.post("/delete-comment", homeController.postDeleteComment);
+
 router.get("/my-posts", isAuth, userController.getMyPosts);
 
 router.get("/my-profile", isAuth, userController.getMyProfile);

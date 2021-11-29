@@ -175,3 +175,17 @@ exports.postEditComment = (req, res, next) => {
             console.log(err);
         });
 };
+
+exports.postDeleteComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+
+    Comment.deleteById(commentId)
+        .then(([data, metadata]) => {
+            return res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
