@@ -5,14 +5,17 @@ body {
 .profile-container {
   background-color: #d8c969;
   width: 30vw;
-  height: 90vh;
+  height: auto;
   text-align: center;
   margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 img {
   border-radius: 50%;
   margin-top: 2.5em;
+  height: 40%;
+  width: 40%;
 }
 
 .bio-container {
@@ -34,6 +37,10 @@ h3 {
   font-size: 25px;
 }
 
+.right-div {
+  height: auto;
+}
+
 .edit-profile {
   margin-top: 10px;
   bottom: 0;
@@ -53,6 +60,18 @@ a {
   bottom: 0;
   width: 30%;
   height: 50%;
+}
+
+.followers {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.follow-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .right-div {

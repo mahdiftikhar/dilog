@@ -27,6 +27,7 @@ exports.getMyProfile = (req, res, next) => {
             pageTitle: "My Profile",
             user: userData,
             path: "/my-profile",
+            isCurrentUser: true,
         });
     });
 };

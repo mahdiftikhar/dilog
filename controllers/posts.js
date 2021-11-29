@@ -4,6 +4,7 @@ exports.getMakePost = (req, res, next) => {
     res.render("user/make-post", {
         pageTitle: "make post",
         path: "/make-post",
+        post: false,
     });
 };
 

@@ -1,0 +1,50 @@
+.comment-container {
+  background-color: #bbab46;
+  margin-top: 0.1em;
+  border-radius: 5px;
+}
+.comment-container:hover {
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.text-content {
+  margin: 1.5em;
+}
+
+.bio-container {
+  width: 46vw;
+  margin-left: 2vw;
+  height: auto;
+  word-wrap: break-word;
+  /* overflow: scroll; */
+  border-left: 3px solid #1c3144;
+  text-align: left;
+}
+
+h4 {
+  margin-left: 1em;
+}
+
+.btn-color-comment:hover {
+  background-color: #94034b;
+}
+
+.edit-comment {
+  display: flex;
+  justify-content: space-between;
+  width: 46vw;
+}
+
+.comment-form {
+  display: flex;
+}
+
+.edit-comment-text {
+  width: 36vw;
+}
+
+.cancel-btn {
+  padding: 2em 12px 2em 12px;
+  border: 1em;
+}

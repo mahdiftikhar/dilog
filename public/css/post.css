@@ -1,7 +1,6 @@
 .card-holder {
   background-color: #b3bac4;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin: 30px;
   width: 50vw;
   border-radius: 10px;
 }
@@ -17,17 +16,13 @@
   flex-direction: column;
 }
 
-/* .card-content:hover {
-  border: 3px solid #808488;
-  border-radius: 10px;
-} */
-
-.card-holder > a {
+.a-tag {
+  color: black;
   text-decoration: none;
 }
-
-.card-holder > a:hover {
+.a-tag:hover {
   color: black;
+  text-decoration: none;
 }
 
 .top-info {
@@ -39,6 +34,11 @@
 
 .post-content {
   width: 48vw;
+  text-align: left;
+}
+
+.post-comment > p {
+  margin: 1em;
 }
 
 .bot-info {
@@ -51,6 +51,43 @@
 
 .tag-content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 48vw;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid;
+}
+
+.tex-area {
+  width: 10vw;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 63vw;
+  /* margin-left: 9em; */
+}
+
+.comment-field {
+  border-radius: 10px 0px 0 10px;
+  flex-grow: 2;
+  border-right: none;
+}
+
+.comment-field:focus {
+  outline: none;
+}
+
+.edit-button {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
+  border-left: 0;
+  font-size: 16pt;
+  background-color: #bfab25;
+}
+
+.btn:hover {
+  background-color: #bfab25;
 }

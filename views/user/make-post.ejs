@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="/css/general.css"> 
     <link rel="stylesheet" href="/css/edit-profile.css">  
 </head>
+
 <body>
     <%- include("../includes/navigation.ejs") %>
 
@@ -9,7 +10,7 @@
         <div class="cont">
             <div class="left-div">
                 <div>
-                    <h1 class="heading">Make Post</h1>
+                    <h1 class="heading"><%= post ? "Edit Post": "Make Post" %> </h1>
                 </div>
                 <div class="logo">
                     <img src="/assets/logo4.svg" alt="logo" />
@@ -17,19 +18,21 @@
             </div>
             <div class="right-div">
                 <div class="form-options">
-                    <form action="/make-post" method="POST">
+                    <form action="/<%= post ? "edit-post" : "make-post" %>" method="POST">
                         <div class="form-control login-control">
-                            <label for="postbody"> Content</label>
+                            <label for="postbody">Content</label>
                             <textarea style= "height: 200px; text-align: left;"
                                 name="postbody"
                                 required
-                            ></textarea>
+                            ><% if (post) { %><%= post.text %><% } %>
+                            </textarea>
                         </div>
                         <div class="form-control login-control">
                             <label for="tags"> Tags</label>
                             <input
                                 type="text"
                                 name="tags"
+                                value="<%= post ? post.tags : ""%>"
                                 required
                             />
                         </div>
@@ -37,9 +40,12 @@
                             <label for="image"> Image</label>
                             <input type="file"
                                 name="image"
-                            />
-                        </div>
+                            /> 
+                        </div> 
                         <div>
+                            <% if (post) { %>
+                                <input type="hidden" name="postId" value="<%= post.id %>">
+                            <% } %>
                             <button type="submit" class="std-button">Make Post</button>
                         </div>
                     </form>

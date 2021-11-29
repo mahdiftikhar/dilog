@@ -1,17 +1,30 @@
 const db = require("../util/database");
 
 module.exports = class Post {
-    constructor(id, postId, tags, text, image, reacts, creationTime) {
+    constructor(id, postId, userName, text, reacts, creationTime) {
         this.id = id;
+        this.userName = userName;
         this.postId = postId;
-        this.tags = tags;
         this.text = text;
-        this.image = image;
         this.reacts = reacts;
         this.creationTime = creationTime;
     }
 
-    save() {}
+    save() {
+        return db.execute(
+            `INSERT INTO comment
+            (userName, postId, reacts, creationTime, text) 
+            VALUES
+            (?, ?, ?, ?, ?);`,
+            [
+                this.userName,
+                this.postId,
+                this.reacts,
+                this.creationTime,
+                this.text,
+            ]
+        );
+    }
 
     static fetchAll() {
         return db.execute("SELECT * FROM comment ORDER BY(creationTime) desc");
@@ -25,5 +38,14 @@ module.exports = class Post {
         return db.execute("SELECT * from comment WHERE postId=?", [postId]);
     }
 
-    static deleteById(id) {}
+    static updateText(id, newText) {
+        return db.execute("UPDATE comment SET text=? WHERE (id=?);", [
+            newText,
+            id,
+        ]);
+    }
+
+    static deleteById(id) {
+        return db.execute("DELETE FROM comment WHERE id=?;", [id]);
+    }
 };

@@ -1,15 +1,20 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
-const { post } = require("../routes/user");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
 
     Post.fetchAll()
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
+            for (let post of data) {
+                if (post.userName === user.userName) {
+                    post.isUser = true;
+                }
+            }
+
             res.render("user/home", {
-                posts: rows,
+                posts: data,
                 pageTitle: "Home",
                 path: "/home",
             });
@@ -21,6 +26,7 @@ exports.getPosts = (req, res, next) => {
 
 exports.getPostById = (req, res, next) => {
     const postid = req.params.postid;
+    let commentToEdit = req.flash("commentId")[0];
 
     Post.fetchById(postid)
         .then(([posts, metadata]) => {
@@ -37,7 +43,11 @@ exports.getPostById = (req, res, next) => {
                     if (comment.userName === user.userName) {
                         comment.isUser = true;
                     }
+                    if (comment.id === +commentToEdit) {
+                        comment.edit = true;
+                    }
                 }
+
                 return res.render("user/post", {
                     pageTitle: postData.text.slice(0, 20) + "...",
                     path: "/post",
@@ -106,5 +116,104 @@ exports.postSearch = (req, res, next) => {
 };
 
 exports.getUserProfile = (req, res, next) => {
+    const userName = req.params.userId;
+
+    User.fetchByName(userName)
+        .then(([data, metadata]) => {
+            const userData = data[0];
+
+            return res.render("user/user-profile", {
+                pageTitle: userData.userName,
+                path: "/home",
+                user: userData,
+                isCurrentUser: false,
+            });
+        })
+        .catch((err) => {
+            res.redirect("/home");
+            console.log(err);
+        });
+};
+
+exports.getEditPost = (req, res, next) => {
+    console.log(req.params);
     res.redirect("/home");
+};
+
+exports.postMakeComment = (req, res, next) => {
+    const commentText = req.body.comment;
+    const postId = req.body.postId;
+    const userName = req.session.user.userName;
+
+    let date = new Date();
+    date = date.toISOString().replace("T", " ").slice(0, 19);
+
+    const comment = new Comment(null, postId, userName, commentText, 0, date);
+
+    comment
+        .save()
+        .then(([data, metaData]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
+
+exports.getEditComment = (req, res, next) => {
+    const commentId = req.query.commentId;
+    const postId = req.query.postId;
+    req.flash("commentId", commentId);
+    res.redirect("/post/" + postId);
+};
+
+exports.postEditComment = (req, res, next) => {
+    const newText = req.body.newText;
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+
+    Comment.updateText(commentId, newText)
+        .then(([data, metaData]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.postDeleteComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+
+    Comment.deleteById(commentId)
+        .then(([data, metadata]) => {
+            return res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
+
+exports.getEditPost = (req, res, next) => {
+    const postId = req.params.postId;
+
+    Post.fetchById(postId)
+        .then(([data, metadata]) => {
+            const postData = data[0];
+
+            res.render("user/make-post", {
+                pageTitle: "Edit Post" + postId,
+                path: "/edit-post",
+                post: postData,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.postEditPost = (req, res, next) => {
+    console.log(req.body);
 };
