@@ -25,6 +25,8 @@ router.post("/make-comment", isAuth, homeController.postMakeComment);
 
 router.get("/edit-comment", homeController.getEditComment);
 
+router.post("/edit-comment", homeController.postEditComment);
+
 router.get("/my-posts", isAuth, userController.getMyPosts);
 
 router.get("/my-profile", isAuth, userController.getMyProfile);

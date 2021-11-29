@@ -7,9 +7,12 @@
             <div>
                 <% if (comment.edit) { %>
                     <form action="/edit-comment" method="POST">
-                        <textarea name="newTest"><%= comment.text %> </textarea>
+                        <textarea name="newText"><%= comment.text %> </textarea>
+                        <input type="hidden" name="commentId" value="<%= comment.id %>">
+                        <input type="hidden" name="postId" value="<%= comment.postId %>">
                         <button type="submit">Submit</button>
                     </form>
+                    <a href="/post/<%= comment.postId %>">Cancel</a>
                 <% } else { %>
                     <p style="color: white"><%= comment.text %></p>
                 <% } %>

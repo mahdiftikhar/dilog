@@ -38,5 +38,12 @@ module.exports = class Post {
         return db.execute("SELECT * from comment WHERE postId=?", [postId]);
     }
 
+    static updateText(id, newText) {
+        return db.execute("UPDATE comment SET text=? WHERE (id=?);", [
+            newText,
+            id,
+        ]);
+    }
+
     static deleteById(id) {}
 };
