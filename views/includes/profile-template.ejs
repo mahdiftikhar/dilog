@@ -1,42 +1,45 @@
 <div class="profile-container">
-    <div class = "frame">
-        <img src="<%= user.displayPicture ? user.displayPicture : '/assets/logo10.svg'%> " 
-            alt="PP">
-    </div>
+  <div class="frame">
+    <img
+      src="<%= user.displayPicture ? user.displayPicture : '/assets/user.png'%> "
+      alt="PP"
+    />
+  </div>
 
-    <% if (!isCurrentUser) { %> 
-        <div>
-            <form action="/follow" action="POST">
-                <input type="hidden" name="followname" value="<% user.userName %> ">
-                <button type="submit">Follow</button>                                
-            </form>
-        </div>
-    <% } %> 
-    <div>
-        <h3> <%= user.userName %></h3>
-    </div>
+  <% if (!isCurrentUser) { %> <% } %>
+  <div>
+    <h3><%= user.userName %></h3>
+  </div>
 
+  <div class="followers">
     <a href="/followers/<%= user.userName %>">Followers(0)</a>
     <a href="/following/<%= user.userName %>">Following(0)</a>
+  </div>
 
-    <div class = "small-container">
-        <h2>Email </h2>
-        <h3> <%= user.email %></h3>
+  <div class="small-container">
+    <h2>Email</h2>
+    <h3><%= user.email %></h3>
+  </div>
+
+  <div class="small-container">
+    <h2>Birthday</h2>
+    <h3><%= user.dateOfBirth %></h3>
+  </div>
+
+  <div>
+    <h2>Bio:</h2>
+    <div class="bio-container">
+      <p><%= user.bio %></p>
     </div>
+  </div>
 
-    <div class = "small-container">
-        <h2>Birthday </h2>
-        <h3> <%= user.dateOfBirth %></h3>
-    </div>
-
-    <div>
-        <h2>Bio: </h2>
-        <div class="bio-container">
-            <p> <%= user.bio %></p>
-        </div>
-    </div>
-
-    <% if (isCurrentUser) { %> 
-    <div class = "edit-profile"> <a href="/edit-profile">Edit Profile</a> </div>
-    <% } %> 
+  <% if (isCurrentUser) { %>
+  <div class="edit-profile"><a href="/edit-profile">Edit Profile</a></div>
+  <% } %>
+  <div class="follow-button">
+    <form action="/follow" action="POST">
+      <input type="hidden" name="followname" value="<% user.userName %> " />
+      <button class="button-7" type="submit">Follow</button>
+    </form>
+  </div>
 </div>

@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.forum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 63vw;
+  /* margin-left: 9em; */
+}
+
+.input-field {
+  border-radius: 10px 0px 0 10px;
+  flex-grow: 2;
+  border-right: none;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.content {
+  background-color: black;
+}
+.edit-button {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
+  border-left: 0;
+  font-size: 16pt;
+  background-color: #bfab25;
+}
+
+.checker {
+  margin-bottom: 10px;
+}
+
+.checker > label {
+  font-size: 15pt;
+  margin: 0.8em 0 0.3em 0.5em;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+}
+
+.posts-container {
+  width: 60vw;
+  margin-top: 50px;
+  margin-bottom: 0;
+  background-color: #1c3144;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  height: auto;
+}
+
+.img-1 {
+  width: 40%;
+  height: 40%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.img-2 {
+  width: 30%;
+  height: 30%;
+  position: fixed;
+  bottom: 8em;
+  right: 0;
+  z-index: -1;
+}
