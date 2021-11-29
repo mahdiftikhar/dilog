@@ -1,93 +1,95 @@
 .card-holder {
-  background-color: #b3bac4;
-  margin: 30px;
-  width: 50vw;
-  border-radius: 10px;
+    background-color: #b3bac4;
+    margin: 30px;
+    width: 50vw;
+    border-radius: 10px;
 }
 
 .card-holder:hover {
-  box-shadow: 5px 5px #7593bd;
-  border-radius: 10px;
+    box-shadow: 5px 5px #bfab25;
+    border-radius: 10px;
 }
 .card-content {
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .a-tag {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 .a-tag:hover {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 .top-info {
-  display: flex;
-  justify-content: space-between;
-  width: 48vw;
-  margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 48vw;
+    margin-top: 1em;
 }
 
 .post-content {
-  width: 48vw;
-  text-align: left;
+    width: 48vw;
+    text-align: left;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .post-comment > p {
-  margin: 1em;
+    margin: 1em;
 }
 
 .bot-info {
-  display: flex;
+    display: flex;
 }
 
 .top-info > h6 {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .tag-content {
-  display: flex;
-  justify-content: flex-start;
-  width: 48vw;
-  margin-top: 2em;
-  padding-top: 1em;
-  border-top: 1px solid;
+    display: flex;
+    justify-content: flex-start;
+    width: 48vw;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid;
 }
 
 .tex-area {
-  width: 10vw;
+    width: 10vw;
 }
 
 .search-field {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 63vw;
-  /* margin-left: 9em; */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 63vw;
+    /* margin-left: 9em; */
 }
 
 .comment-field {
-  border-radius: 10px 0px 0 10px;
-  flex-grow: 2;
-  border-right: none;
+    border-radius: 10px 0px 0 10px;
+    flex-grow: 2;
+    border-right: none;
 }
 
 .comment-field:focus {
-  outline: none;
+    outline: none;
 }
 
 .edit-button {
-  border-radius: 0 10px 10px 0;
-  margin-left: 0;
-  border-left: 0;
-  font-size: 16pt;
-  background-color: #bfab25;
+    border-radius: 0 10px 10px 0;
+    margin-left: 0;
+    border-left: 0;
+    font-size: 16pt;
+    background-color: #bfab25;
 }
 
 .btn:hover {
-  background-color: #bfab25;
+    background-color: #bfab25;
 }
