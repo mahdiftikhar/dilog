@@ -49,4 +49,8 @@ router.get("/followers/:userID", isAuth, userController.getFollowers);
 
 router.get("/following/:userID", isAuth, userController.getFollowing);
 
+router.get("/report-post/:postID", isAuth, postController.getReportPost);
+
+router.get("/reported?", isAuth, postController.postReportPost);
+
 module.exports = router;

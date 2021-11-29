@@ -1,0 +1,59 @@
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/edit-profile.css"> 
+
+</head>
+<body>
+    <%- include("../includes/navigation.ejs") %>
+    
+    <main>
+        <div class="cont">
+            <div class="left-div">
+                <div>
+                    <h4 class="heading">Report Reason</h4>
+                </div>
+                
+                <form action='/reported' method="='POST">
+                    <div class = "checker">
+                        <label for="type">
+                            <input type="radio" name="type" value="harrasment" required> Harrasment
+                        </label>
+
+                        <label for="type">
+                            <input type="radio" name="type" value="spam" required> Spam
+                        </label>
+
+                        <label for="type">
+                            <input type="radio" name="type" value="hate-speech" required> Hate Speech
+                        </label>
+
+                        <label for="type">
+                            <input type="radio" name="type" value="terrorism" required> Terrorism
+                        </label>
+
+                        <label for="type">
+                            <input type="radio" name="type" value="threats" required> Threats
+                        </label>
+
+                        <label for="type">
+                            <input type="radio" name="type" value="other" required> Other
+                        </label>
+                    </div>
+
+
+                    <label for='postID'><input type='hidden' name='postID' value ='<%= postID %>'></label>
+
+
+                    <div>
+                        <button type="submit" class="std-button">Submit Report</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </main>
+
+    <%- include("../includes/end.ejs") %>
+</body>
