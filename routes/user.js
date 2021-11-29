@@ -23,6 +23,8 @@ router.post("/make-post", isAuth, postController.postMakePost);
 
 router.get("/edit-post/:postId", isAuth, homeController.getEditPost);
 
+router.post("/edit-post", isAuth, homeController.postEditPost);
+
 router.post("/make-comment", isAuth, homeController.postMakeComment);
 
 router.get("/edit-comment", isAuth, homeController.getEditComment);
