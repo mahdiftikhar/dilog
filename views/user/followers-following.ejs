@@ -8,28 +8,37 @@
 
     <main>
 
-        <% if (followers.length > 0) { %>   
-            <h1> <%= heading %>: </h1> 
-
-            <div>
-                <div class="users-grid">
-                    <% for (let user of followers) { %>
-                    <a href="/profile/<%= user.userName %> ">
-                        <div class = "user-container">
-                            <img class = "profile-pic" src="<%= user.displayPicture !== null ? user.displayPicture : '/assets/user.png'; %>" alt="pp">
-                            <h5><%= user.userName %> </h5>
-                            <form action="/follow" action="POST">
-                                <input type="hidden" name="followname" value="<% user.userName %> ">
-                            </form>
-                        </div>
-                    </a>
-                    <% } %>
+        <div class="cont">
+            <div class="left-div">
+                <div>
+                    <h1 class = "heading"> <%= heading %> </h1>
+                </div>
+                <div class="logo">
+                    <img src="/assets/logo14.svg" alt="logo" style = "height: 50%; width: 50%;" />
                 </div>
             </div>
-
-        <% } else { %> 
-            <h1>No <%= heading %>!</h1>
-        <% } %> 
+            <div class="right-div" style= "margin-right: 4em;">
+                <% if (followers.length > 0) { %>
+                    <div>
+                        <div class="users-grid">
+                            <% for (let user of followers) { %>
+                            <a href="/profile/<%= user.userName %> ">
+                                <div class = "user-container">
+                                    <img class = "profile-pic" src="<%= user.displayPicture !== null ? user.displayPicture : '/assets/user2.svg'; %>" alt="pp">
+                                    <h5><%= user.userName %> </h5>
+                                    <form action="/follow" action="POST">
+                                        <input type="hidden" name="followname" value="<% user.userName %> ">
+                                    </form>
+                                </div>
+                            </a>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <h1 style="color:white">No <%= heading %>!</h1>
+                <% } %>
+            </div>
+        </div>
     </main>
 
 

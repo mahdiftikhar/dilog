@@ -63,4 +63,11 @@ module.exports = class Post {
     static deleteById(id) {
         return db.execute("DELETE FROM post WHERE id=?;", [id]);
     }
+
+    static reportByID(postID, creationTime, reportReason) {
+        return db.execute(
+            "INSERT INTO reportposts (postID, creationTime, reportReason) VALUES (?, ?, ?)",
+            [postID, creationTime, reportReason]
+        );
+    }
 };
