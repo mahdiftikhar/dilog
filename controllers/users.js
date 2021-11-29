@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Post = require("../models/post");
+const bcrypt = require("bcryptjs");
 
 exports.getMyPosts = (req, res, next) => {
     const userName = req.session.user.userName;
@@ -32,31 +33,66 @@ exports.getMyProfile = (req, res, next) => {
 };
 
 exports.getEditProfile = (req, res, next) => {
-    res.render("user/edit-profile", {
-        pageTitle: "Edit Profile",
-        path: "/my-profile",
+    const username = req.session.user.userName;
+
+    User.fetchByName(username).then(([rows, metadata]) => {
+        userData = rows[0];
+
+        res.render("user/edit-profile", {
+            pageTitle: "Edit Profile",
+            path: "/my-profile",
+            errorMessage: null,
+            userData: userData,
+        });
     });
 };
 
 exports.postEditProfile = (req, res, next) => {
-    console.log("controllers - postEditProfile");
-
     const username = req.session.user.userName;
-    const password = req.body.password;
-    const bio = req.body.bio;
-    const dp = req.body.dp;
 
-    console.log(username);
-    if (bio) {
-        console.log(bio);
-    }
+    User.fetchByName(username)
+        .then(([rows, metadata]) => {
+            const userData = rows[0];
 
-    if (dp) {
-        console.log(dp);
-    }
-    if (password) {
-        console.log(password);
-    }
+            const password = req.body.password;
+            const confirm_password = req.body.confirm_password;
+            const bio = req.body.bio;
+            const dp = req.body.dp;
 
-    res.redirect("/my-profile");
+            if (bio) {
+                User.updateBio(username, bio)
+                    .then(([rows, metadata]) => {})
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+
+            if (dp) {
+                // console.log(dp);
+            }
+
+            if (password) {
+                if (!(password === confirm_password)) {
+                    return res.render("user/edit-profile", {
+                        pageTitle: "Edit Profile",
+                        path: "/my-profile",
+                        userData: userData,
+                        errorMessage: "Passwords do not match",
+                    });
+                } else {
+                    bcrypt.hash(password, 12).then((hashedPassword) => {
+                        User.updatePassword(username, hashedPassword)
+                            .then(([rows, metadata]) => {})
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    });
+                }
+            }
+
+            return res.redirect("/my-profile");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };

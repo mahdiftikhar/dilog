@@ -38,15 +38,15 @@ module.exports = class User {
 
     static updateBio(username, new_bio) {
         return db.execute("UPDATE user SET bio = (?) WHERE userName = (?)", [
+            new_bio,
             username,
-            bio,
         ]);
     }
 
     static updatePassword(username, new_password) {
         return db.execute(
             "UPDATE user SET password = (?) WHERE userName = (?)",
-            [username, new_password]
+            [new_password, username]
         );
     }
 };
