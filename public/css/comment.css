@@ -1,0 +1,27 @@
+.comment-container {
+  background-color: #bbab46;
+  margin-top: 0.1em;
+  border-radius: 5px;
+}
+.comment-container:hover {
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.text-content {
+  margin: 1.5em;
+}
+
+.bio-container {
+  width: 46vw;
+  margin-left: 2vw;
+  height: auto;
+  word-wrap: break-word;
+  /* overflow: scroll; */
+  border-left: 3px solid #1c3144;
+  text-align: left;
+}
+
+h4 {
+  margin-left: 1em;
+}

@@ -1,0 +1,133 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.forum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 63vw;
+  /* margin-left: 9em; */
+}
+
+.input-field {
+  border-radius: 10px 0px 0 10px;
+  flex-grow: 2;
+  border-right: none;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.content {
+  background-color: black;
+}
+.edit-button {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
+  border-left: 0;
+  font-size: 16pt;
+  background-color: #bfab25;
+}
+
+.checker {
+  margin-bottom: 10px;
+}
+
+.checker > label {
+  font-size: 15pt;
+  margin: 0.8em 0 0.3em 0.5em;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+}
+
+.posts-container {
+  width: 60vw;
+  margin-top: 50px;
+  margin-bottom: 0;
+  background-color: #1c3144;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  height: auto;
+}
+
+.img-1 {
+  width: 40%;
+  height: 40%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.img-2 {
+  width: 30%;
+  height: 30%;
+  position: fixed;
+  bottom: 8em;
+  right: 0;
+  z-index: -1;
+}
+
+.users-grid {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+  /* grid-gap: 1em; */
+  /* grid-row-gap: 1em; */
+  margin-top: 50px;
+  margin-bottom: 0;
+  background-color: #1c3144;
+  border-radius: 20px;
+  padding: 1em;
+  /* height: auto; */
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #bfab25;
+  width: 10vw;
+  height: 20vh;
+  margin: 1em;
+  border-radius: 20px;
+}
+
+.user-container:hover {
+  box-shadow: 5px 5px #beb788;
+  border-radius: 20px;
+}
+
+.user-container > h5 {
+  margin-top: 0.5em;
+  /* margin-left: 1.8em; */
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  margin: 1em 0 0.5em 0;
+  height: 50%;
+  width: 50%;
+}

@@ -19,15 +19,14 @@ module.exports = class User {
 
     static fetchAll() {}
 
-    static fetchByIdPass(name, pass) {
-        return db.execute(
-            "SELECT * FROM user WHERE userName=? and password=?",
-            [name, pass]
-        );
-    }
-
     static fetchByName(name) {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
+    }
+
+    static fetchLikeName(name) {
+        return db.execute("SELECT * FROM user WHERE userName LIKE ?", [
+            "%" + name + "%",
+        ]);
     }
 
     static addByIdEmailPass(name, email, password) {

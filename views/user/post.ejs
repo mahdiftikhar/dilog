@@ -1,20 +1,36 @@
 <%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/comment.css">
 </head> 
 
 <body>
     <%- include("../includes/navigation.ejs") %> 
 
     <main>  
-        <div class="grid">
-            <%- include("../includes/post-template.ejs") %> 
+        <div class="cont">
+            <div class="right-div">
+                <div class="grid">
+                    <%- include("../includes/post-template.ejs") %>
+                </div>
+                <div class="comments">
+                    <% if (comments) { %>
+                
+                        <% for (let comment of comments) { %>
+                            <%- include("../includes/comment-template.ejs", {comment, comment}) %>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="left-div">
+                <div>
+                    <h1 class="heading">View</h1>
+                </div>
+                <div class="logo">
+                    <img src="/assets/logo7.svg" alt="logo" />
+                </div>
+            </div>
         </div>
-
-        <% if (comments) { %> 
-            
-            <% for (let comment of comments) { %> 
-                <%- include("../includes/comment-template.ejs", {comment, comment}) %> 
-            <% } %> 
-        <% } %> 
     </main>
 
 <%- include("../includes/end.ejs") %> 

@@ -11,6 +11,19 @@ module.exports = class Post {
         this.creationTime = creationTime;
     }
 
+    save() {
+        return db.execute(
+            "INSERT INTO post (userName, tags, text, reacts, creationTime) VALUES (?, ?, ?, ?, ?)",
+            [
+                this.userName,
+                this.tags,
+                this.text,
+                this.reacts,
+                this.creationTime,
+            ]
+        );
+    }
+
     static fetchAll() {
         return db.execute("SELECT * FROM post ORDER BY(creationTime) desc");
     }
@@ -28,16 +41,9 @@ module.exports = class Post {
         );
     }
 
-    save() {
-        return db.execute(
-            "INSERT INTO post (userName, tags, text, reacts, creationTime) VALUES (?, ?, ?, ?, ?)",
-            [
-                this.userName,
-                this.tags,
-                this.text,
-                this.reacts,
-                this.creationTime,
-            ]
-        );
+    static fetchLikeTag(tag) {
+        return db.execute("SELECT * FROM post WHERE tags LIKE ?", [
+            "%" + tag + "%",
+        ]);
     }
 };

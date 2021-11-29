@@ -1,18 +1,47 @@
 <div>
-    <article>
+    <article class="card-holder comment-container">
         <div>
-            <p><%= comment.userName %> </p>
-            <p><%= comment.reacts %> </p>
-            <p><%= comment.creationTime %> </p>
-            <p><%= comment.text %> </p>
+
+            <div class="top-info">
+                <h4><%= comment.userName %></h4>
+                <h6><%= comment.creationTime %></h6>
+            </div>
+
         </div>
 
-        <div>
-            <% if (comment.isUser) { %>
-                <a href="/edit-comment">Edit</a>
-            <% } %> 
-            <button>Like</button>
-            <button>Report</button>
+        <div class="bio-container">
+
+            <% if (comment.edit) { %>
+                <form action="/edit-comment" method="POST">
+                    <textarea name="newText"><%= comment.text %> </textarea>
+                    <input type="hidden" name="commentId" value="<%= comment.id %>">
+                    <input type="hidden" name="postId" value="<%= comment.postId %>">
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+                <a href="/post/<%= comment.postId %>"><div class="btn">Cancel</div></a>
+            <% } else { %>
+                <p class="text-content"><%= comment.text %></p>
+            <% } %>
+
+        </div>
+
+        <div class="card__actions bot-info">
+            <button class="btn">Like (<%= comment.reacts %> )</button>
+            <% if (comment.isUser && !comment.edit) { %>
+
+            <button class="btn">Delete</button>
+            <a
+                href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
+            >
+                <div class="btn">Edit</div>
+            </a>
+
+            <% } %>
+
+
+            <% if (!comment.isUser) { %>
+            <button class="btn">Report</button>
+            <% } %>
         </div>
     </article>
-</div> 
+</div>
