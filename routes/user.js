@@ -43,4 +43,8 @@ router.get("/edit-profile", isAuth, userController.getEditProfile);
 
 router.post("/edit-profile", isAuth, userController.postEditProfile);
 
+router.get("/followers/:userID", isAuth, userController.getFollowers);
+
+router.get("/following/:userID", isAuth, userController.getFollowing);
+
 module.exports = router;
