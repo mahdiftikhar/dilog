@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const HOST = "localhost";
 const USER = "root";
 const DATABASE = "dilog";
-const PASSWORD = "Halo89527fc4!";
+const PASSWORD = "cumdump";
 
 const pool = mysql.createPool({
     host: HOST,
