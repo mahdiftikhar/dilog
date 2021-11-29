@@ -18,7 +18,9 @@
                 <p><%= post.tags %></p>
             </div>
 
-            <% if (post.image) { %> <% } %>
+            <% if (post.image) { %> 
+                <img src="" alt="">    
+            <% } %>
             
         </div>
     </a>
@@ -34,13 +36,14 @@
         
         <% if (!post.isUser) { %>
             <button class="btn">Report</button>
-            <% } %>
+        <% } %>
             
-            <% if (post.isUser) { %>
-                <form action="/post/edit/<%= post.id %>" action="GET"> 
-                    <button class="btn" type="submit">Edit</a>
-                    </form>
-            <% } %>
+        <% if (post.isUser) { %>
+            <form action="/post/edit/<%= post.id %>" action="GET"> 
+                <button class="btn" type="submit">Edit</a>
+            </form>
+        <% } %>
+
     </div>
 
     <div class="card__actions bot-info">
