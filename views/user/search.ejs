@@ -34,7 +34,7 @@
                             <% for (let user of matches) { %>
                             <a href="profile/<%= user.userName %> ">
                                 <div class = "user-container">
-                                    <img class = "profile-pic" src="<%= user.displayPicture !== null ? user.displayPicture : '/assets/user.png'; %>" alt="pp">
+                                    <img class = "profile-pic" src="<%= user.displayPicture !== null ? user.displayPicture : '/assets/user2.svg'; %>" alt="pp">
                                     <h5><%= user.userName %> </h5>
                                     <form action="/follow" action="POST">
                                         <input type="hidden" name="followname" value="<% user.userName %> ">
