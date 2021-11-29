@@ -6,7 +6,7 @@
                 <h6><%= post.creationTime %></h6>
             </div>
             <div class="post-content">
-                <div class="card__image">
+                <div class="card__image image-content">
                     <img src="<% post.image %>" alt="" />
                 </div>
                 <div class="card-text">
@@ -19,31 +19,30 @@
             </div>
 
             <% if (post.image) { %> <% } %>
-            
         </div>
     </a>
 
-
     <div class="card__actions bot-info">
-        <form action="/make-comment" method="POST" class = "search-field">
-            <textarea class= "tex-area comment-field" name="comment" placeholder="Write Comment Here" required></textarea>
-            <input type="hidden" name="postId" value="<%= post.id %>">
+        <form action="/make-comment" method="POST" class="search-field">
+            <textarea
+                class="tex-area comment-field"
+                name="comment"
+                placeholder="Write Comment Here"
+                required
+            ></textarea>
+            <input type="hidden" name="postId" value="<%= post.id %>" />
             <button class="btn">Comment</button>
         </form>
     </div>
-    <div class="card__actions bot-info">        
-        
+    <div class="card__actions bot-info">
         <form action="/post/:postid/like" method="GET">
             <button class="btn" type="submit">Like (<%= post.reacts %>)</button>
         </form>
 
         <% if (!post.isUser) { %>
-            <button class="btn">Report</button>
-        <% } %>
-            
-        <% if (post.isUser) { %>
-            <a class="btn" href="/edit-post/<%= post.id %> ">Edit</a>
+        <button class="btn">Report</button>
+        <% } %> <% if (post.isUser) { %>
+        <a class="btn" href="/edit-post/<%= post.id %> ">Edit</a>
         <% } %>
     </div>
-
 </article>
