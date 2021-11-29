@@ -62,7 +62,7 @@ exports.getReportPost = (req, res, next) => {
     });
 };
 
-exports.postReportPost = (req, res, next) => {
+exports.getReportPost = (req, res, next) => {
     const query = req.query;
     const reportReason = req.query.type;
     const postID = req.query.postID;
@@ -113,7 +113,7 @@ exports.getReportComment = (req, res, next) => {
     });
 };
 
-exports.postReportComment = (req, res, next) => {
+exports.getReportComment = (req, res, next) => {
     console.log("aaaaaaaaaaaa");
 
     const query = req.query;
