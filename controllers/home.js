@@ -123,3 +123,30 @@ exports.getUserProfile = (req, res, next) => {
             console.log(err);
         });
 };
+
+exports.getEditPost = (req, res, next) => {
+    console.log(req.params);
+    res.redirect("/home");
+};
+
+exports.postMakeComment = (req, res, next) => {
+    const commentText = req.body.comment;
+    const postId = req.body.postId;
+    const userName = req.session.user.userName;
+
+    let date = new Date();
+    date = date.toISOString().replace("T", " ").slice(0, 19);
+
+    const comment = new Comment(null, postId, userName, commentText, 0, date);
+
+    comment
+        .save()
+        .then(([data, metaData]) => {
+            // console.log(data);
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
