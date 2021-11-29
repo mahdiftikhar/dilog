@@ -34,5 +34,4 @@ app.use(errorController.get404);
 const port = 3000;
 app.listen(port, (err) => {
     if (err) console.log(err);
-    console.log(`Server listening on port ${port}`);
 });

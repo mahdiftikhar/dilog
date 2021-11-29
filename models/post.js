@@ -47,4 +47,6 @@ module.exports = class Post {
             ["%" + tag + "%"]
         );
     }
+
+    static updateById(id, params) {}
 };

@@ -216,4 +216,15 @@ exports.getEditPost = (req, res, next) => {
 
 exports.postEditPost = (req, res, next) => {
     console.log(req.body);
+
+    const postBody = req.body.postBody;
+    const postTags = req.body.tags;
+    const postImage = req.body.image;
+    const postId = req.body.postId;
+
+    Post.updateById()
+        .then(([data, metadata]) => {
+            console.log(data);
+        })
+        .catch((err) => console.log(err));
 };
