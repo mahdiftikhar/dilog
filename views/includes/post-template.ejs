@@ -35,8 +35,10 @@
         </form>
     </div>
     <div class="card__actions bot-info">
-        <form action="/post/:postid/like" method="GET">
-            <button class="btn" type="submit">Like (<%= post.reacts %>)</button>
+        <form action="/like-post" method="POST">
+            <input type="hidden" name="reacts" value="<%= post.reacts %>">
+            <input type="hidden" name="postId" value="<%= post.id %>">
+            <button class="btn" type="submit">Like(<%= post.reacts %>)</button>
         </form>
 
         <% if (!post.isUser) { %>

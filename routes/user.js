@@ -27,6 +27,8 @@ router.post("/edit-post", isAuth, homeController.postEditPost);
 
 router.post("/delete-post", isAuth, homeController.postDeletePost);
 
+router.post("/like-post", isAuth, homeController.postLikePost);
+
 router.post("/make-comment", isAuth, homeController.postMakeComment);
 
 router.get("/edit-comment", isAuth, homeController.getEditComment);
@@ -34,6 +36,8 @@ router.get("/edit-comment", isAuth, homeController.getEditComment);
 router.post("/edit-comment", isAuth, homeController.postEditComment);
 
 router.post("/delete-comment", isAuth, homeController.postDeleteComment);
+
+router.post("/like-comment", isAuth, homeController.postLikeComment);
 
 router.get("/my-posts", isAuth, userController.getMyPosts);
 

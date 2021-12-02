@@ -1,6 +1,8 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
+const PostReacts = require("../models/post-reacts");
+const CommentReact = require("../models/comment-react");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
@@ -247,5 +249,62 @@ exports.postDeletePost = (req, res, next) => {
         .catch((err) => {
             res.redirect("/home");
             console.log(err);
+        });
+};
+
+exports.postLikePost = (req, res, next) => {
+    const postId = req.body.postId;
+    let reacts = +req.body.reacts;
+    const userName = req.session.user.userName;
+
+    PostReacts.fetchRow(postId, userName)
+        .then(([data, metadata]) => {
+            const rowData = data[0];
+
+            if (!rowData) {
+                reacts += 1;
+                const postReact = new PostReacts(postId, userName);
+                return postReact.save();
+            } else {
+                reacts -= 1;
+                return PostReacts.deleteRow(postId, userName);
+            }
+        })
+        .then(([data, metaData]) => {
+            return Post.updateReact(postId, reacts);
+        })
+        .then(([data, metaData]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => console.log(err));
+};
+
+exports.postLikeComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+    let reacts = +req.body.reacts;
+    const userName = req.session.user.userName;
+
+    CommentReact.fetchRow(commentId, userName)
+        .then(([data, metaData]) => {
+            const rowData = data[0];
+            if (!rowData) {
+                reacts += 1;
+                const commentReact = new CommentReact(commentId, userName);
+                return commentReact.save();
+            } else {
+                reacts -= 1;
+                return CommentReact.deleteRow(commentId, userName);
+            }
+        })
+        .then(([data, userName]) => {
+            return Comment.updateReact(commentId, reacts);
+        })
+        .then(([data, metadata]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
         });
 };
