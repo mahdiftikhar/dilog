@@ -1,14 +1,22 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const User = require("../models/user");
+const PostReacts = require("../models/post-reacts");
+const CommentReact = require("../models/comment-react");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
 
     Post.fetchAll()
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
+            for (let post of data) {
+                if (post.userName === user.userName) {
+                    post.isUser = true;
+                }
+            }
+
             res.render("user/home", {
-                posts: rows,
+                posts: data,
                 pageTitle: "Home",
                 path: "/home",
             });
@@ -173,5 +181,130 @@ exports.postEditComment = (req, res, next) => {
         })
         .catch((err) => {
             console.log(err);
+        });
+};
+
+exports.postDeleteComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+
+    Comment.deleteById(commentId)
+        .then(([data, metadata]) => {
+            return res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
+        });
+};
+
+exports.getEditPost = (req, res, next) => {
+    const postId = req.query.postId;
+    const postUserName = req.query.userName;
+
+    const user = req.session.user;
+
+    if (postUserName !== user.userName) {
+        return res.redirect("/home");
+    }
+
+    Post.fetchById(postId)
+        .then(([data, metadata]) => {
+            const postData = data[0];
+
+            res.render("user/make-post", {
+                pageTitle: "Edit Post" + postId,
+                path: "/edit-post",
+                post: postData,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.postEditPost = (req, res, next) => {
+    const postBody = req.body.postbody;
+    const postTags = req.body.tags;
+    const postImage = req.body.image;
+    const postId = req.body.postId;
+
+    Post.updateById(postId, postBody, postTags)
+        .then(([data, metadata]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            res.redirect("/post/" + postId);
+            console.log(err);
+        });
+};
+
+exports.postDeletePost = (req, res, next) => {
+    const postId = req.body.postId;
+
+    Post.deleteById(postId)
+        .then(([data, metaData]) => {
+            res.redirect("/my-posts");
+        })
+        .catch((err) => {
+            res.redirect("/home");
+            console.log(err);
+        });
+};
+
+exports.postLikePost = (req, res, next) => {
+    const postId = req.body.postId;
+    let reacts = +req.body.reacts;
+    const userName = req.session.user.userName;
+
+    PostReacts.fetchRow(postId, userName)
+        .then(([data, metadata]) => {
+            const rowData = data[0];
+
+            if (!rowData) {
+                reacts += 1;
+                const postReact = new PostReacts(postId, userName);
+                return postReact.save();
+            } else {
+                reacts -= 1;
+                return PostReacts.deleteRow(postId, userName);
+            }
+        })
+        .then(([data, metaData]) => {
+            return Post.updateReact(postId, reacts);
+        })
+        .then(([data, metaData]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => console.log(err));
+};
+
+exports.postLikeComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+    let reacts = +req.body.reacts;
+    const userName = req.session.user.userName;
+
+    CommentReact.fetchRow(commentId, userName)
+        .then(([data, metaData]) => {
+            const rowData = data[0];
+            if (!rowData) {
+                reacts += 1;
+                const commentReact = new CommentReact(commentId, userName);
+                return commentReact.save();
+            } else {
+                reacts -= 1;
+                return CommentReact.deleteRow(commentId, userName);
+            }
+        })
+        .then(([data, userName]) => {
+            return Comment.updateReact(commentId, reacts);
+        })
+        .then(([data, metadata]) => {
+            res.redirect("/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/home");
         });
 };

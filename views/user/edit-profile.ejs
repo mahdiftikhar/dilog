@@ -24,15 +24,26 @@
                             <input
                                 type="text"
                                 name="bio"
+                                value = '<%= userData.bio %>'
                             />
                         </div>
                         <div class="form-control login-control">
                             <label for="tags"> Password</label>
                             <input
-                                type="text"
+                                type="password"
                                 name="password"
                             />
                         </div>
+                        <div class="form-control login-control">
+                            <label for="tags"> Confirm Password</label>
+                            <input
+                                type="password"
+                                name="confirm_password"
+                            />
+                        </div>
+                        <% if (errorMessage) { %>
+                            <div class = "error-message" style = "color: white"><%= errorMessage %></div>
+                        <% } %>
                         <div class="form-control login-control" style = "color: white">
                             <label for="image"> Profile Picture</label>
                             <input type="file"

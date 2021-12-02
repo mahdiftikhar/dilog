@@ -21,11 +21,23 @@ router.get("/make-post", isAuth, postController.getMakePost);
 
 router.post("/make-post", isAuth, postController.postMakePost);
 
+router.get("/edit-post", isAuth, homeController.getEditPost);
+
+router.post("/edit-post", isAuth, homeController.postEditPost);
+
+router.post("/delete-post", isAuth, homeController.postDeletePost);
+
+router.post("/like-post", isAuth, homeController.postLikePost);
+
 router.post("/make-comment", isAuth, homeController.postMakeComment);
 
-router.get("/edit-comment", homeController.getEditComment);
+router.get("/edit-comment", isAuth, homeController.getEditComment);
 
-router.post("/edit-comment", homeController.postEditComment);
+router.post("/edit-comment", isAuth, homeController.postEditComment);
+
+router.post("/delete-comment", isAuth, homeController.postDeleteComment);
+
+router.post("/like-comment", isAuth, homeController.postLikeComment);
 
 router.get("/my-posts", isAuth, userController.getMyPosts);
 
@@ -36,5 +48,21 @@ router.get("/profile/:userId", isAuth, homeController.getUserProfile);
 router.get("/edit-profile", isAuth, userController.getEditProfile);
 
 router.post("/edit-profile", isAuth, userController.postEditProfile);
+
+router.get("/followers/:userID", isAuth, userController.getFollowers);
+
+router.get("/following/:userID", isAuth, userController.getFollowing);
+
+router.get("/report-post/:postID", isAuth, postController.getReportPost);
+
+router.get("/reported?", isAuth, postController.postReportPost);
+
+router.get(
+    "/report-comment/:commentID",
+    isAuth,
+    postController.getReportComment
+);
+
+router.get("/reported-comment?", isAuth, postController.postReportComment);
 
 module.exports = router;

@@ -38,15 +38,29 @@ module.exports = class User {
 
     static updateBio(username, new_bio) {
         return db.execute("UPDATE user SET bio = (?) WHERE userName = (?)", [
+            new_bio,
             username,
-            bio,
         ]);
     }
 
     static updatePassword(username, new_password) {
         return db.execute(
             "UPDATE user SET password = (?) WHERE userName = (?)",
-            [username, new_password]
+            [new_password, username]
+        );
+    }
+
+    static fetchFollowers(username) {
+        return db.execute(
+            "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followerId and followingId = (?);",
+            [username]
+        );
+    }
+
+    static fetchFollowing(username) {
+        return db.execute(
+            "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followingId and followerId = (?);",
+            [username]
         );
     }
 };

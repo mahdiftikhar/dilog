@@ -45,5 +45,21 @@ module.exports = class Post {
         ]);
     }
 
-    static deleteById(id) {}
+    static updateReact(id, reacts) {
+        return db.execute("UPDATE comment SET reacts=? WHERE (id=?)", [
+            reacts,
+            id,
+        ]);
+    }
+
+    static deleteById(id) {
+        return db.execute("DELETE FROM comment WHERE id=?;", [id]);
+    }
+
+    static reportByID(commentID, creationTime, reportReason) {
+        return db.execute(
+            "INSERT INTO reportcomments (commentID, creationTime, reportReason) VALUES (?, ?, ?)",
+            [commentID, creationTime, reportReason]
+        );
+    }
 };

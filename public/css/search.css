@@ -131,3 +131,21 @@ a {
   height: 50%;
   width: 50%;
 }
+
+.error-message {
+  background-color: #e7daff;
+  color: red;
+  width: 20vw;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: large;
+  font-weight: normal;
+  box-shadow: 5px 5px #777085;
+  margin-bottom: 15px;
+  margin-top: 2em;
+  padding-top: 1em;
+}
