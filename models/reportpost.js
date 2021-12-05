@@ -13,10 +13,6 @@ module.exports = class Post {
 
     save() {}
 
-    static fetchAll() {
-        return db.execute("SELECT * FROM post ORDER BY(creationTime) desc");
-    }
-
     static fetchFlaggedPosts() {
         return db.execute(
             "SELECT * FROM post WHERE id IN (SELECT postId FROM reportposts)"

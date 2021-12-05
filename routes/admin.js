@@ -1,15 +1,17 @@
 const express = require("express");
 
 const adminHomeController = require("../controllers/admin-home");
+const adminLoginController = require("../controllers/admin-auth");
+const isAuth = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.get("/home", adminHomeController.getPosts);
+router.get("/home", isAuth, adminHomeController.getPosts);
 
-router.get("/login", adminHomeController.getLogout);
+// router.get("/login", adminHomeController.getLogout);
 
-router.get("/", (req, res, next) => {
-    return res.redirect("/admin/login");
-});
+router.post("/login", adminLoginController.postLogin);
+
+router.get("/", adminLoginController.getLogin);
 
 module.exports = router;

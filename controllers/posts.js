@@ -7,6 +7,8 @@ exports.getMakePost = (req, res, next) => {
         pageTitle: "make post",
         path: "/make-post",
         post: false,
+        reportedPosts: false,
+        admin: false,
     });
 };
 
@@ -59,6 +61,8 @@ exports.getReportPost = (req, res, next) => {
         pageTitle: "Reports",
         path: "/reports",
         postID: postID,
+        reportedPosts: false,
+        admin: false,
     });
 };
 
@@ -92,6 +96,8 @@ exports.postReportPost = (req, res, next) => {
             return res.render("user/reported", {
                 pageTitle: "Reported",
                 path: "/reports",
+                reportedPosts: false,
+                admin: false,
             });
         })
         .catch((err) => {
@@ -110,6 +116,8 @@ exports.getReportComment = (req, res, next) => {
         pageTitle: "Reports",
         path: "/reports",
         commentID: commentID,
+        reportedPosts: false,
+        admin: false,
     });
 };
 
@@ -145,6 +153,8 @@ exports.postReportComment = (req, res, next) => {
             return res.render("user/reported", {
                 pageTitle: "Reported",
                 path: "/reports",
+                reportedPosts: false,
+                admin: false,
             });
         })
         .catch((err) => {

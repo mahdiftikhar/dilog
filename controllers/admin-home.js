@@ -1,31 +1,26 @@
-const flaggedPost = require("../models/reportpost");
+const Post = require("../models/post");
 
 exports.getPosts = (req, res, next) => {
-    let r1;
-    flaggedPost
-        .fetchAll()
-        .then(([rows, metadata]) => {
-            r1 = rows;
-        })
-        .catch((err) => console.log(err));
-
-    flaggedPost
-        .fetchFlaggedPosts()
-        .then(([rows, metadata]) => {
-            const r2 = rows;
-
+    Post.fetchAll()
+        .then(([data, metadata]) => {
             res.render("admin/home", {
-                rows1: r1,
-                rows2: r2,
+                posts: data,
                 pageTitle: "admin-home",
+                path: "/home",
+                reportedPosts: true,
+                admin: true,
             });
         })
         .catch((err) => console.log(err));
 };
 
-exports.getLogout = (req, res, next) => {
-    res.render("admin/login", {
-        pageTitle: "Login",
-        path: "/",
-    });
-};
+// exports.getLogout = (req, res, next) => {
+//     console.log("logout");
+//     let message = req.flash("error");
+//     res.render("admin/login", {
+//         pageTitle: "Login",
+//         path: "/",
+//         errorMessage: message,
+//         reportedPosts: true,
+//     });
+// };

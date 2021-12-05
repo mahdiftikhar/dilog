@@ -19,6 +19,8 @@ exports.getPosts = (req, res, next) => {
                 posts: data,
                 pageTitle: "Home",
                 path: "/home",
+                reportedPosts: false,
+                admin: false,
             });
         })
         .catch((err) => {
@@ -55,6 +57,8 @@ exports.getPostById = (req, res, next) => {
                     path: "/post",
                     post: postData,
                     comments: comments,
+                    reportedPosts: false,
+                    admin: false,
                 });
             });
         })
@@ -75,6 +79,8 @@ exports.getSearch = (req, res, next) => {
         matchType: matchType,
         matches: matches,
         errorMessage: message,
+        reportedPosts: false,
+        admin: false,
     });
 };
 
@@ -129,6 +135,8 @@ exports.getUserProfile = (req, res, next) => {
                 path: "/home",
                 user: userData,
                 isCurrentUser: false,
+                reportedPosts: false,
+                admin: false,
             });
         })
         .catch((err) => {
@@ -216,6 +224,8 @@ exports.getEditPost = (req, res, next) => {
                 pageTitle: "Edit Post" + postId,
                 path: "/edit-post",
                 post: postData,
+                reportedPosts: false,
+                admin: false,
             });
         })
         .catch((err) => {

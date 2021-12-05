@@ -101,6 +101,19 @@
           >
         </li>
       </div>
+
+      <% if (reportedPosts == true) { %>
+        <div class="item">
+          <li>
+            <a
+              class="<%= path === '/reported-posts' ? 'active' : '' %>"
+              href="/reported-posts"
+              >Reported Posts</a
+            >
+          </li>
+        </div>
+
+      <% } else { %>
       <div class="item">
         <li>
           <a
@@ -111,6 +124,8 @@
           </a>
         </li>
       </div>
+      <% } %>
+      
       <div class="item-last">
         <li>
           <form action="/logout" method="POST">

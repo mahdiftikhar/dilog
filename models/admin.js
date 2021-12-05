@@ -17,4 +17,8 @@ module.exports = class Admin {
             [name, pass]
         );
     }
+
+    static fetchByName(name) {
+        return db.execute("SELECT * FROM admin WHERE userName=?", [name]);
+    }
 };
