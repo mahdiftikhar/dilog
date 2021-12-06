@@ -3,66 +3,66 @@ const express = require("express");
 const homeController = require("../controllers/home");
 const userController = require("../controllers/users");
 const postController = require("../controllers/posts");
-const isAuth = require("../middleware/is-auth");
+const { userAuth } = require("../middleware/is-auth");
 
 const router = express.Router();
 
-router.get("/home", isAuth, homeController.getPosts);
+router.get("/home", userAuth, homeController.getPosts);
 
-router.get("/post/:postid", isAuth, homeController.getPostById);
+router.get("/post/:postid", userAuth, homeController.getPostById);
 
-router.get("/post/edit/:postid", isAuth, homeController.getEditPost);
+router.get("/post/edit/:postid", userAuth, homeController.getEditPost);
 
-router.get("/search", isAuth, homeController.getSearch);
+router.get("/search", userAuth, homeController.getSearch);
 
-router.post("/search", isAuth, homeController.postSearch);
+router.post("/search", userAuth, homeController.postSearch);
 
-router.get("/make-post", isAuth, postController.getMakePost);
+router.get("/make-post", userAuth, postController.getMakePost);
 
-router.post("/make-post", isAuth, postController.postMakePost);
+router.post("/make-post", userAuth, postController.postMakePost);
 
-router.get("/edit-post", isAuth, homeController.getEditPost);
+router.get("/edit-post", userAuth, homeController.getEditPost);
 
-router.post("/edit-post", isAuth, homeController.postEditPost);
+router.post("/edit-post", userAuth, homeController.postEditPost);
 
-router.post("/delete-post", isAuth, homeController.postDeletePost);
+router.post("/delete-post", userAuth, homeController.postDeletePost);
 
-router.post("/like-post", isAuth, homeController.postLikePost);
+router.post("/like-post", userAuth, homeController.postLikePost);
 
-router.post("/make-comment", isAuth, homeController.postMakeComment);
+router.post("/make-comment", userAuth, homeController.postMakeComment);
 
-router.get("/edit-comment", isAuth, homeController.getEditComment);
+router.get("/edit-comment", userAuth, homeController.getEditComment);
 
-router.post("/edit-comment", isAuth, homeController.postEditComment);
+router.post("/edit-comment", userAuth, homeController.postEditComment);
 
-router.post("/delete-comment", isAuth, homeController.postDeleteComment);
+router.post("/delete-comment", userAuth, homeController.postDeleteComment);
 
-router.post("/like-comment", isAuth, homeController.postLikeComment);
+router.post("/like-comment", userAuth, homeController.postLikeComment);
 
-router.get("/my-posts", isAuth, userController.getMyPosts);
+router.get("/my-posts", userAuth, userController.getMyPosts);
 
-router.get("/my-profile", isAuth, userController.getMyProfile);
+router.get("/my-profile", userAuth, userController.getMyProfile);
 
-router.get("/profile/:userId", isAuth, homeController.getUserProfile);
+router.get("/profile/:userId", userAuth, homeController.getUserProfile);
 
-router.get("/edit-profile", isAuth, userController.getEditProfile);
+router.get("/edit-profile", userAuth, userController.getEditProfile);
 
-router.post("/edit-profile", isAuth, userController.postEditProfile);
+router.post("/edit-profile", userAuth, userController.postEditProfile);
 
-router.get("/followers/:userID", isAuth, userController.getFollowers);
+router.get("/followers/:userID", userAuth, userController.getFollowers);
 
-router.get("/following/:userID", isAuth, userController.getFollowing);
+router.get("/following/:userID", userAuth, userController.getFollowing);
 
-router.get("/report-post/:postID", isAuth, postController.getReportPost);
+router.get("/report-post/:postID", userAuth, postController.getReportPost);
 
-router.get("/reported?", isAuth, postController.postReportPost);
+router.get("/reported?", userAuth, postController.postReportPost);
 
 router.get(
     "/report-comment/:commentID",
-    isAuth,
+    userAuth,
     postController.getReportComment
 );
 
-router.get("/reported-comment?", isAuth, postController.postReportComment);
+router.get("/reported-comment?", userAuth, postController.postReportComment);
 
 module.exports = router;
