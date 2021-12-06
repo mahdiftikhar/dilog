@@ -13,7 +13,7 @@ module.exports = class Post {
 
     save() {}
 
-    static fetchFlaggedPosts() {
+    static fetchAll() {
         return db.execute(
             "SELECT * FROM post WHERE id IN (SELECT postId FROM reportposts)"
         );

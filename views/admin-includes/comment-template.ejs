@@ -40,42 +40,10 @@
         </div>
 
         <div class="card__actions bot-info">
-
-            <form action="/like-comment" method="POST">
-                <input type="hidden" name="commentId" value="<%= comment.id %>">
-                <input type="hidden" name="reacts" value="<%= comment.reacts %>">
-                <input type="hidden" name="postId" value="<%= comment.postId %>">
-                <button class="btn btn-color-comment">Like (<%= comment.reacts %>)</button>
+            <form action="/admin/delete-post" method="POST">
+                <input type="hidden" name="postId" value="<%= post.id %>" />
+                <button class="btn">Delete</button>
             </form>
-            <% if (comment.isUser && !comment.edit) { %>
-
-            <form action="/delete-comment" method="POST">
-                <input
-                    type="hidden"
-                    name="commentId"
-                    value="<%= comment.id %>"
-                />
-                <input
-                    type="hidden"
-                    name="postId"
-                    value="<%= comment.postId %>"
-                />
-                <button class="btn btn-color-comment">Delete</button>
-            </form>
-
-            <a
-                href="/edit-comment?commentId=<%= comment.id %>&postId=<%= comment.postId %>"
-            >
-                <div class="btn btn-color-comment">Edit</div>
-            </a>
-
-            <% } %> <% if (!comment.isUser) { %>
-            <a
-                href="/report-comment/<%= comment.id %> "
-                class="btn btn-color-comment"
-                >Report</a
-            >
-            <% } %>
         </div>
     </article>
 </div>
