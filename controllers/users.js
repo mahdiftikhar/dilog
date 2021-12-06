@@ -63,13 +63,13 @@ exports.postEditProfile = (req, res, next) => {
             const bio = req.body.bio;
             const dp = req.body.dp;
 
-            if (bio) {
-                User.updateBio(username, bio)
-                    .then(([rows, metadata]) => {})
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            }
+            // if (bio) {
+            User.updateBio(username, bio)
+                .then(([rows, metadata]) => {})
+                .catch((err) => {
+                    console.log(err);
+                });
+            // }
 
             if (dp) {
                 // console.log(dp);
