@@ -44,15 +44,15 @@
         <% if (!post.isUser) { %>
             <a href="/report-post/<%= post.id %> " class="btn">Report</a>
         <% } %> <% if (post.isUser) { %>
-        <a
-            class="btn"
-            href="/edit-post?postId=<%= post.id %>&userName=<%= post.userName %>"
-            >Edit</a
-        >
-        <form action="/delete-post" method="POST">
-            <input type="hidden" value="<%= post.id %> " name="postId" />
-            <button class="btn" type="submit">Delete</button>
-        </form>
+            <a
+                class="btn"
+                href="/edit-post?postId=<%= post.id %>&userName=<%= post.userName %>"
+                >Edit</a
+            >
+            <form action="/delete-post" method="POST">
+                <input type="hidden" value="<%= post.id %> " name="postId" />
+                <button class="btn" type="submit">Delete</button>
+            </form>
         <% } %>
     </div>
 </article>
