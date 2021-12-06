@@ -7,8 +7,6 @@ exports.getPosts = (req, res, next) => {
                 posts: data,
                 pageTitle: "admin-home",
                 path: "/home",
-                reportedPosts: true,
-                admin: true,
             });
         })
         .catch((err) => console.log(err));

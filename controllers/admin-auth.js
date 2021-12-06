@@ -13,8 +13,6 @@ exports.getLogin = (req, res, next) => {
 
     const adminLoggedIn = req.session.adminLoggedIn;
 
-    console.log(adminLoggedIn, "------------------");
-
     if (adminLoggedIn) {
         return res.redirect("/home");
     }
@@ -23,7 +21,6 @@ exports.getLogin = (req, res, next) => {
         pageTitle: "Admin Log in",
         path: "/",
         errorMessage: message,
-        reportedPosts: true,
     });
 };
 
@@ -48,8 +45,6 @@ exports.postLogin = (req, res, next) => {
                     }
 
                     req.session.adminLoggedIn = true;
-
-                    console.log(req.session.adminLoggedIn), ">>>>>>>>>>>>>>";
 
                     req.session.user = user;
                     req.session.save((err) => {
