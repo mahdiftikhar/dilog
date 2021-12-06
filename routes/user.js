@@ -55,7 +55,7 @@ router.get("/following/:userID", isAuth, userController.getFollowing);
 
 router.get("/report-post/:postID", isAuth, postController.getReportPost);
 
-router.get("/reported?", isAuth, postController.postReportPost);
+router.get("/reported?", isAuth, postController.getReportedPost);
 
 router.get(
     "/report-comment/:commentID",
@@ -63,6 +63,6 @@ router.get(
     postController.getReportComment
 );
 
-router.get("/reported-comment?", isAuth, postController.postReportComment);
+router.get("/reported-comment?", isAuth, postController.getReportedComment);
 
 module.exports = router;
