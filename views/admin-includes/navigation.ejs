@@ -65,15 +65,14 @@
     </nav>
   </div>
 </header> -->
-
 <header class="main-header">
     <div class="container">
         <ul class="list-container">
             <div class="item">
                 <li>
                     <a
-                        class="<%= path === '/home' ? 'active' : '' %>"
-                        href="/home"
+                        class="<%= path === '/admin/home' ? 'active' : '' %>"
+                        href="/admin/home"
                         >Home</a
                     >
                 </li>
@@ -81,26 +80,8 @@
             <div class="item">
                 <li>
                     <a
-                        class="<%= path === '/my-posts' ? 'active' : '' %>"
-                        href="/my-posts"
-                        >My Posts</a
-                    >
-                </li>
-            </div>
-            <div class="item">
-                <li>
-                    <a
-                        class="<%= path === '/my-profile' ? 'active' : '' %>"
-                        href="/my-profile"
-                        >Profile</a
-                    >
-                </li>
-            </div>
-            <div class="item">
-                <li>
-                    <a
-                        class="<%= path === '/search' ? 'active' : '' %>"
-                        href="/search"
+                        class="<%= path === '/admin/search' ? 'active' : '' %>"
+                        href="/admin/search"
                         >Search</a
                     >
                 </li>
@@ -109,17 +90,16 @@
             <div class="item">
                 <li>
                     <a
-                        class="<%= path === '/make-post' ? 'active' : '' %>"
-                        href="/make-post"
+                        class="<%=path==='/admin/reported-posts'?'active':''%>"
+                        href="/admin/reported-posts"
+                        >Reported Posts</a
                     >
-                        Make Post
-                    </a>
                 </li>
             </div>
 
             <div class="item-last">
                 <li>
-                    <form action="/logout" method="POST">
+                    <form action="/admin/logout" method="POST">
                         <button type="submit" class="button-7">Logout</button>
                     </form>
                 </li>

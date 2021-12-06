@@ -11,9 +11,11 @@ exports.getLogin = (req, res, next) => {
         message = null;
     }
 
-    const isLoggedIn = req.session.isLoggedIn;
+    const adminLoggedIn = req.session.adminLoggedIn;
 
-    if (isLoggedIn) {
+    console.log(adminLoggedIn, "------------------");
+
+    if (adminLoggedIn) {
         return res.redirect("/home");
     }
 
@@ -45,7 +47,10 @@ exports.postLogin = (req, res, next) => {
                         return res.redirect("/admin");
                     }
 
-                    req.session.isLoggedIn = true;
+                    req.session.adminLoggedIn = true;
+
+                    console.log(req.session.adminLoggedIn), ">>>>>>>>>>>>>>";
+
                     req.session.user = user;
                     req.session.save((err) => {
                         if (err) console.log(err);
@@ -58,4 +63,11 @@ exports.postLogin = (req, res, next) => {
                 });
         })
         .catch((err) => console.log(err));
+};
+
+exports.postLogout = (req, res, next) => {
+    req.session.destroy((err) => {
+        if (err) console.log(err);
+        res.redirect("/admin");
+    });
 };

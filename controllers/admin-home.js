@@ -13,14 +13,3 @@ exports.getPosts = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
-
-// exports.getLogout = (req, res, next) => {
-//     console.log("logout");
-//     let message = req.flash("error");
-//     res.render("admin/login", {
-//         pageTitle: "Login",
-//         path: "/",
-//         errorMessage: message,
-//         reportedPosts: true,
-//     });
-// };
