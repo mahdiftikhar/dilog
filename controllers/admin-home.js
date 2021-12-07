@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const ReportedPost = require("../models/reported-post");
+const ReportedComment = require("../models/reported-comment");
 
 exports.getPosts = (req, res, next) => {
     Post.fetchAll()
@@ -9,6 +10,7 @@ exports.getPosts = (req, res, next) => {
                 posts: data,
                 pageTitle: "admin-home",
                 path: "/home",
+                reportedPost: false,
             });
         })
         .catch((err) => console.log(err));
@@ -21,6 +23,7 @@ exports.getReportedPosts = (req, res, next) => {
                 posts: data,
                 pageTitle: "admin-reported-posts",
                 path: "/admin/reported-posts",
+                reportedPost: true,
             });
         })
         .catch((err) => console.log(err));
@@ -55,6 +58,7 @@ exports.getPostById = (req, res, next) => {
                     path: "/post",
                     post: postData,
                     comments: comments,
+                    reportedPost: false,
                 });
             });
         })
@@ -62,4 +66,17 @@ exports.getPostById = (req, res, next) => {
             console.log(err);
             res.redirect("/home");
         });
+};
+
+exports.getReportedComments = (req, res, next) => {
+    ReportedComment.fetchAll()
+        .then(([data, metadata]) => {
+            res.render("admin/reported-comments", {
+                comments: data,
+                pageTitle: "admin-reported-comments",
+                path: "/reported-comments",
+                reportedPost: true,
+            });
+        })
+        .catch((err) => console.log(err));
 };

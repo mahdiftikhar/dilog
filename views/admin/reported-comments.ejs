@@ -1,0 +1,38 @@
+<%- include("../admin-includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/comment.css" /> 
+    </head>
+
+<body>
+    <%- include("../admin-includes/navigation.ejs") %>
+
+    <main>
+
+        <% if (comments.length > 0) { %>    
+            <div class="cont">
+                <div class="right-div">
+                    <div class="comment">
+                        <% for (let comment of comments) { %>
+                            <a href="/admin/post/<%= comment.postId %>" class="a-tag">
+                                <%- include("../admin-includes/comment-template.ejs", {comment: comment}) %>
+                            </a>
+                            <% } %>
+                    </div> 
+                </div>
+                <div class="left-div">
+                    <div>
+                        <h1 class="heading">Reported Comments</h1>
+                    </div>
+                    <div class="logo">
+                        <img src="/assets/logo8.svg" alt="logo" />
+                    </div>
+                </div>
+            </div>
+        <% } else { %> 
+            <h1>No Comments Found</h1>
+        <% } %> 
+    </main>
+
+
+<%- include("../admin-includes/end.ejs") %>
