@@ -65,4 +65,8 @@ router.get(
 
 router.get("/reported-comment?", isAuth, postController.getReportedComment);
 
+router.get("/follow?", isAuth, userController.getFollowUser);
+
+router.get("/unfollow?", isAuth, userController.getUnfollowUser);
+
 module.exports = router;

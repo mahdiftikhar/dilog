@@ -3,6 +3,7 @@ const Comment = require("../models/comment");
 const User = require("../models/user");
 const PostReacts = require("../models/post-reacts");
 const CommentReact = require("../models/comment-react");
+const Follows = require("../models/follows");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
@@ -119,17 +120,28 @@ exports.postSearch = (req, res, next) => {
 
 exports.getUserProfile = (req, res, next) => {
     const userName = req.params.userId;
+    const myUserName = req.session.user.userName;
 
     User.fetchByName(userName)
         .then(([data, metadata]) => {
             const userData = data[0];
 
-            return res.render("user/user-profile", {
-                pageTitle: userData.userName,
-                path: "/home",
-                user: userData,
-                isCurrentUser: false,
-            });
+            Follows.isFollowingUser(myUserName, userName)
+                .then(([data, metadata]) => {
+                    const isFollowing = data[0].count;
+
+                    return res.render("user/user-profile", {
+                        pageTitle: userData.userName,
+                        path: "/home",
+                        user: userData,
+                        isCurrentUser: false,
+                        alreadyFollowing: isFollowing,
+                    });
+                })
+                .catch((err) => {
+                    res.redirect("/home");
+                    console.log(err);
+                });
         })
         .catch((err) => {
             res.redirect("/home");

@@ -12,8 +12,8 @@
     </div>
 
     <div class="followers">
-        <a href="/followers/<%= user.userName %>">Followers(0)</a>
-        <a href="/following/<%= user.userName %>">Following(0)</a>
+        <a href="/followers/<%= user.userName %>">Followers (0)</a>
+        <a href="/following/<%= user.userName %>">Following (0)</a>
     </div>
 
     <div class="small-container">
@@ -34,16 +34,29 @@
     </div>
 
     <% if (isCurrentUser) { %>
-    <div class="edit-profile"><a href="/edit-profile">Edit Profile</a></div>
+        <div class="edit-profile"><a href="/edit-profile">Edit Profile</a></div>
+    <%} else if (alreadyFollowing) { %>
+        <div class="follow-button">
+            <form action="/unfollow" action="POST">
+                <input
+                    type="hidden"
+                    name="unfollowName"
+                    value="<%= user.userName %>"
+                />
+                <button class="button-7" type="submit">Unfollow</button>
+            </form>
+        </div>
+    <% } else {%>
+        <div class="follow-button">
+            <form action="/follow" action="POST">
+                <input
+                    type="hidden"
+                    name="followName"
+                    value="<%= user.userName %>"
+                />
+                <button class="button-7" type="submit">Follow</button>
+            </form>
+        </div>
     <% } %>
-    <div class="follow-button">
-        <form action="/follow" action="POST">
-            <input
-                type="hidden"
-                name="followname"
-                value="<% user.userName %> "
-            />
-            <button class="button-7" type="submit">Follow</button>
-        </form>
-    </div>
+
 </div>
