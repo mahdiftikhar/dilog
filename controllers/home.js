@@ -121,33 +121,73 @@ exports.postSearch = (req, res, next) => {
 exports.getUserProfile = (req, res, next) => {
     const userName = req.params.userId;
     const myUserName = req.session.user.userName;
+    let userData;
+    let isFollowing;
+    let n_followers;
+    let n_following;
 
     User.fetchByName(userName)
         .then(([data, metadata]) => {
-            const userData = data[0];
+            userData = data[0];
+            return Follows.isFollowingUser(myUserName, userName);
+        })
+        .then(([data, metadata]) => {
+            isFollowing = data[0].count;
+            return Follows.countFollowers(userName);
+        })
+        .then(([data, metadata]) => {
+            n_followers = data[0].n_followers;
+            return Follows.countFollowing(userName);
+        })
+        .then(([data, metadata]) => {
+            n_following = data[0].n_following;
 
-            Follows.isFollowingUser(myUserName, userName)
-                .then(([data, metadata]) => {
-                    const isFollowing = data[0].count;
-
-                    return res.render("user/user-profile", {
-                        pageTitle: userData.userName,
-                        path: "/home",
-                        user: userData,
-                        isCurrentUser: false,
-                        alreadyFollowing: isFollowing,
-                    });
-                })
-                .catch((err) => {
-                    res.redirect("/home");
-                    console.log(err);
-                });
+            return res.render("user/user-profile", {
+                pageTitle: userData.userName,
+                path: "/aaa",
+                user: userData,
+                isCurrentUser: false,
+                alreadyFollowing: isFollowing,
+                n_following: n_following,
+                n_followers: n_followers,
+            });
         })
         .catch((err) => {
             res.redirect("/home");
             console.log(err);
         });
 };
+
+// exports.getUserProfile = (req, res, next) => {
+//     const userName = req.params.userId;
+//     const myUserName = req.session.user.userName;
+
+//     User.fetchByName(userName)
+//         .then(([data, metadata]) => {
+//             const userData = data[0];
+
+//             Follows.isFollowingUser(myUserName, userName)
+//                 .then(([data, metadata]) => {
+//                     const isFollowing = data[0].count;
+
+//                     return res.render("user/user-profile", {
+//                         pageTitle: userData.userName,
+//                         path: "/home",
+//                         user: userData,
+//                         isCurrentUser: false,
+//                         alreadyFollowing: isFollowing,
+//                     });
+//                 })
+//                 .catch((err) => {
+//                     res.redirect("/home");
+//                     console.log(err);
+//                 });
+//         })
+//         .catch((err) => {
+//             res.redirect("/home");
+//             console.log(err);
+//         });
+// };
 
 exports.getEditPost = (req, res, next) => {
     console.log(req.params);
