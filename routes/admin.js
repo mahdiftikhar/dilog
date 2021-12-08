@@ -17,4 +17,12 @@ router.get(
 
 router.get("/post/:postid", adminAuth, adminHomeController.getPostById);
 
+router.post("/delete-post", adminAuth, adminHomeController.postDeletePost);
+
+router.post(
+    "/delete-comment",
+    adminAuth,
+    adminHomeController.postDeleteComment
+);
+
 module.exports = router;

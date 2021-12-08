@@ -80,3 +80,30 @@ exports.getReportedComments = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
+
+exports.postDeletePost = (req, res, next) => {
+    const postId = req.body.postId;
+
+    Post.deleteById(postId)
+        .then(([data, metaData]) => {
+            res.redirect("/admin/home");
+        })
+        .catch((err) => {
+            res.redirect("/admin/home");
+            console.log(err);
+        });
+};
+
+exports.postDeleteComment = (req, res, next) => {
+    const commentId = req.body.commentId;
+    const postId = req.body.postId;
+
+    Comment.deleteById(commentId)
+        .then(([data, metadata]) => {
+            return res.redirect("/admin/post/" + postId);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/admin/home");
+        });
+};

@@ -11,13 +11,6 @@ module.exports = class Admin {
 
     static fetchAll() {}
 
-    static fetchByIdPass(name, pass) {
-        return db.execute(
-            "SELECT * FROM admin WHERE userName=? and password=?",
-            [name, pass]
-        );
-    }
-
     static fetchByName(name) {
         return db.execute("SELECT * FROM admin WHERE userName=?", [name]);
     }
