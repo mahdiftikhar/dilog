@@ -23,6 +23,10 @@ module.exports = class User {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
     }
 
+    static fetchEmail(name) {
+        return db.execute("SELECT email FROM user WHERE userName = (?)", [name])
+    }
+
     static fetchLikeName(name) {
         return db.execute("SELECT * FROM user WHERE userName LIKE ?", [
             "%" + name + "%",
