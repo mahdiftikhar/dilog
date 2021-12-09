@@ -3,6 +3,7 @@ const Comment = require("../models/comment");
 const User = require("../models/user");
 const PostReacts = require("../models/post-reacts");
 const CommentReact = require("../models/comment-react");
+const Follows = require("../models/follows");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
@@ -119,16 +120,36 @@ exports.postSearch = (req, res, next) => {
 
 exports.getUserProfile = (req, res, next) => {
     const userName = req.params.userId;
+    const myUserName = req.session.user.userName;
+    let userData;
+    let isFollowing;
+    let n_followers;
+    let n_following;
 
     User.fetchByName(userName)
         .then(([data, metadata]) => {
-            const userData = data[0];
+            userData = data[0];
+            return Follows.isFollowingUser(myUserName, userName);
+        })
+        .then(([data, metadata]) => {
+            isFollowing = data[0].count;
+            return Follows.countFollowers(userName);
+        })
+        .then(([data, metadata]) => {
+            n_followers = data[0].n_followers;
+            return Follows.countFollowing(userName);
+        })
+        .then(([data, metadata]) => {
+            n_following = data[0].n_following;
 
             return res.render("user/user-profile", {
                 pageTitle: userData.userName,
-                path: "/home",
+                path: "/aaa",
                 user: userData,
-                isCurrentUser: false,
+                isCurrentUser: userName === myUserName,
+                alreadyFollowing: isFollowing,
+                n_following: n_following,
+                n_followers: n_followers,
             });
         })
         .catch((err) => {

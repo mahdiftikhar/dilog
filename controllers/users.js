@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Post = require("../models/post");
+const Follows = require("../models/follows");
 const bcrypt = require("bcryptjs");
 
 exports.getMyPosts = (req, res, next) => {
@@ -24,16 +25,36 @@ exports.getMyPosts = (req, res, next) => {
 
 exports.getMyProfile = (req, res, next) => {
     const userName = req.session.user.userName;
+    let userData;
+    let n_followers;
+    let n_following;
 
-    User.fetchByName(userName).then(([rows, metadata]) => {
-        const userData = rows[0];
-        res.render("user/my-profile", {
-            pageTitle: "My Profile",
-            user: userData,
-            path: "/my-profile",
-            isCurrentUser: true,
+    User.fetchByName(userName)
+        .then(([rows, metadata]) => {
+            userData = rows[0];
+            return Follows.countFollowers(userName);
+        })
+        .then(([data, metadata]) => {
+            n_followers = data[0].n_followers;
+            return Follows.countFollowing(userName);
+        })
+        .then(([data, metadata]) => {
+            n_following = data[0].n_following;
+
+            return res.render("user/my-profile", {
+                pageTitle: "My Profile",
+                user: userData,
+                path: "/my-profile",
+                isCurrentUser: true,
+                alreadyFollowing: false,
+                n_following: n_following,
+                n_followers: n_followers,
+            });
+        })
+        .catch((err) => {
+            res.redirect("/home");
+            console.log(err);
         });
-    });
 };
 
 exports.getEditProfile = (req, res, next) => {
@@ -63,13 +84,11 @@ exports.postEditProfile = (req, res, next) => {
             const bio = req.body.bio;
             const dp = req.body.dp;
 
-            if (bio) {
-                User.updateBio(username, bio)
-                    .then(([rows, metadata]) => {})
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            }
+            User.updateBio(username, bio)
+                .then(([rows, metadata]) => {})
+                .catch((err) => {
+                    console.log(err);
+                });
 
             if (dp) {
                 // console.log(dp);
@@ -133,6 +152,35 @@ exports.getFollowing = (req, res, next) => {
                 followers: following,
                 heading: "Following",
             });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getFollowUser = (req, res, next) => {
+    const toFollowUserName = req.query.followName;
+    const myUserName = req.session.user.userName;
+
+    const newPair = new Follows(myUserName, toFollowUserName);
+
+    newPair
+        .save()
+        .then(([rows, metadata]) => {
+            return res.redirect("profile/" + toFollowUserName);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getUnfollowUser = (req, res, next) => {
+    const toUnfollowUserName = req.query.unfollowName;
+    const myUserName = req.session.user.userName;
+
+    Follows.unfollowUser(myUserName, toUnfollowUserName)
+        .then(([rows, metadata]) => {
+            return res.redirect("profile/" + toUnfollowUserName);
         })
         .catch((err) => {
             console.log(err);

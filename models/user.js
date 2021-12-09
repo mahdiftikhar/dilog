@@ -33,13 +33,6 @@ module.exports = class User {
         ]);
     }
 
-    static addByIdEmailPass(name, email, password) {
-        return db.execute(
-            "INSERT INTO user (userName, email, password, dateOfBirth) VALUES (?, ?, ?, ?)",
-            [name, email, password, "2010-02-02"]
-        );
-    }
-
     static updateBio(username, new_bio) {
         return db.execute("UPDATE user SET bio = (?) WHERE userName = (?)", [
             new_bio,

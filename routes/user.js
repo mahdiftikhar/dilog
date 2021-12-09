@@ -55,7 +55,7 @@ router.get("/following/:userID", userAuth, userController.getFollowing);
 
 router.get("/report-post/:postID", userAuth, postController.getReportPost);
 
-router.get("/reported?", userAuth, postController.postReportPost);
+router.get("/reported?", userAuth, postController.getReportedPost);
 
 router.get(
     "/report-comment/:commentID",
@@ -63,6 +63,10 @@ router.get(
     postController.getReportComment
 );
 
-router.get("/reported-comment?", userAuth, postController.postReportComment);
+router.get("/reported-comment?", userAuth, postController.getReportedComment);
+
+router.get("/follow?", userAuth, userController.getFollowUser);
+
+router.get("/unfollow?", userAuth, userController.getUnfollowUser);
 
 module.exports = router;
