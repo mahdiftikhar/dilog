@@ -15,8 +15,6 @@ exports.getMyPosts = (req, res, next) => {
                 posts: rows,
                 pageTitle: "My Posts",
                 path: "/my-posts",
-                reportedPosts: false,
-                admin: false,
             });
         })
         .catch((err) => {
@@ -34,8 +32,6 @@ exports.getMyProfile = (req, res, next) => {
             user: userData,
             path: "/my-profile",
             isCurrentUser: true,
-            reportedPosts: false,
-            admin: false,
         });
     });
 };
@@ -51,8 +47,6 @@ exports.getEditProfile = (req, res, next) => {
             path: "/my-profile",
             errorMessage: null,
             userData: userData,
-            reportedPosts: false,
-            admin: false,
         });
     });
 };
@@ -88,8 +82,6 @@ exports.postEditProfile = (req, res, next) => {
                         path: "/my-profile",
                         userData: userData,
                         errorMessage: "Passwords do not match",
-                        reportedPosts: false,
-                        admin: false,
                     });
                 } else {
                     bcrypt.hash(password, 12).then((hashedPassword) => {
@@ -121,8 +113,6 @@ exports.getFollowers = (req, res, next) => {
                 path: "/my-profile",
                 followers: followers,
                 heading: "Followers",
-                reportedPosts: false,
-                admin: false,
             });
         })
         .catch((err) => {
@@ -142,8 +132,6 @@ exports.getFollowing = (req, res, next) => {
                 path: "/my-profile",
                 followers: following,
                 heading: "Following",
-                reportedPosts: false,
-                admin: false,
             });
         })
         .catch((err) => {

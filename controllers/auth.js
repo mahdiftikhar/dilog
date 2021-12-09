@@ -30,7 +30,6 @@ exports.getLogin = (req, res, next) => {
         pageTitle: "Log in",
         path: "/",
         errorMessage: message,
-        reportedPosts: false,
     });
 };
 
@@ -96,7 +95,6 @@ exports.getSignup = (req, res, next) => {
         pageTitle: "Signup",
         path: "/signup",
         errorMessage: message,
-        reportedPosts: false,
     });
 };
 
