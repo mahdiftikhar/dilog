@@ -1,0 +1,83 @@
+body {
+  overflow-x: hidden;
+}
+
+.profile-container {
+  background-color: #d8c969;
+  width: 30vw;
+  height: auto;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+img {
+  border-radius: 50%;
+  margin-top: 2.5em;
+  height: 40%;
+  width: 40%;
+}
+
+.bio-container {
+  width: 26vw;
+  margin-left: 2vw;
+  height: auto;
+  word-wrap: break-word;
+  /* overflow: scroll; */
+  border-left: 3px solid #1c3144;
+  text-align: left;
+}
+
+h1,
+h2,
+h3 {
+  color: #1c3144;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 25px;
+}
+
+.right-div {
+  height: auto;
+}
+
+.edit-profile {
+  margin-top: 10px;
+  bottom: 0;
+}
+
+p {
+  margin-left: 15px;
+}
+
+a {
+  color: #1c3144;
+}
+
+.logo img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  height: 50%;
+}
+
+.followers {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.follow-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.right-div {
+  margin-left: 2.5em;
+}
+/* #1c3144 prussian blue
+    #6A0136 tyler purple
+    #BFAB25 Old Gold
+    #B81365 Maroon X*/

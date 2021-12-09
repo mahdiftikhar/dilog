@@ -1,0 +1,67 @@
+<article class="card-holder">
+    <a href="/post/<%= post.id %>" class="a-tag">
+        <div class="card-content">
+            <div class="top-info">
+                <h4><%= post.userName %></h4>
+                <h6><%= post.creationTime %></h6>
+            </div>
+            <div class="post-content">
+                <div class="card__image image-content">
+                    <img src="<% post.image %>" alt="" />
+                </div>
+                <div class="card-text">
+                    <p><%= post.text %></p>
+                </div>
+            </div>
+            <div class="tag-content">
+                <h6>Tags:</h6>
+                <p><%= post.tags %></p>
+            </div>
+
+            <% if (post.image) { %> <% } %>
+        </div>
+    </a>
+
+    <% if (admin) { %>
+        <div class="card__actions bot-info">
+            <form action="/admin/delete-post" method="POST">
+                <input type="hidden" name="postId" value="<%= post.id %>" />
+                <button class="btn">Delete</button>
+            </form>
+        </div>
+    <% } else { %>
+    <div class="card__actions bot-info">
+        <form action="/make-comment" method="POST" class="search-field">
+            <textarea
+                class="tex-area comment-field"
+                name="comment"
+                placeholder="Write Comment Here"
+                required
+            ></textarea>
+            <input type="hidden" name="postId" value="<%= post.id %>" />
+            <button class="btn">Comment</button>
+        </form>
+    </div>
+    <div class="card__actions bot-info">
+        <form action="/like-post" method="POST">
+            <input type="hidden" name="reacts" value="<%= post.reacts %>">
+            <input type="hidden" name="postId" value="<%= post.id %>">
+            <button class="btn" type="submit">Like(<%= post.reacts %>)</button>
+        </form>
+
+        <% if (!post.isUser) { %>
+            <a href="/report-post/<%= post.id %> " class="btn">Report</a>
+        <% } %> <% if (post.isUser) { %>
+        <a
+            class="btn"
+            href="/edit-post?postId=<%= post.id %>&userName=<%= post.userName %>"
+            >Edit</a
+        >
+        <form action="/delete-post" method="POST">
+            <input type="hidden" value="<%= post.id %> " name="postId" />
+            <button class="btn" type="submit">Delete</button>
+        </form>
+        <% } %>
+    </div>
+    <% } %>
+</article>
