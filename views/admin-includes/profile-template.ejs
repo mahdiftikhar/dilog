@@ -36,14 +36,14 @@
     <% if (isCurrentUser) { %>
     <div class="edit-profile"><a href="/edit-profile">Edit Profile</a></div>
     <% } %>
-    <div class="follow-button">
-        <form action="/follow" action="POST">
+    <div class="ban-button">
+        <form action="/admin/ban" action="POST">
             <input
                 type="hidden"
                 name="followname"
                 value="<% user.userName %> "
             />
-            <button class="button-7" type="submit">Follow</button>
+            <button class="button-7" type="submit">Ban</button>
         </form>
     </div>
 </div>

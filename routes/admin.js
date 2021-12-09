@@ -25,4 +25,12 @@ router.post(
     adminHomeController.postDeleteComment
 );
 
+router.get("/search", adminAuth, adminHomeController.getSearch);
+
+router.post("/search", adminAuth, adminHomeController.postSearch);
+
+router.get("/profile/:userId", adminAuth, adminHomeController.getUserProfile);
+
+router.post("/ban", adminAuth, adminHomeController.banUser);
+
 module.exports = router;
