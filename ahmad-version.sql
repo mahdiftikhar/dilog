@@ -89,7 +89,7 @@ CREATE TABLE `comment` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `postid1_idx` (`postId`),
   CONSTRAINT `postid1` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,34 +98,8 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (16,'user',8,0,'2021-11-29 01:37:55','mujhay bhee aa raha hay. ao mill ke chalain'),(18,'user',9,0,'2021-11-29 19:24:36','adding a test comment');
+INSERT INTO `comment` VALUES (16,'user',8,0,'2021-11-29 01:37:55','mujhay bhee aa raha hay. ao mill ke chalain'),(19,'test_new',7,1,'2021-12-11 15:26:38','hi how are you');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `commentmentions`
---
-
-DROP TABLE IF EXISTS `commentmentions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commentmentions` (
-  `commentId` int NOT NULL,
-  `userName` varchar(255) NOT NULL,
-  PRIMARY KEY (`commentId`,`userName`),
-  KEY `user_name_idx` (`userName`),
-  CONSTRAINT `commentid1` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_name` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `commentmentions`
---
-
-LOCK TABLES `commentmentions` WRITE;
-/*!40000 ALTER TABLE `commentmentions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `commentmentions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -151,6 +125,7 @@ CREATE TABLE `commentreacts` (
 
 LOCK TABLES `commentreacts` WRITE;
 /*!40000 ALTER TABLE `commentreacts` DISABLE KEYS */;
+INSERT INTO `commentreacts` VALUES (19,'test_new');
 /*!40000 ALTER TABLE `commentreacts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,6 +152,7 @@ CREATE TABLE `follows` (
 
 LOCK TABLES `follows` WRITE;
 /*!40000 ALTER TABLE `follows` DISABLE KEYS */;
+INSERT INTO `follows` VALUES ('test_new','bean'),('test_new','sjc');
 /*!40000 ALTER TABLE `follows` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +174,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `userName_idx` (`userName`),
-  CONSTRAINT `userName` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`) ON DELETE CASCADE
+  CONSTRAINT `userName` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,34 +184,8 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (1,'umair14040','firstpost happy','Hello this is my first post',_binary '0',0,'2021-11-16 09:44:00'),(3,'sjc','firstpost happy','Hello this is my first post',_binary '0',0,'2021-11-16 09:44:00'),(4,'antonnio','firstpost happy','lorem ipsum',_binary '0',0,'2021-11-16 09:44:00'),(5,'nullptr','firstpost happy','mujhay maar do',_binary '0',0,'2021-11-16 09:44:00'),(6,'nullptr','firstpost happy','mujhay maar do please',_binary '0',0,'2021-11-16 09:44:00'),(7,'umair14040','lol','what is this? i am tired. DB sucks',_binary '0',0,'2021-11-18 09:11:00'),(8,'nullptr','music','jaldee karo mujhay susu aa raha hay. khalee glass me doodh kyun para hay????',NULL,1,'2021-11-18 09:11:15'),(9,'sjc','music','menay masqurade ball pe jaana tha yaar. me db kyun kar raha hoon',NULL,2,'2021-11-18 09:11:16');
+INSERT INTO `post` VALUES (1,'umair14040','firstpost happy','Hello this is my first post',_binary '0',0,'2021-11-16 09:44:00'),(3,'sjc','firstpost happy','Hello this is my first post',_binary '0',0,'2021-11-16 09:44:00'),(4,'antonnio','firstpost happy','lorem ipsum',_binary '0',0,'2021-11-16 09:44:00'),(5,'nullptr','firstpost happy','mujhay maar do',_binary '0',0,'2021-11-16 09:44:00'),(6,'nullptr','firstpost happy','mujhay maar do please',_binary '0',0,'2021-11-16 09:44:00'),(7,'umair14040','lol','what is this? i am tired. DB sucks',_binary '0',0,'2021-11-18 09:11:00'),(8,'nullptr','music','jaldee karo mujhay susu aa raha hay. khalee glass me doodh kyun para hay????',NULL,1,'2021-11-18 09:11:15');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `postmentions`
---
-
-DROP TABLE IF EXISTS `postmentions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `postmentions` (
-  `postId` int NOT NULL,
-  `userName` varchar(255) NOT NULL,
-  PRIMARY KEY (`postId`,`userName`),
-  KEY `user_name_idx` (`userName`),
-  CONSTRAINT `postid2` FOREIGN KEY (`postId`) REFERENCES `post` (`id`),
-  CONSTRAINT `user_name1` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `postmentions`
---
-
-LOCK TABLES `postmentions` WRITE;
-/*!40000 ALTER TABLE `postmentions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `postmentions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -261,8 +211,33 @@ CREATE TABLE `postreacts` (
 
 LOCK TABLES `postreacts` WRITE;
 /*!40000 ALTER TABLE `postreacts` DISABLE KEYS */;
-INSERT INTO `postreacts` VALUES (9,'test'),(9,'test_new'),(8,'user');
+INSERT INTO `postreacts` VALUES (8,'user');
 /*!40000 ALTER TABLE `postreacts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `recovery`
+--
+
+DROP TABLE IF EXISTS `recovery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `recovery` (
+  `recoveryName` varchar(255) NOT NULL,
+  `tempPass` varchar(255) NOT NULL,
+  PRIMARY KEY (`recoveryName`),
+  UNIQUE KEY `userName_UNIQUE` (`recoveryName`),
+  CONSTRAINT `recoveryName` FOREIGN KEY (`recoveryName`) REFERENCES `user` (`userName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recovery`
+--
+
+LOCK TABLES `recovery` WRITE;
+/*!40000 ALTER TABLE `recovery` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recovery` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -281,7 +256,7 @@ CREATE TABLE `reportcomments` (
   UNIQUE KEY `reportId_UNIQUE` (`reportId`),
   KEY `commentid2_idx` (`commentId`),
   CONSTRAINT `commentid2` FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -290,6 +265,7 @@ CREATE TABLE `reportcomments` (
 
 LOCK TABLES `reportcomments` WRITE;
 /*!40000 ALTER TABLE `reportcomments` DISABLE KEYS */;
+INSERT INTO `reportcomments` VALUES (2,16,'2021-12-11 19:28:03','hate-speech');
 /*!40000 ALTER TABLE `reportcomments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +285,7 @@ CREATE TABLE `reportposts` (
   UNIQUE KEY `reportId_UNIQUE` (`reportId`),
   KEY `postid3_idx` (`postId`),
   CONSTRAINT `postid3` FOREIGN KEY (`postId`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,36 +294,8 @@ CREATE TABLE `reportposts` (
 
 LOCK TABLES `reportposts` WRITE;
 /*!40000 ALTER TABLE `reportposts` DISABLE KEYS */;
-INSERT INTO `reportposts` VALUES (1,9,'2021-11-29 23:48:03','spam'),(2,9,'2021-12-04 02:27:24','spam');
+INSERT INTO `reportposts` VALUES (3,8,'2021-12-11 19:27:52','harrasment');
 /*!40000 ALTER TABLE `reportposts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `suspendedusers`
---
-
-DROP TABLE IF EXISTS `suspendedusers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suspendedusers` (
-  `adminId` varchar(255) NOT NULL,
-  `userName` varchar(255) NOT NULL,
-  `endTime` datetime NOT NULL,
-  PRIMARY KEY (`userName`),
-  UNIQUE KEY `userName_UNIQUE` (`userName`),
-  KEY `adminID_idx` (`adminId`),
-  CONSTRAINT `adminId_suspend` FOREIGN KEY (`adminId`) REFERENCES `admin` (`userName`),
-  CONSTRAINT `userName_suspend` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `suspendedusers`
---
-
-LOCK TABLES `suspendedusers` WRITE;
-/*!40000 ALTER TABLE `suspendedusers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `suspendedusers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -376,7 +324,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('antonnio','antonnio@gmail.com',_binary '0','1999-06-19','my name is afaq','password12345'),('beanbunny','beanbunny@gmail.com',_binary '0','2001-09-20','my name is ahmad','password12345'),('newUser','newUser@gmail.com',NULL,'2021-11-16',NULL,'test'),('nullptr','nullptr@gmail.com',_binary '0','1999-10-19','my name is mahd','password12345'),('sjc','jamilshayaan@gmail.com',_binary '0','2000-10-09','my name is shayaan','password12345'),('test','test@gmail.com',NULL,'2021-12-25',NULL,'$2a$12$8oFiJYNtxGi17UeRMd7Pv.gliBkP/4iJL8Q2Vrfg68yI2u1xGMB26'),('test_new','new@gmail.com',NULL,'2021-11-30',NULL,'$2a$12$JpVVnQjjZh9LoiUiJqhEp.NUPydOQUxXxYptYnM4VlS2rNS8aqGie'),('umair14040','umair2000yousaf@gmail.com',_binary '0','2000-12-30','my name is umair','password123'),('user','user@gmai.com',NULL,'2021-11-02','Hello. I am a test user. I like to suck cock!','$2a$12$SF/5hxCP//4BLg7oWzywwubl1NA1oRXEHRVPEDbkuGdvpCNBJb7Eq'),('user2','uasdf.afasd@fgmad.com',NULL,'2021-11-04',NULL,'$2a$12$XqEXCYqd2kGnoWW122swBOKGOeX3kwy6Sd8ki2r1Ig5CFGVyItrLO');
+INSERT INTO `user` VALUES ('antonnio','antonnio@gmail.com',_binary '0','1999-06-19','my name is afaq','password12345'),('bean','ahmadzubair11111@gmail.com',NULL,'2021-12-07',NULL,'$2a$12$kSwR0chGEWjqelENwJkGwucX7cenUhLyrTxi4/37n3jHMcjITt9TC'),('beanbunny','beanbunny@gmail.com',_binary '0','2001-09-20','my name is ahmad','password12345'),('fruit','strawberry@gmail.com',NULL,'2022-03-25',NULL,'$2a$12$Uv4LcYR7ci4tKRDdUQXZKeWZ3X.ieW.yr2EOxkSwbu6K1aeFGZjSe'),('newUser','newUser@gmail.com',NULL,'2021-11-16',NULL,'test'),('nullptr','nullptr@gmail.com',_binary '0','1999-10-19','my name is mahd','password12345'),('sjc','jamilshayaan@gmail.com',_binary '0','2000-10-09','my name is shayaan','password12345'),('test','test@gmail.com',NULL,'2021-12-25',NULL,'$2a$12$8oFiJYNtxGi17UeRMd7Pv.gliBkP/4iJL8Q2Vrfg68yI2u1xGMB26'),('test_new','new@gmail.com',NULL,'2021-11-30',NULL,'$2a$12$JpVVnQjjZh9LoiUiJqhEp.NUPydOQUxXxYptYnM4VlS2rNS8aqGie'),('umair14040','umair2000yousaf@gmail.com',_binary '0','2000-12-30','my name is umair','password123'),('user','user@gmai.com',NULL,'2021-11-02','Hello. I am a test user. I like to suck cock!','$2a$12$SF/5hxCP//4BLg7oWzywwubl1NA1oRXEHRVPEDbkuGdvpCNBJb7Eq'),('user2','uasdf.afasd@fgmad.com',NULL,'2021-11-04',NULL,'$2a$12$XqEXCYqd2kGnoWW122swBOKGOeX3kwy6Sd8ki2r1Ig5CFGVyItrLO');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -389,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-05 19:48:59
+-- Dump completed on 2021-12-11 21:23:02
