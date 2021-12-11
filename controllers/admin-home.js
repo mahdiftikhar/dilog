@@ -1,8 +1,10 @@
 const Post = require("../models/post");
 const User = require("../models/user");
 const Comment = require("../models/comment");
+const Banned = require("../models/bannedusers");
 const ReportedPost = require("../models/reported-post");
 const ReportedComment = require("../models/reported-comment");
+const Follows = require("../models/follows");
 
 exports.getPosts = (req, res, next) => {
     Post.fetchAll()
@@ -164,24 +166,102 @@ exports.postSearch = (req, res, next) => {
 
 exports.getUserProfile = (req, res, next) => {
     const userName = req.params.userId;
+    const myUserName = req.session.user.userName;
+    let userData;
+    let isFollowing;
+    let n_followers;
+    let n_following;
 
     User.fetchByName(userName)
         .then(([data, metadata]) => {
-            const userData = data[0];
-
+            userData = data[0];
+            return Follows.isFollowingUser(myUserName, userName);
+        })
+        .then(([data, metadata]) => {
+            isFollowing = data[0].count;
+            return Follows.countFollowers(userName);
+        })
+        .then(([data, metadata]) => {
+            n_followers = data[0].n_followers;
+            return Follows.countFollowing(userName);
+        })
+        .then(([data, metadata]) => {
+            n_following = data[0].n_following;
             return res.render("admin/user-profile", {
                 pageTitle: userData.userName,
-                path: "/home",
+                path: "/aaa",
                 user: userData,
-                isCurrentUser: false,
+                isCurrentUser: userName === myUserName,
+                alreadyFollowing: isFollowing,
+                n_following: n_following,
+                n_followers: n_followers,
             });
         })
         .catch((err) => {
-            res.redirect("/admin/home");
+            res.redirect("/home");
+            console.log(err);
+        });
+};
+
+exports.getFollowers = (req, res, next) => {
+    const userName = req.params.userID;
+
+    User.fetchFollowers(userName)
+        .then(([rows, metadata]) => {
+            const followers = rows;
+
+            return res.render("admin/followers-following", {
+                pageTitle: "Followers",
+                path: "/my-profile",
+                followers: followers,
+                heading: "Followers",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getFollowing = (req, res, next) => {
+    const userName = req.params.userID;
+
+    User.fetchFollowing(userName)
+        .then(([rows, metadata]) => {
+            const following = rows;
+
+            return res.render("admin/followers-following", {
+                pageTitle: "Following",
+                path: "/my-profile",
+                followers: following,
+                heading: "Following",
+            });
+        })
+        .catch((err) => {
             console.log(err);
         });
 };
 
 exports.banUser = (req, res, next) => {
-    const
+    const userName = req.query.followName;
+
+    User.fetchEmail(userName)
+        .then(([rows, metadata]) => {
+            const banned = new Banned(
+                req.session.user.userName,
+                userName,
+                rows[0].email
+            );
+            banned.save();
+            User.deleteByName(userName)
+            .then(([rows, metadata]) => {
+                console.log("User Banned!");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+            return res.redirect("/admin/search");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };

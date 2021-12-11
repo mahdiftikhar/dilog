@@ -27,11 +27,5 @@
             <input type="hidden" name="postId" value="<%= post.id %>" />
             <button class="btn">Delete</button>
         </form>
-        <% if (reportedPost) { %>
-        <div>
-            <h6>Report Reason</h6>
-            <p><%= post.reportReason %></p>
-        </div>
-        <% } %>
     </div>
 </article>

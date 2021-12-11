@@ -60,4 +60,11 @@ module.exports = class User {
             [username]
         );
     }
+
+    static deleteByName(username) {
+        return db.execute(
+            "DELETE FROM user WHERE userName = (?);",
+            [username]
+        );
+    }
 };

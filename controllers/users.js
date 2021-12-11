@@ -90,10 +90,6 @@ exports.postEditProfile = (req, res, next) => {
                     console.log(err);
                 });
 
-            if (dp) {
-                // console.log(dp);
-            }
-
             if (password) {
                 if (!(password === confirm_password)) {
                     return res.render("user/edit-profile", {

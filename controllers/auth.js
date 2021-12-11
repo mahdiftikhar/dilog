@@ -156,7 +156,6 @@ exports.postRecovery = (req, res, next) => {
         .then(([rows, metadata]) => {
             if (!rows[0])
             {
-                console.log("I AM HEREE NOW");
                 req.flash("error", "You dont have an account");
                 return res.redirect("/");
             }
@@ -210,7 +209,6 @@ exports.postRecovery = (req, res, next) => {
                 });
         })
         .catch((err) => {
-            console.log("LMAOO");
             if (err) console.log(err);
         });
 };
