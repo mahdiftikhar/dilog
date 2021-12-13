@@ -1,0 +1,36 @@
+<div>
+    <article class="card-holder comment-container">
+        <div>
+            <div class="top-info">
+                <h4 class="user-name"><%= comment.userName %></h4>
+                <h6><%= comment.creationTime %></h6>
+            </div>
+        </div>
+
+        <div class="bio-container">
+            <p class="text-content"><%= comment.text %></p>
+        </div>
+
+        <div class="card__actions bot-info">
+            <form action="/admin/delete-comment" method="POST">
+                <input
+                    type="hidden"
+                    name="commentId"
+                    value="<%= comment.id %>"
+                />
+                <input
+                    type="hidden"
+                    name="postId"
+                    value="<%= comment.postId %>"
+                />
+                <button class="btn btn-color-comment">Delete</button>
+            </form>
+            <% if (reportedPost) { %>
+            <div>
+                <h6>Report Reason</h6>
+                <p><%= comment.reportReason %></p>
+            </div>
+            <% } %>
+        </div>
+    </article>
+</div>

@@ -23,6 +23,10 @@ module.exports = class User {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
     }
 
+    static fetchEmail(name) {
+        return db.execute("SELECT email FROM user WHERE userName = (?)", [name])
+    }
+
     static fetchLikeName(name) {
         return db.execute("SELECT * FROM user WHERE userName LIKE ?", [
             "%" + name + "%",
@@ -53,6 +57,13 @@ module.exports = class User {
     static fetchFollowing(username) {
         return db.execute(
             "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followingId and followerId = (?);",
+            [username]
+        );
+    }
+
+    static deleteByName(username) {
+        return db.execute(
+            "DELETE FROM user WHERE userName = (?);",
             [username]
         );
     }

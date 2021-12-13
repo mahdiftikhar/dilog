@@ -17,6 +17,7 @@ app.set("views", "views");
 const userRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 const authRoutes = require("./routes/auth");
+const adminAuthRoutes = require("./routes/admin-auth");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -26,6 +27,7 @@ app.use(
 app.use(flash());
 
 app.use("/admin", adminRoutes);
+app.use("/admin", adminAuthRoutes);
 app.use(userRoutes);
 app.use(authRoutes);
 

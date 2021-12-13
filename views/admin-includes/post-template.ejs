@@ -1,0 +1,31 @@
+<article class="card-holder">
+    <a href="/admin/post/<%= post.id %>" class="a-tag">
+        <div class="card-content">
+            <div class="top-info">
+                <h4><%= post.userName %></h4>
+                <h6><%= post.creationTime %></h6>
+            </div>
+            <div class="post-content">
+                <div class="card__image image-content">
+                    <img src="<% post.image %>" alt="" />
+                </div>
+                <div class="card-text">
+                    <p><%= post.text %></p>
+                </div>
+            </div>
+            <div class="tag-content">
+                <h6>Tags:</h6>
+                <p><%= post.tags %></p>
+            </div>
+
+            <% if (post.image) { %> <% } %>
+        </div>
+    </a>
+
+    <div class="card__actions bot-info">
+        <form action="/admin/delete-post" method="POST">
+            <input type="hidden" name="postId" value="<%= post.id %>" />
+            <button class="btn">Delete</button>
+        </form>
+    </div>
+</article>

@@ -1,0 +1,40 @@
+<%- include("../includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/edit-profile.css"> 
+
+</head>
+<body>
+    <main>
+        <div class="cont">
+            <div class="left-div">
+                <div>
+                    <h1 class="heading">Recovery Login</h1>
+                </div>
+                <div class="logo">
+                    <img src="/assets/logo3.svg" alt="logo" />
+                </div>
+            </div>
+            <div class="right-div">
+                <div class="form-options">
+                    <form action="/recoverylogin" method="POST">
+                        <div class="form-control login-control">
+                            <label for="postbody"> Verification Code</label>
+                            <input
+                                type="text"
+                                name="verificationCode"
+                            />
+                        </div>
+                        <% if (errorMessage) { %>
+                            <div class = "error-message" style = "color: white"><%= errorMessage %></div>
+                        <% } %>
+                        <div>
+                            <button type="submit" class="std-button">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include("../includes/end.ejs") %>
+</body>

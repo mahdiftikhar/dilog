@@ -13,4 +13,12 @@ router.post("/signup", authController.postSignup);
 
 router.post("/logout", authController.postLogout);
 
+router.get("/recovery", authController.getRecovery);
+
+router.post("/recovery", authController.postRecovery);
+
+router.get("/recoverylogin", authController.getRecoveryLogin);
+
+router.post("/recoverylogin", authController.postRecoveryLogin);
+
 module.exports = router;

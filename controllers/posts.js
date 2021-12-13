@@ -102,7 +102,6 @@ exports.getReportedPost = (req, res, next) => {
 };
 
 exports.getReportComment = (req, res, next) => {
-    console.log("bbbbbbbbb");
 
     const commentID = req.params.commentID;
 
@@ -114,7 +113,6 @@ exports.getReportComment = (req, res, next) => {
 };
 
 exports.getReportedComment = (req, res, next) => {
-    console.log("aaaaaaaaaaaa");
 
     const query = req.query;
     const reportReason = req.query.type;

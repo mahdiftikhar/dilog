@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/forgot_password.css" />
+    <link rel="stylesheet" href="../public/css/login.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Sofia"
@@ -20,18 +20,24 @@
         <form action="" class="signup">
           <input
             class="Input"
-            type="email"
-            placeholder="Email"
-            name="email"
+            type="text"
+            placeholder="Admin Name"
+            name="name"
           /><br />
-          <input class="bttn" type="submit" value="Reset Password" />
+          <input
+            class="Input"
+            type="password"
+            placeholder="Password"
+            name="password"
+          /><br />
+          <input class="bttn" type="submit" value="Login" />
         </form>
       </div>
-      <form method="POST">
-      <div class="sign">
-        <a href="/">Cancel</a>
-      </div>
-      </form>
     </div>
+    <form method="POST">
+    <div class="admin">
+      <a href="./login.html">User Login</a>
+    </div>
+    </form>
   </body>
 </html>
