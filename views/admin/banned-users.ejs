@@ -14,17 +14,17 @@
                     <h1 class = "heading"> Banned Users </h1>
                 </div>
                 <div class="logo">
-                    <img src="/assets/logo14.svg" alt="logo" style = "height: 50%; width: 50%;" />
+                    <img src="/assets/logo16.svg" alt="logo" style = "height: 50%; width: 50%;" />
                 </div>
             </div>
-            <div class="right-div" style= "margin-right: 4em;">
+            <div class="right-div" style= "margin-right: 4em; height: auto;">
                 <% if (followers.length > 0) { %>
                     <div>
                         <div class="users-grid">
                             <% for (let user of followers) { %>
                                 <div class = "user-container">
                                     <h5><%= user.userName %> </h5>
-                                    <h5><%= user.userEmail %> </h5>
+                                    <h6><%= user.userEmail %> </h6>
                                 </div>
                             <% } %>
                         </div>
