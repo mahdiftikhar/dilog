@@ -1,0 +1,40 @@
+<%- include("../admin-includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/search.css">
+    </head>
+
+<body>
+    <%- include("../admin-includes/navigation.ejs") %>
+
+    <main>
+
+        <div class="cont">
+            <div class="left-div">
+                <div>
+                    <h1 class = "heading"> Banned Users </h1>
+                </div>
+                <div class="logo">
+                    <img src="/assets/logo14.svg" alt="logo" style = "height: 50%; width: 50%;" />
+                </div>
+            </div>
+            <div class="right-div" style= "margin-right: 4em;">
+                <% if (followers.length > 0) { %>
+                    <div>
+                        <div class="users-grid">
+                            <% for (let user of followers) { %>
+                                <div class = "user-container">
+                                    <h5><%= user.userName %> </h5>
+                                    <h5><%= user.userEmail %> </h5>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <h1 style="color:white">No <%= heading %>!</h1>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+
+<%- include("../admin-includes/end.ejs") %>

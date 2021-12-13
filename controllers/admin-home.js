@@ -253,13 +253,29 @@ exports.banUser = (req, res, next) => {
             );
             banned.save();
             User.deleteByName(userName)
-            .then(([rows, metadata]) => {
-                console.log("User Banned!");
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                .then(([rows, metadata]) => {
+                    console.log("User Banned!");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
             return res.redirect("/admin/search");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.bannedUsers = (req, res, next) => {
+    Banned.fetchAll()
+        .then(([rows, metadata]) => {
+            const bannedUser = rows;
+
+            return res.render("admin/banned-users", {
+                pageTitle: "Followers",
+                path: "/banned-users",
+                followers: bannedUser,
+            });
         })
         .catch((err) => {
             console.log(err);
