@@ -19,18 +19,19 @@
                     </div> 
                         
                     <!-- <a href="">testing testing</a> -->
-                    <div>
+                    <div style="border-bottom: 30px;">
                         <% if (pageNo === 0) { %>
-                            <a href="/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                            <a href="/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                         <% } else if (lastPage) { %>
-                            <a href="/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                            <a href="/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
                         <% } else { %>
-                            <a href="/home?pageNo=<%= pageNo - 1 %>">Prev</a>
-                            <a href="/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                            <a href="/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
+                            <a href="/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                         <% } %> 
                     </div>
 
                 </div>
+                <div class="left-div">
                     <div>
                         <h1 class="heading">Home</h1>
                     </div>
