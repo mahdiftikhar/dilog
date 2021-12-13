@@ -16,7 +16,19 @@
                         <% for (let post of posts) { %>
                                 <%- include("../admin-includes/post-template.ejs", {post: post}) %>
                             <% } %>
-                    </div> 
+                    </div>
+                    
+                    <div>
+                        <% if (pageNo === 0) { %>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } else if (lastPage) { %>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                        <% } else { %>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } %> 
+                    </div>
+
                 </div>
                 <div class="left-div">
                     <div>
