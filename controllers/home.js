@@ -4,22 +4,42 @@ const User = require("../models/user");
 const PostReacts = require("../models/post-reacts");
 const CommentReact = require("../models/comment-react");
 const Follows = require("../models/follows");
+const { end } = require("../util/database");
 
 exports.getPosts = (req, res, next) => {
     const user = req.session.user;
+    const postsPerPage = 69;
+    let pageNo = +req.query.pageNo;
+
+    if (Number.isNaN(pageNo)) {
+        pageNo = 0;
+    }
+
+    const startIndex = pageNo * postsPerPage;
+    let endIndex = startIndex + postsPerPage;
+    let lastPage = false;
 
     Post.fetchAll()
         .then(([data, metadata]) => {
-            for (let post of data) {
+            if (endIndex >= data.length) {
+                endIndex = data.length - 1;
+                lastPage = true;
+            }
+
+            const posts = data.slice(startIndex, endIndex);
+
+            for (let post of posts) {
                 if (post.userName === user.userName) {
                     post.isUser = true;
                 }
             }
 
             res.render("user/home", {
-                posts: data,
+                posts: posts,
                 pageTitle: "Home",
                 path: "/home",
+                pageNo: pageNo,
+                lastPage: lastPage,
             });
         })
         .catch((err) => {
