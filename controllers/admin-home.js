@@ -7,12 +7,32 @@ const ReportedComment = require("../models/reported-comment");
 const Follows = require("../models/follows");
 
 exports.getPosts = (req, res, next) => {
+    const postsPerPage = 69;
+    let pageNo = +req.query.pageNo;
+
+    if (Number.isNaN(pageNo)) {
+        pageNo = 0;
+    }
+
+    const startIndex = pageNo * postsPerPage;
+    let endIndex = startIndex + postsPerPage;
+    let lastPage = false;
+
     Post.fetchAll()
         .then(([data, metadata]) => {
+            if (endIndex >= data.length) {
+                endIndex = data.length - 1;
+                lastPage = true;
+            }
+
+            const posts = data.slice(startIndex, endIndex);
+
             res.render("admin/home", {
-                posts: data,
+                posts: posts,
                 pageTitle: "admin-home",
                 path: "/home",
+                pageNo: pageNo,
+                lastPage: lastPage,
                 reportedPost: false,
             });
         })
@@ -122,6 +142,7 @@ exports.getSearch = (req, res, next) => {
         matchType: matchType,
         matches: matches,
         errorMessage: message,
+        reportedPost: true,
     });
 };
 
