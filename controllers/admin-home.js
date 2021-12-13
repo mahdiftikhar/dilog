@@ -122,6 +122,7 @@ exports.getSearch = (req, res, next) => {
         matchType: matchType,
         matches: matches,
         errorMessage: message,
+        reportedPost: true,
     });
 };
 
