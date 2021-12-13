@@ -29,13 +29,9 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-<<<<<<< HEAD
+    "fast-csv": "^4.3.6",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
     "nodemailer-sendgrid-transport": "^0.2.0"
-=======
-    "fast-csv": "^4.3.6",
-    "mysql2": "^2.3.3"
->>>>>>> 954cb5c6e94d8e578d46c7e9189df5975aedce55
   }
 }

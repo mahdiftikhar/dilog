@@ -5,11 +5,22 @@ const Recovery = require("../models/recovery");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 
+<<<<<<< HEAD
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
         api_key: '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'
     }
 }));
+=======
+const transporter = nodemailer.createTransport(
+    sendgridTransport({
+        auth: {
+            api_key:
+                "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",
+        },
+    })
+);
+>>>>>>> d54e46c7a2c5d0b80b543a9a77087cf1348b0e0d
 
 exports.getLogin = (req, res, next) => {
     let message = req.flash("error");
@@ -149,13 +160,12 @@ exports.getRecovery = (req, res, next) => {
 };
 
 exports.postRecovery = (req, res, next) => {
-    const recoveryName = req.body.userName
-    const tempPass = Math.floor(Math.random() * 1000000)
+    const recoveryName = req.body.userName;
+    const tempPass = Math.floor(Math.random() * 1000000);
 
     User.fetchByName(recoveryName)
         .then(([rows, metadata]) => {
-            if (!rows[0])
-            {
+            if (!rows[0]) {
                 req.flash("error", "You dont have an account");
                 return res.redirect("/");
             }
@@ -175,7 +185,10 @@ exports.postRecovery = (req, res, next) => {
                                 if (err) console.log(err);
                             });
                             if (rows[0]) {
-                                return Recovery.updateByName(hashedPassword, recoveryName);
+                                return Recovery.updateByName(
+                                    hashedPassword,
+                                    recoveryName
+                                );
                             }
                             return recovery.save();
                         })
@@ -186,9 +199,12 @@ exports.postRecovery = (req, res, next) => {
                                         res.redirect("/recoverylogin");
                                         return transporter.sendMail({
                                             to: rows[0].email,
-                                            from: 'dilogSQL@gmail.com',
-                                            subject: 'OTP',
-                                            html: '<h1>Your OTP is: </h1><h2>' + tempPass + '</h2>'
+                                            from: "dilogSQL@gmail.com",
+                                            subject: "OTP",
+                                            html:
+                                                "<h1>Your OTP is: </h1><h2>" +
+                                                tempPass +
+                                                "</h2>",
                                         });
                                     }
                                     req.flash("error", "User does not exist");
@@ -225,12 +241,14 @@ exports.getRecoveryLogin = (req, res, next) => {
 exports.postRecoveryLogin = (req, res, next) => {
     const tempPass = req.body.verificationCode;
     const user = req.session.user;
-    
+
     Recovery.fetchByName(user)
         .then(([data, metadata]) => {
-
             if (!data[0]) {
-                req.flash("error", "You have not requested a verification code");
+                req.flash(
+                    "error",
+                    "You have not requested a verification code"
+                );
                 return res.redirect("/recovery");
             }
             bcrypt
@@ -252,8 +270,8 @@ exports.postRecoveryLogin = (req, res, next) => {
                         })
                         .catch((err) => {
                             console.log(err);
-                            res.redirect("/recoverylogin")
-                        })
+                            res.redirect("/recoverylogin");
+                        });
                 })
                 .catch((err) => {
                     console.log(err);

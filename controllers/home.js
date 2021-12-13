@@ -274,6 +274,8 @@ exports.postDeletePost = (req, res, next) => {
 };
 
 exports.postLikePost = (req, res, next) => {
+    console.log("----------------");
+
     const postId = req.body.postId;
     let reacts = +req.body.reacts;
     const userName = req.session.user.userName;
