@@ -5,17 +5,38 @@ const bcrypt = require("bcryptjs");
 
 exports.getMyPosts = (req, res, next) => {
     const userName = req.session.user.userName;
+    const postsPerPage = 69;
+    let pageNo = +req.query.pageNo;
+
+    if (Number.isNaN(pageNo)) {
+        pageNo = 0;
+    }
+
+    const startIndex = pageNo * postsPerPage;
+    let endIndex = startIndex + postsPerPage;
+    let lastPage = false;
 
     Post.fetchByUserName(userName)
         .then(([rows, metadata]) => {
-            for (let post of rows) {
-                post.isUser = true;
+            if (endIndex >= data.length) {
+                endIndex = data.length - 1;
+                lastPage = true;
+            }
+
+            const posts = data.slice(startIndex, endIndex);
+
+            for (let post of posts) {
+                if (post.userName === user.userName) {
+                    post.isUser = true;
+                }
             }
 
             res.render("user/home", {
                 posts: rows,
                 pageTitle: "My Posts",
                 path: "/my-posts",
+                pageNo: pageNo,
+                lastPage: lastPage,
             });
         })
         .catch((err) => {
