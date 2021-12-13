@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `dilog`
+CREATE DATABASE  IF NOT EXISTS `dilog`;
 USE `dilog`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
