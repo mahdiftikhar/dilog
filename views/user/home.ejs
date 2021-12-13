@@ -14,11 +14,23 @@
                 <div class="right-div">
                     <div class="post">
                         <% for (let post of posts) { %>
-                                <%- include("../includes/post-template.ejs", {post: post}) %>
-                            <% } %>
+                            <%- include("../includes/post-template.ejs", {post: post}) %>
+                        <% } %>
                     </div> 
+                        
+                    <!-- <a href="">testing testing</a> -->
+                    <div>
+                        <% if (pageNo === 0) { %>
+                            <a href="/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } else if (lastPage) { %>
+                            <a href="/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                        <% } else { %>
+                            <a href="/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                            <a href="/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } %> 
+                    </div>
+
                 </div>
-                <div class="left-div">
                     <div>
                         <h1 class="heading">Home</h1>
                     </div>
