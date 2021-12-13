@@ -5,13 +5,6 @@ const Recovery = require("../models/recovery");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 
-<<<<<<< HEAD
-const transporter = nodemailer.createTransport(sendgridTransport({
-    auth: {
-        api_key: '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'
-    }
-}));
-=======
 const transporter = nodemailer.createTransport(
     sendgridTransport({
         auth: {
@@ -20,7 +13,6 @@ const transporter = nodemailer.createTransport(
         },
     })
 );
->>>>>>> d54e46c7a2c5d0b80b543a9a77087cf1348b0e0d
 
 exports.getLogin = (req, res, next) => {
     let message = req.flash("error");
