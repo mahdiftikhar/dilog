@@ -93,3 +93,9 @@
 .btn:hover {
     background-color: #bfab25;
 }
+
+.report-reason{
+    display: flex;
+    flex-direction: row;
+    padding-top: 7px;
+}
