@@ -14,5 +14,7 @@ module.exports = class Banned {
         );
     }
 
-    static fetchAll() {}
+    static fetchAll() {
+        return db.execute("SELECT * FROM bannedusers");
+    }
 };

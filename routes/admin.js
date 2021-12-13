@@ -25,7 +25,6 @@ router.post(
     adminHomeController.postDeleteComment
 );
 
-
 router.get("/followers/:userID", adminAuth, adminHomeController.getFollowers);
 
 router.get("/following/:userID", adminAuth, adminHomeController.getFollowing);
@@ -37,5 +36,7 @@ router.post("/search", adminAuth, adminHomeController.postSearch);
 router.get("/profile/:userId", adminAuth, adminHomeController.getUserProfile);
 
 router.get("/ban", adminAuth, adminHomeController.banUser);
+
+router.get("/banned-users", adminAuth, adminHomeController.bannedUsers);
 
 module.exports = router;
