@@ -38,25 +38,11 @@ countAllEntries = () => {
             console.log("comment table:", data.count);
             totalcount += data.count;
 
-            return db.execute("SELECT count(*) AS count FROM commentmentions");
-        })
-        .then(([data, metadata]) => {
-            data = data[0];
-            console.log("commentmentions table:", data.count);
-            totalcount += data.count;
-
             return db.execute("SELECT count(*) AS count FROM follows");
         })
         .then(([data, metadata]) => {
             data = data[0];
             console.log("follows table:", data.count);
-            totalcount += data.count;
-
-            return db.execute("SELECT count(*) AS count FROM postmentions");
-        })
-        .then(([data, metadata]) => {
-            data = data[0];
-            console.log("postmentions table:", data.count);
             totalcount += data.count;
 
             return db.execute("SELECT count(*) AS count FROM postreacts");
@@ -78,13 +64,6 @@ countAllEntries = () => {
         .then(([data, metadata]) => {
             data = data[0];
             console.log("reportposts table:", data.count);
-            totalcount += data.count;
-
-            return db.execute("SELECT count(*) AS count FROM suspendedusers");
-        })
-        .then(([data, metadata]) => {
-            data = data[0];
-            console.log("suspendedusers table:", data.count);
             totalcount += data.count;
 
             return db.execute("SELECT count(*) AS count FROM commentreacts");
