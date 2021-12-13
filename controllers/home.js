@@ -36,7 +36,7 @@ exports.getPosts = (req, res, next) => {
 
             res.render("user/home", {
                 posts: posts,
-                pageTitle: "Home",
+                pageTitle: "My Posts",
                 path: "/home",
                 pageNo: pageNo,
                 lastPage: lastPage,
