@@ -20,12 +20,12 @@
                     
                     <div>
                         <% if (pageNo === 0) { %>
-                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                         <% } else if (lastPage) { %>
-                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
                         <% } else { %>
-                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
-                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                         <% } %> 
                     </div>
 
