@@ -33,10 +33,10 @@ app.use(
 );
 app.use(flash());
 
-app.use("/admin", adminRoutes);
-app.use("/admin", adminAuthRoutes);
-app.use(userRoutes);
 app.use(authRoutes);
+app.use(userRoutes);
+app.use("/admin", adminAuthRoutes);
+app.use("/admin", adminRoutes);
 
 app.use(errorController.get404);
 
