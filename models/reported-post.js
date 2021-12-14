@@ -12,7 +12,10 @@ module.exports = class ReportedPost {
 
     static fetchAll() {
         return db.execute(
-            "SELECT id, userName, postId, reacts, post.creationTime, text , reportReason FROM post JOIN reportposts ON post.id = reportposts.postId"
+            `SELECT id, userName, postId, reacts, post.creationTime, text, reportReason
+             FROM post JOIN reportposts
+             ON post.id = reportposts.postId
+             ORDER BY(creationTime) desc;`
         );
     }
 };

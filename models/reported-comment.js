@@ -14,7 +14,8 @@ module.exports = class ReportedComment {
         return db.execute(
             `SELECT id, userName, postId, reacts, comment.creationTime, text , reportReason
                 FROM comment JOIN reportcomments
-                ON comment.id = reportcomments.commentId;`
+                ON comment.id = reportcomments.commentId
+                ORDER BY(creationTime) desc;`
         );
     }
 };
