@@ -16,6 +16,8 @@ exports.getMyPosts = (req, res, next) => {
     let endIndex = startIndex + postsPerPage;
     let lastPage = false;
 
+    console.log(userName);
+
     Post.fetchByUserName(userName)
         .then(([data, metadata]) => {
             if (endIndex >= data.length) {
@@ -26,9 +28,7 @@ exports.getMyPosts = (req, res, next) => {
             const posts = data.slice(startIndex, endIndex);
 
             for (let post of posts) {
-                if (post.userName === userName) {
-                    post.isUser = true;
-                }
+                post.isUser = true;
             }
 
             res.render("user/home", {
