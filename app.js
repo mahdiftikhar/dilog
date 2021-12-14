@@ -18,7 +18,12 @@ const fileStorage = multer.diskStorage({
         cb(null, path.join("images"));
     },
     filename: (req, file, cb) => {
-        cb(null, "test" + "-" + file.originalname);
+        cb(
+            null,
+            new Date().toISOString().replace(/\./g, "-").replace(/:/g, "-") +
+                "-" +
+                file.originalname
+        );
     },
 });
 
