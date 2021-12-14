@@ -88,8 +88,6 @@
 .users-grid {
   display: grid;
   grid-template: repeat(2, 1fr) / repeat(3, 1fr);
-  /* grid-gap: 1em; */
-  /* grid-row-gap: 1em; */
   margin-top: 50px;
   margin-bottom: 0;
   background-color: #1c3144;
@@ -148,4 +146,12 @@ a {
   margin-bottom: 15px;
   margin-top: 2em;
   padding-top: 1em;
+}
+
+.logo img {
+  position: fixed;
+  bottom: 0;
+  left: -200px;
+  height: 40%;
+  width: 30%;
 }

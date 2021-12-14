@@ -23,6 +23,7 @@
 }
 
 .user-name {
+    padding-top: 5px;
     margin-left: 1em;
 }
 
@@ -47,4 +48,15 @@
 .cancel-btn {
     padding: 2em 12px 2em 12px;
     border: 1em;
+}
+
+/* .comment-bot{
+    display: flex;
+    flex-direction: column;
+} */
+
+.report-reason{
+    display: flex;
+    flex-direction: row;
+    padding-top: 7px;
 }

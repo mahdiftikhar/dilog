@@ -36,13 +36,13 @@
     </div>
     <div class="card__actions bot-info">
         <form action="/like-post" method="POST">
-            <input type="hidden" name="reacts" value="<%= post.reacts %>">
-            <input type="hidden" name="postId" value="<%= post.id %>">
+            <input type="hidden" name="reacts" value="<%= post.reacts %>" />
+            <input type="hidden" name="postId" value="<%= post.id %>" />
             <button class="btn" type="submit">Like(<%= post.reacts %>)</button>
         </form>
 
         <% if (!post.isUser) { %>
-            <a href="/report-post/<%= post.id %> " class="btn">Report</a>
+        <a href="/report-post/<%= post.id %> " class="btn">Report</a>
         <% } %> <% if (post.isUser) { %>
             <a
                 class="btn"

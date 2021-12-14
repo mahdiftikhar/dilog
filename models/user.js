@@ -23,17 +23,20 @@ module.exports = class User {
         return db.execute("SELECT * FROM user WHERE userName=?", [name]);
     }
 
+    static fetchEmail(name) {
+        return db.execute("SELECT email FROM user WHERE userName = (?)", [
+            name,
+        ]);
+    }
+
+    static fetchByEmail(email) {
+        return db.execute("SELECT * FROM user WHERE email=?", [email]);
+    }
+
     static fetchLikeName(name) {
         return db.execute("SELECT * FROM user WHERE userName LIKE ?", [
             "%" + name + "%",
         ]);
-    }
-
-    static addByIdEmailPass(name, email, password) {
-        return db.execute(
-            "INSERT INTO user (userName, email, password, dateOfBirth) VALUES (?, ?, ?, ?)",
-            [name, email, password, "2010-02-02"]
-        );
     }
 
     static updateBio(username, new_bio) {
@@ -62,5 +65,9 @@ module.exports = class User {
             "SELECT userName, email, displayPicture, dateOfBirth, bio, password FROM user, follows WHERE userName = followingId and followerId = (?);",
             [username]
         );
+    }
+
+    static deleteByName(username) {
+        return db.execute("DELETE FROM user WHERE userName = (?);", [username]);
     }
 };

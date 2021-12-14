@@ -1,0 +1,60 @@
+<%- include("../admin-includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+
+<body>
+    <%- include("../admin-includes/navigation.ejs") %> 
+    <main>
+        <div class="container">
+            <img class = "img-1" src="/assets/logo11.svg" alt="">
+            <img class = "img-2" src="/assets/logo12.svg" alt="">
+            <div>
+                <form action="/admin/search" method="POST" class = "forum">
+                    <div class = "checker">
+                        <label for="type">
+                            <input type="radio" name="type" value="user" required> User
+                        </label>
+                        <label for="type">
+                            <input type="radio" name="type" value="post" required> Post
+                        </label>
+                    </div>
+                    <div class="search-field">
+                        <input class = "input-field" type="text" name="search" required>
+                        <button class = "button-7 edit-button" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class = "result-container">
+                <% if (errorMessage) { %>
+                    <div class = "error-message"><p> <%= errorMessage %> </p></div>
+                <% } else if (matchType === "user") { %>
+                    <div>
+                        <div class="users-grid">
+                            <% for (let user of matches) { %>
+                            <a href="profile/<%= user.userName %> ">
+                                <div class = "user-container">
+                                    <img class = "profile-pic" src="<%= user.displayPicture !== null ? user.displayPicture : '/assets/user2.svg'; %>" alt="pp">
+                                    <h5><%= user.userName %> </h5>
+                                    <form action="/follow" action="POST">
+                                        <input type="hidden" name="followname" value="<% user.userName %> ">
+                                        <!-- <button class = "button-7" type="submit">Follow</button> -->
+                                    </form>
+                                </div>
+                            </a>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } else if (matchType === "post") { %>
+                    <div class = "posts-container">
+                        <% for (let post of matches) { %>
+                            <%- include("../admin-includes/post-template.ejs", {post: post}) %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    </main>
+
+<%- include("../admin-includes/end.ejs") %> 

@@ -1,99 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><%= pageTitle %></title>
-        <link rel="stylesheet" href="/css/admin_dash.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+<%- include("../admin-includes/head.ejs") %>
+    <link rel="stylesheet" href="/css/general.css"> 
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/post.css" /> 
     </head>
-    <nav>
-        <div class="nav-bar">
-            <ul class="list">
-                <li class="search">
-                    <input
-                        type="text"
-                        class="search-input"
-                        placeholder="Search"
-                    />
-                </li>
-                <li class="items home">Home</li>
-                <li class="items post">Post</li>
-                <li class="items profile">Profile</li>
-                <li class="items logout">
-                    <form method="POST"><a href="/admin/login">Logout</a></form>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <body>
-        <div class="container-card">
-            <% if (rows1.length > 0) {%> <% for (let row of rows1) {%>
-            <div class="card normal_post">
-                <div class="metadata">
-                    <div class="metaitem"><%= row.userName %></div>
-                    <div class="metaitem">Normal</div>
-                    <div class="metaitem"><%= row.creationTime %></div>
+
+<body>
+    <%- include("../admin-includes/navigation.ejs") %>
+
+    <main>
+
+        <% if (posts.length > 0) { %>    
+            <div class="cont">
+                <div class="right-div">
+                    <div class="post">
+                        <% for (let post of posts) { %>
+                                <%- include("../admin-includes/post-template.ejs", {post: post}) %>
+                            <% } %>
+                    </div>
+                    
+                    <div>
+                        <% if (pageNo === 0) { %>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } else if (lastPage) { %>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                        <% } else { %>
+                            <a href="/admin/home?pageNo=<%= pageNo - 1 %>">Prev</a>
+                            <a href="/admin/home?pageNo=<%= pageNo + 1 %>">Next</a>
+                        <% } %> 
+                    </div>
+
                 </div>
-                <div class="content">
-                    <p class="main-content"><%= row.text %></p>
-                </div>
-                <div class="bot-nav">
-                    <div class="react">
-                        <form method="POST">
-                            <a href=""
-                                ><i class="fa fa-heart" aria-hidden="true"
-                                    ><span><%= row.reacts %></span></i
-                                ></a
-                            >
-                        </form>
+                <div class="left-div">
+                    <div>
+                        <h1 class="heading">Home</h1>
+                    </div>
+                    <div class="logo">
+                        <img src="/assets/logo8.svg" alt="logo" />
                     </div>
                 </div>
             </div>
-            <%}%> <%} else {%>
-            <div class="container-card">
-                <div class="card">
-                    <div class="content">
-                        <p class="main-content">No Posts Yet!</p>
-                    </div>
-                </div>
-            </div>
-            <% } %> <% if (rows2.length > 0) {%> <% for (let row of rows2) {%>
-            <div class="card reported_post">
-                <div class="metadata">
-                    <div class="metaitem"><%= row.userName %></div>
-                    <div class="metaitem reported">Reported Post</div>
-                    <div class="metaitem"><%= row.creationTime %></div>
-                </div>
-                <div class="content">
-                    <p class="main-content"><%= row.text %></p>
-                    <p><%= row.reportReason %></p>
-                </div>
-                <div class="bot-nav">
-                    <div class="react">
-                        <form method="POST">
-                            <a href=""
-                                ><i class="fa fa-heart" aria-hidden="true"
-                                    ><span><%= row.reacts %></span></i
-                                ></a
-                            >
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <%}%> <%} else {%>
-            <div class="container-card">
-                <div class="card">
-                    <div class="content">
-                        <p class="main-content">No Posts Yet!</p>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-        </div>
-    </body>
-</html>
+        <% } else { %> 
+            <h1>No Posts Found</h1>
+        <% } %> 
+    </main>
+
+
+<%- include("../admin-includes/end.ejs") %>

@@ -1,0 +1,131 @@
+<!-- <div class="backdrop" style="color: #1c3144"></div>
+<header class="main-header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li>
+              <a
+                class="<%= path === '/home' ? 'active' : '' %> active"
+                href="/home"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= path === '/my-posts' ? 'active' : '' %>"
+                href="/my-posts"
+                >My Posts</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= path === '/my-profile' ? 'active' : '' %>"
+                href="/my-profile"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= path === '/search' ? 'active' : '' %>"
+                href="/search"
+                >Search</a
+              >
+            </li>
+
+            <li>
+              <a
+                class="<%= path === '/make-post' ? 'active' : '' %>"
+                href="/make-post"
+              >
+                Make Post
+              </a>
+            </li>
+            <li>
+              <form action="/logout" method="POST">
+                <button type="submit" class="std-button">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header> -->
+<header class="main-header">
+    <div class="container">
+        <ul class="list-container">
+            <div class="item">
+                <li>
+                    <a
+                        class="<%= path === '/admin/home' ? 'active' : '' %>"
+                        href="/admin/home"
+                        >Home</a
+                    >
+                </li>
+            </div>
+            <div class="item">
+                <li>
+                    <a
+                        class="<%= path === '/admin/search' ? 'active' : '' %>"
+                        href="/admin/search"
+                        >Search</a
+                    >
+                </li>
+            </div>
+
+            <div class="item">
+                <li>
+                    <a
+                        class="<%=path==='/admin/reported-posts'?'active':''%>"
+                        href="/admin/reported-posts"
+                        >Reported Posts</a
+                    >
+                </li>
+            </div>
+
+            <div class="item">
+                <li>
+                    <a
+                        class="
+                            <%=path==='/admin/reported-comments'?'active':''%>
+                        "
+                        href="/admin/reported-comments"
+                        >Reported Comments</a
+                    >
+                </li>
+            </div>
+
+            <div class="item">
+                <li>
+                    <a
+                        class="<%=path==='/admin/banned-users'?'active':''%>"
+                        href="/admin/banned-users"
+                        >Banned Users</a
+                    >
+                </li>
+            </div>
+
+            <div class="item-last">
+                <li>
+                    <form action="/admin/logout" method="POST">
+                        <button type="submit" class="button-7">Logout</button>
+                    </form>
+                </li>
+            </div>
+        </ul>
+    </div>
+</header>

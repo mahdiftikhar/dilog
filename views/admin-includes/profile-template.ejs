@@ -1,0 +1,51 @@
+<div class="profile-container">
+    <div class="frame">
+        <img
+            src="<%= user.displayPicture ? user.displayPicture : '/assets/user2.svg'%> "
+            alt="PP"
+        />
+    </div>
+
+    <% if (!isCurrentUser) { %> <% } %>
+    <div>
+        <h3><%= user.userName %></h3>
+    </div>
+
+    <div class="followers">
+        <a href="/admin/followers/<%= user.userName %>">Followers (<%= n_followers %>)</a>
+        <a href="/admin/following/<%= user.userName %>">Following (<%= n_following %>)</a>
+    </div>
+
+    <div class="small-container">
+        <h2>Email</h2>
+        <h3><%= user.email %></h3>
+    </div>
+
+    <div class="small-container">
+        <h2>Birthday</h2>
+        <h3><%= user.dateOfBirth %></h3>
+    </div>
+
+    <div>
+        <h2>Bio:</h2>
+        <div class="bio-container">
+            <p><%= user.bio %></p>
+        </div>
+    </div>
+
+    <% if (isCurrentUser) { %>
+        <div class="edit-profile"><a href="/edit-profile">Edit Profile</a></div>
+    <% } else {%>
+        <div class="ban-button">
+            <form action="/admin/ban" action="GET">
+                <input
+                    type="hidden"
+                    name="followName"
+                    value="<%= user.userName %>"
+                />
+                <button class="button-7" type="submit">Ban</button>
+            </form>
+        </div>
+    <% } %>
+
+</div>
