@@ -22,7 +22,12 @@ const adminAuthRoutes = require("./routes/admin-auth");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
-    session({ secret: "my secret", resave: false, saveUninitialized: false })
+    session({
+        secret: "my secret",
+        resave: false,
+        saveUninitialized: false,
+        store: db.sessionStore,
+    })
 );
 app.use(flash());
 
