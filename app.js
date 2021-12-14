@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-const mySqlSession = require("express-mysql-session");
+const mySqlSession = require("express-mysql-session")(session);
 
 const errorController = require("./controllers/error");
 const User = require("./models/user");
