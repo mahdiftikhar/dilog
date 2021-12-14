@@ -15,28 +15,32 @@ exports.getMyPosts = (req, res, next) => {
     const startIndex = pageNo * postsPerPage;
     let endIndex = startIndex + postsPerPage;
     let lastPage = false;
-
-    console.log(userName);
+    let onePage = false;
+    let posts;
 
     Post.fetchByUserName(userName)
         .then(([data, metadata]) => {
-            if (endIndex >= data.length) {
-                endIndex = data.length - 1;
+            if (data.length < postsPerPage) {
+                onePage = true;
+                endIndex = data.length;
+            } else if (endIndex >= data.length) {
+                endIndex = data.length;
                 lastPage = true;
             }
 
-            const posts = data.slice(startIndex, endIndex);
+            posts = data.slice(startIndex, endIndex);
 
             for (let post of posts) {
                 post.isUser = true;
             }
 
-            res.render("user/home", {
+            res.render("user/my-posts", {
                 posts: posts,
                 pageTitle: "My Posts",
                 path: "/my-posts",
                 pageNo: pageNo,
                 lastPage: lastPage,
+                onePage: onePage,
             });
         })
         .catch((err) => {

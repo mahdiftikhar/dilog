@@ -17,15 +17,19 @@ exports.getPosts = (req, res, next) => {
     const startIndex = pageNo * postsPerPage;
     let endIndex = startIndex + postsPerPage;
     let lastPage = false;
+    let onePage = false;
+    let posts;
 
     Post.fetchAll()
         .then(([data, metadata]) => {
-            if (endIndex >= data.length) {
-                endIndex = data.length - 1;
+            if (data.length < postsPerPage) {
+                onePage = true;
+                endIndex = data.length;
+            } else if (endIndex >= data.length) {
+                endIndex = data.length;
                 lastPage = true;
             }
-
-            const posts = data.slice(startIndex, endIndex);
+            posts = data.slice(startIndex, endIndex);
 
             res.render("admin/home", {
                 posts: posts,

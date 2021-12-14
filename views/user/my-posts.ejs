@@ -20,14 +20,14 @@
                         
                     <!-- <a href="">testing testing</a> -->
                     <div style="border-bottom: 30px;">
-                        <% if (!onePage) { %> 
+                        <% if (!onePage)  { %> 
                             <% if (pageNo === 0) { %>
-                                <a href="/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
+                                <a href="/my-posts?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                             <% } else if (lastPage) { %>
-                                <a href="/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
+                                <a href="/my-posts?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
                             <% } else { %>
-                                <a href="/home?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
-                                <a href="/home?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
+                                <a href="/my-posts?pageNo=<%= pageNo - 1 %>" class="button-7">Prev</a>
+                                <a href="/my-posts?pageNo=<%= pageNo + 1 %>" class="button-7">Next</a>
                             <% } %> 
                         <% } %> 
                     </div>
