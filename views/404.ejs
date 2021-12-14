@@ -2,9 +2,9 @@
 </head>
 
 <body>
-    <% if (isAdmin) { %>
+    <% if (isUser) { %>
         <%- include('includes/navigation.ejs') %>
-    <% } else { %>
+    <% } else if (isAdmin) { %>
         <%- include('admin-includes/navigation.ejs') %>
     <% } %>    
     <h1>Page Not Found!</h1>

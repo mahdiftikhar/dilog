@@ -1,8 +1,10 @@
 exports.get404 = (req, res, next) => {
-    let session = req.session.isLoggedIn;
+    let userSession = req.session.isLoggedIn;
+    let adminSession = req.session.adminLoggedIn;
     res.status(404).render("404", {
         pageTitle: "Page not Found",
         path: "/",
-        isAdmin: session,
+        isUser: userSession,
+        isAdmin: adminSession,
     });
 };
