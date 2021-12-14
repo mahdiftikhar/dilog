@@ -6,11 +6,10 @@ const DATABASE = "dilog";
 const PASSWORD = "cumdump";
 
 let pool;
-// let connection_dict = process.env.JAWSDB_URL;
 
 if (process.env.JAWSDB_URL) {
-    // connection_dict["dateStrings"] = true;
-    pool = mysql.createPool(process.env.JAWSDB_URL);
+    connection_dict["dateStrings"] = true;
+    pool = mysql.createPool(connection_dict);
 } else {
     pool = mysql.createPool({
         host: HOST,
