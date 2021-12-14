@@ -107,13 +107,9 @@ exports.postEditProfile = (req, res, next) => {
             const password = req.body.password;
             const confirm_password = req.body.confirm_password;
             const bio = req.body.bio;
-            const dp = req.body.dp;
-
-            User.updateBio(username, bio)
-                .then(([data, metadata]) => {})
-                .catch((err) => {
-                    console.log(err);
-                });
+            const oldImage = req.body.oldImage;
+            const dp = req.file;
+            let imageUrl;
 
             if (password) {
                 if (!(password === confirm_password)) {
@@ -124,14 +120,43 @@ exports.postEditProfile = (req, res, next) => {
                         errorMessage: "Passwords do not match",
                     });
                 } else {
-                    bcrypt.hash(password, 12).then((hashedPassword) => {
-                        User.updatePassword(username, hashedPassword)
-                            .then(([data, metadata]) => {})
-                            .catch((err) => {
-                                console.log(err);
-                            });
-                    });
+                    if (oldImage && !dp) {
+                        imageUrl = oldImage;
+                    } else if (!oldImage && !dp) {
+                        imageUrl = null;
+                    } else {
+                        imageUrl = dp.path;
+                    }
+
+                    User.updateBioImage(username, bio, imageUrl)
+                        .then(([data, metadata]) => {
+                            return bcrypt.hash(password, 12);
+                        })
+                        .then((hashedPassword) => {
+                            User.updatePassword(username, hashedPassword)
+                                .then(([data, metadata]) => {})
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                 }
+            } else {
+                if (oldImage && !dp) {
+                    imageUrl = oldImage;
+                } else if (!oldImage && !dp) {
+                    imageUrl = null;
+                } else {
+                    imageUrl = dp.path;
+                }
+
+                User.updateBioImage(username, bio, imageUrl)
+                    .then(([data, metadata]) => {})
+                    .catch((err) => {
+                        console.log(err);
+                    });
             }
 
             return res.redirect("/my-profile");

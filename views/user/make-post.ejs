@@ -18,7 +18,7 @@
             </div>
             <div class="right-div">
                 <div class="form-options">
-                    <form action="/<%= post ? "edit-post" : "make-post" %>" method="POST">
+                    <form action="/<%= post ? "edit-post" : "make-post" %>" method="POST" enctype="multipart/form-data">
                         <div class="form-control login-control">
                             <label for="postbody">Content</label>
                             <textarea style= "height: 200px; text-align: left;"
@@ -37,10 +37,11 @@
                             />
                         </div>
                         <div class="form-control login-control" style = "color: white">
-                            <label for="image"> Image</label>
+                            <label for="image">Image</label>
                             <input type="file"
                                 name="image"
-                            /> 
+                            >
+                            <input type="hidden" name=oldImage value="<%= post.image %>">
                         </div> 
                         <div>
                             <% if (post) { %>
@@ -55,4 +56,4 @@
     </main>
     
     <%- include("../includes/end.ejs") %>
-</body>
+<!-- </body> -->

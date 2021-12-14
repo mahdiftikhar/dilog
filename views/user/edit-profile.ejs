@@ -18,7 +18,7 @@
             </div>
             <div class="right-div">
                 <div class="form-options">
-                    <form action="/edit-profile" method="POST">
+                    <form action="/edit-profile" method="POST" enctype="multipart/form-data">
                         <div class="form-control login-control">
                             <label for="postbody"> Bio</label>
                             <input
@@ -45,10 +45,11 @@
                             <div class = "error-message" style = "color: white"><%= errorMessage %></div>
                         <% } %>
                         <div class="form-control login-control" style = "color: white">
-                            <label for="image"> Profile Picture</label>
+                            <label for="image">Profile Picture</label>
                             <input type="file"
-                                name="dp"
+                                name="image"
                             />
+                            <input type="hidden" name="oldImage" value="<%= userData.displayPicture %>">
                         </div>
                         <div>
                             <button type="submit" class="std-button">Confirm</button>

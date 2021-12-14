@@ -13,12 +13,13 @@ module.exports = class Post {
 
     save() {
         return db.execute(
-            "INSERT INTO post (userName, tags, text, reacts, creationTime) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO post (userName, tags, text, reacts, image, creationTime) VALUES (?, ?, ?, ?, ?, ?)",
             [
                 this.userName,
                 this.tags,
                 this.text,
                 this.reacts,
+                this.image,
                 this.creationTime,
             ]
         );
@@ -48,12 +49,11 @@ module.exports = class Post {
         );
     }
 
-    static updateById(id, newText, newTags) {
-        return db.execute("UPDATE post SET text=?, tags=? WHERE (id=?);", [
-            newText,
-            newTags,
-            id,
-        ]);
+    static updateById(id, newText, newTag, imageUrl) {
+        return db.execute(
+            "UPDATE post SET text=?, tags=?, image=? WHERE (id=?);",
+            [newText, newTag, imageUrl, id]
+        );
     }
 
     static updateReact(id, reacts) {

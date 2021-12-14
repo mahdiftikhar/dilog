@@ -7,7 +7,9 @@
             </div>
             <div class="post-content">
                 <div class="card__image image-content">
-                    <img src="<% post.image %>" alt="" />
+                    <% if (post.image) { %> 
+                        <img src="/<%= post.image %>" alt="image">
+                    <% } %>
                 </div>
                 <div class="card-text">
                     <p><%= post.text %></p>
@@ -18,7 +20,6 @@
                 <p><%= post.tags %></p>
             </div>
 
-            <% if (post.image) { %> <% } %>
         </div>
     </a>
 

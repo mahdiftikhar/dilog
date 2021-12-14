@@ -13,8 +13,14 @@ exports.getMakePost = (req, res, next) => {
 exports.postMakePost = (req, res, next) => {
     const text = req.body.postbody;
     const tags = req.body.tags;
-    const image = req.body.image;
+    const image = req.file;
+    let imageUrl;
 
+    if (!image) {
+        imageUrl = null;
+    } else {
+        imageUrl = image.path;
+    }
     const username = req.session.user.userName;
 
     let date_ob = new Date();
@@ -38,7 +44,15 @@ exports.postMakePost = (req, res, next) => {
         ":" +
         seconds;
 
-    const post = new Post(null, username, tags, text, image, 0, creationTime);
+    const post = new Post(
+        null,
+        username,
+        tags,
+        text,
+        imageUrl,
+        0,
+        creationTime
+    );
 
     post.save()
         .then(([data, metadata]) => {
@@ -102,7 +116,6 @@ exports.getReportedPost = (req, res, next) => {
 };
 
 exports.getReportComment = (req, res, next) => {
-
     const commentID = req.params.commentID;
 
     res.render("user/report-reason-comment", {
@@ -113,7 +126,6 @@ exports.getReportComment = (req, res, next) => {
 };
 
 exports.getReportedComment = (req, res, next) => {
-
     const query = req.query;
     const reportReason = req.query.type;
     const commentID = req.query.commentID;

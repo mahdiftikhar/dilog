@@ -31,7 +31,7 @@ exports.getPosts = (req, res, next) => {
                 lastPage = true;
             }
             posts = data.slice(startIndex, endIndex);
-            
+
             for (let post of posts) {
                 if (post.userName === user.userName) {
                     post.isUser = true;
@@ -167,6 +167,8 @@ exports.getUserProfile = (req, res, next) => {
         .then(([data, metadata]) => {
             n_following = data[0].n_following;
 
+            console.log(userData);
+
             return res.render("user/user-profile", {
                 pageTitle: userData.userName,
                 path: "/aaa",
@@ -272,10 +274,21 @@ exports.getEditPost = (req, res, next) => {
 exports.postEditPost = (req, res, next) => {
     const postBody = req.body.postbody;
     const postTags = req.body.tags;
-    const postImage = req.body.image;
+    const postImage = req.file;
     const postId = req.body.postId;
+    const postOldImage = req.body.oldImage;
 
-    Post.updateById(postId, postBody, postTags)
+    let imageUrl;
+
+    if (postOldImage && !postImage) {
+        imageUrl = postOldImage;
+    } else if (!postOldImage && !postImage) {
+        imageUrl = null;
+    } else {
+        imageUrl = postImage.path;
+    }
+
+    Post.updateById(postId, postBody, postTags, imageUrl)
         .then(([data, metadata]) => {
             res.redirect("/post/" + postId);
         })
