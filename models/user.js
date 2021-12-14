@@ -24,7 +24,13 @@ module.exports = class User {
     }
 
     static fetchEmail(name) {
-        return db.execute("SELECT email FROM user WHERE userName = (?)", [name])
+        return db.execute("SELECT email FROM user WHERE userName = (?)", [
+            name,
+        ]);
+    }
+
+    static fetchByEmail(email) {
+        return db.execute("SELECT * FROM user WHERE email=?", [email]);
     }
 
     static fetchLikeName(name) {
@@ -62,9 +68,6 @@ module.exports = class User {
     }
 
     static deleteByName(username) {
-        return db.execute(
-            "DELETE FROM user WHERE userName = (?);",
-            [username]
-        );
+        return db.execute("DELETE FROM user WHERE userName = (?);", [username]);
     }
 };

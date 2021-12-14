@@ -17,7 +17,7 @@ exports.getMyPosts = (req, res, next) => {
     let lastPage = false;
 
     Post.fetchByUserName(userName)
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
             if (endIndex >= data.length) {
                 endIndex = data.length - 1;
                 lastPage = true;
@@ -26,13 +26,13 @@ exports.getMyPosts = (req, res, next) => {
             const posts = data.slice(startIndex, endIndex);
 
             for (let post of posts) {
-                if (post.userName === user.userName) {
+                if (post.userName === userName) {
                     post.isUser = true;
                 }
             }
 
             res.render("user/home", {
-                posts: rows,
+                posts: posts,
                 pageTitle: "My Posts",
                 path: "/my-posts",
                 pageNo: pageNo,
@@ -51,8 +51,8 @@ exports.getMyProfile = (req, res, next) => {
     let n_following;
 
     User.fetchByName(userName)
-        .then(([rows, metadata]) => {
-            userData = rows[0];
+        .then(([data, metadata]) => {
+            userData = data[0];
             return Follows.countFollowers(userName);
         })
         .then(([data, metadata]) => {
@@ -81,8 +81,8 @@ exports.getMyProfile = (req, res, next) => {
 exports.getEditProfile = (req, res, next) => {
     const username = req.session.user.userName;
 
-    User.fetchByName(username).then(([rows, metadata]) => {
-        userData = rows[0];
+    User.fetchByName(username).then(([data, metadata]) => {
+        userData = data[0];
 
         res.render("user/edit-profile", {
             pageTitle: "Edit Profile",
@@ -97,8 +97,8 @@ exports.postEditProfile = (req, res, next) => {
     const username = req.session.user.userName;
 
     User.fetchByName(username)
-        .then(([rows, metadata]) => {
-            const userData = rows[0];
+        .then(([data, metadata]) => {
+            const userData = data[0];
 
             const password = req.body.password;
             const confirm_password = req.body.confirm_password;
@@ -106,7 +106,7 @@ exports.postEditProfile = (req, res, next) => {
             const dp = req.body.dp;
 
             User.updateBio(username, bio)
-                .then(([rows, metadata]) => {})
+                .then(([data, metadata]) => {})
                 .catch((err) => {
                     console.log(err);
                 });
@@ -122,7 +122,7 @@ exports.postEditProfile = (req, res, next) => {
                 } else {
                     bcrypt.hash(password, 12).then((hashedPassword) => {
                         User.updatePassword(username, hashedPassword)
-                            .then(([rows, metadata]) => {})
+                            .then(([data, metadata]) => {})
                             .catch((err) => {
                                 console.log(err);
                             });
@@ -141,8 +141,8 @@ exports.getFollowers = (req, res, next) => {
     const userName = req.params.userID;
 
     User.fetchFollowers(userName)
-        .then(([rows, metadata]) => {
-            const followers = rows;
+        .then(([data, metadata]) => {
+            const followers = data;
 
             return res.render("user/followers-following", {
                 pageTitle: "Followers",
@@ -160,8 +160,8 @@ exports.getFollowing = (req, res, next) => {
     const userName = req.params.userID;
 
     User.fetchFollowing(userName)
-        .then(([rows, metadata]) => {
-            const following = rows;
+        .then(([data, metadata]) => {
+            const following = data;
 
             return res.render("user/followers-following", {
                 pageTitle: "Following",
@@ -183,7 +183,7 @@ exports.getFollowUser = (req, res, next) => {
 
     newPair
         .save()
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
             return res.redirect("profile/" + toFollowUserName);
         })
         .catch((err) => {
@@ -196,7 +196,7 @@ exports.getUnfollowUser = (req, res, next) => {
     const myUserName = req.session.user.userName;
 
     Follows.unfollowUser(myUserName, toUnfollowUserName)
-        .then(([rows, metadata]) => {
+        .then(([data, metadata]) => {
             return res.redirect("profile/" + toUnfollowUserName);
         })
         .catch((err) => {

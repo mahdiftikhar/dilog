@@ -4,6 +4,7 @@ const User = require("../models/user");
 const Recovery = require("../models/recovery");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
+const BannedUsers = require("../models/bannedusers");
 
 const transporter = nodemailer.createTransport(
     sendgridTransport({
@@ -114,27 +115,42 @@ exports.postSignup = (req, res, next) => {
     }
 
     User.fetchByName(userName)
-        .then(([rows, metaData]) => {
-            if (rows[0]) {
+        .then(([data, metaData]) => {
+            if (data[0]) {
                 req.flash("error", "Username needs to be unique");
                 return res.redirect("/signup");
             }
-            return bcrypt
-                .hash(password, 12)
-                .then((hashedPassword) => {
-                    const user = new User(
-                        userName,
-                        email,
-                        null,
-                        dateOfBirth,
-                        null,
-                        hashedPassword
-                    );
-                    return user.save();
-                })
-                .then((result) => {
-                    return res.redirect("/");
-                });
+
+            return User.fetchByEmail(email).then(([data, metaData]) => {
+                if (data[0]) {
+                    req.flash("error", "Email needs to be unique");
+                    return res.redirect("/signup");
+                }
+                return BannedUsers.fetchByEmail(email).then(
+                    ([data, metaData]) => {
+                        if (data[0]) {
+                            req.flash("error", "This email is banned on DILog");
+                            return res.redirect("/signup");
+                        }
+                        return bcrypt
+                            .hash(password, 12)
+                            .then((hashedPassword) => {
+                                const user = new User(
+                                    userName,
+                                    email,
+                                    null,
+                                    dateOfBirth,
+                                    null,
+                                    hashedPassword
+                                );
+                                return user.save();
+                            })
+                            .then((result) => {
+                                return res.redirect("/");
+                            });
+                    }
+                );
+            });
         })
         .catch((err) => {
             console.log(err);

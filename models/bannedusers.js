@@ -17,4 +17,10 @@ module.exports = class Banned {
     static fetchAll() {
         return db.execute("SELECT * FROM bannedusers");
     }
+
+    static fetchByEmail(email) {
+        return db.execute("SELECT * FROM bannedusers where userEmail=?", [
+            email,
+        ]);
+    }
 };
