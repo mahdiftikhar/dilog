@@ -4,13 +4,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-const mySqlSession = require("express-mysql-session")(session);
+// const mySqlSession = require("express-mysql-session")(session);
 
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 const db = require("./util/database");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -27,7 +28,7 @@ app.use(
         secret: "my secret",
         resave: false,
         saveUninitialized: false,
-        store: mySqlSession,
+        // store: mySqlSession,
     })
 );
 app.use(flash());

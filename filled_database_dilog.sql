@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `dilog`;
-USE `dilog`;
+CREATE DATABASE  IF NOT EXISTS `gc8mo20qp57967la`;
+USE `gc8mo20qp57967la`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dilog
