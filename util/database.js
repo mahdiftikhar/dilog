@@ -6,6 +6,7 @@ const DATABASE = "dilog";
 const PASSWORD = "cumdump";
 
 let pool;
+let connection_dict = process.env.JAWSDB_URL;
 
 if (process.env.JAWSDB_URL) {
     connection_dict["dateStrings"] = true;
