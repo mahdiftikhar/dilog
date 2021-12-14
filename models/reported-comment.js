@@ -12,9 +12,9 @@ module.exports = class ReportedComment {
 
     static fetchAll() {
         return db.execute(
-            `SELECT id, userName, postId, reacts, dilog.comment.creationTime, text , reportReason
-                FROM dilog.comment JOIN dilog.reportcomments
-                ON dilog.comment.id = dilog.reportcomments.commentId;`
+            `SELECT id, userName, postId, reacts, comment.creationTime, text , reportReason
+                FROM comment JOIN reportcomments
+                ON comment.id = reportcomments.commentId;`
         );
     }
 };

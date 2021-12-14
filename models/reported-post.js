@@ -12,7 +12,7 @@ module.exports = class ReportedPost {
 
     static fetchAll() {
         return db.execute(
-            "SELECT id, userName, postId, reacts, dilog.post.creationTime, text , reportReason FROM dilog.post JOIN dilog.reportposts ON dilog.post.id = dilog.reportposts.postId"
+            "SELECT id, userName, postId, reacts, post.creationTime, text , reportReason FROM post JOIN reportposts ON post.id = reportposts.postId"
         );
     }
 };
